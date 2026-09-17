@@ -17,12 +17,13 @@
 
 body{
     font-family:'Montserrat',sans-serif;
-    background:
-        radial-gradient(circle at 20% 20%,rgba(255,255,255,.8),transparent 25%),
-        linear-gradient(135deg,#f9dff0,#e9d9f7,#f7e5f1);
-    color:#4a3850;
+    color:#4d3b52;
     min-height:100vh;
     overflow-x:hidden;
+    background:
+        radial-gradient(circle at 15% 15%,rgba(255,255,255,.9),transparent 25%),
+        radial-gradient(circle at 85% 80%,rgba(255,255,255,.6),transparent 30%),
+        linear-gradient(135deg,#f9e1f1,#eadcf7,#f8e6f1);
 }
 
 /* =========================
@@ -33,12 +34,12 @@ body{
     position:fixed;
     width:6px;
     height:6px;
-    background:white;
     border-radius:50%;
+    background:white;
     opacity:.7;
-    animation:float 5s infinite ease-in-out;
     pointer-events:none;
     z-index:1;
+    animation:float 5s ease-in-out infinite;
 }
 
 .sparkle:nth-child(1){left:8%;top:20%}
@@ -48,8 +49,14 @@ body{
 .sparkle:nth-child(5){left:55%;top:10%;animation-delay:1.5s}
 
 @keyframes float{
-    0%,100%{transform:translateY(0);opacity:.3}
-    50%{transform:translateY(-15px);opacity:1}
+    0%,100%{
+        transform:translateY(0);
+        opacity:.3;
+    }
+    50%{
+        transform:translateY(-15px);
+        opacity:1;
+    }
 }
 
 /* =========================
@@ -59,43 +66,43 @@ body{
 #cover{
     min-height:100vh;
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
     text-align:center;
+    padding:25px;
     position:relative;
     z-index:5;
-    padding:30px;
 }
 
 .cover-card{
     width:min(850px,95%);
-    padding:70px 40px;
-    border-radius:35px;
-    background:rgba(255,255,255,.55);
-    backdrop-filter:blur(15px);
-    box-shadow:0 25px 70px rgba(110,70,130,.18);
-    border:1px solid rgba(255,255,255,.7);
+    padding:70px 35px;
+    border-radius:38px;
+    background:rgba(255,255,255,.58);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.8);
+    box-shadow:0 25px 70px rgba(100,65,120,.18);
 }
 
 .cover-small{
-    font-size:14px;
-    letter-spacing:4px;
-    font-weight:600;
     color:#8d6a98;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:4px;
     margin-bottom:15px;
 }
 
 .cover-title{
     font-family:'DM Serif Display',serif;
-    font-size:clamp(55px,9vw,105px);
+    color:#744b7d;
+    font-size:clamp(58px,9vw,105px);
     line-height:.9;
-    color:#774d80;
     margin-bottom:20px;
 }
 
 .cover-subtitle{
+    color:#735c78;
     font-size:18px;
-    color:#705a75;
     margin-bottom:35px;
 }
 
@@ -103,13 +110,13 @@ body{
     border:none;
     padding:17px 35px;
     border-radius:50px;
-    background:linear-gradient(135deg,#b979a7,#8e68a5);
+    background:linear-gradient(135deg,#bd7eab,#8c68a4);
     color:white;
     font-family:'Montserrat',sans-serif;
     font-size:16px;
     font-weight:700;
     cursor:pointer;
-    box-shadow:0 12px 30px rgba(126,83,145,.25);
+    box-shadow:0 12px 30px rgba(120,75,140,.25);
     transition:.3s;
 }
 
@@ -123,29 +130,28 @@ body{
 
 #app{
     display:none;
-    position:relative;
-    z-index:3;
     padding-bottom:50px;
 }
 
 .app-header{
-    padding:25px 5%;
+    width:min(1400px,94%);
+    margin:auto;
+    padding:25px 0;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    gap:20px;
 }
 
 .logo{
     font-family:'DM Serif Display',serif;
-    color:#744e7c;
-    font-size:30px;
+    font-size:31px;
+    color:#744b7d;
 }
 
 .student-name{
     font-size:13px;
+    color:#8a718e;
     font-weight:600;
-    color:#8d718f;
 }
 
 /* =========================
@@ -154,7 +160,7 @@ body{
 
 .intro{
     text-align:center;
-    padding:20px 20px 10px;
+    padding:20px;
 }
 
 .intro h1{
@@ -169,15 +175,15 @@ body{
 }
 
 /* =========================
-   PROGRESS
+   PROGRESO
 ========================= */
 
 .progress-box{
     width:min(700px,90%);
-    margin:20px auto;
-    background:rgba(255,255,255,.55);
-    border-radius:30px;
+    margin:15px auto 25px;
     padding:12px 18px;
+    border-radius:30px;
+    background:rgba(255,255,255,.6);
     box-shadow:0 8px 25px rgba(100,70,110,.08);
 }
 
@@ -200,39 +206,39 @@ body{
 .progress-fill{
     width:0%;
     height:100%;
-    background:linear-gradient(90deg,#c27eac,#8b68a5);
     border-radius:20px;
+    background:linear-gradient(90deg,#c37eac,#8b68a5);
     transition:.5s;
 }
 
 /* =========================
-   ANATOMY LAYOUT
+   LAYOUT
 ========================= */
 
 .anatomy-layout{
     width:min(1400px,95%);
-    margin:25px auto;
+    margin:20px auto;
     display:grid;
-    grid-template-columns:180px 1fr 180px;
+    grid-template-columns:180px minmax(0,1fr) 180px;
     gap:15px;
-    align-items:stretch;
 }
 
 /* =========================
-   PANELS
+   PANELES
 ========================= */
 
 .side-panel{
-    background:rgba(255,255,255,.55);
-    backdrop-filter:blur(10px);
-    border:1px solid rgba(255,255,255,.7);
-    border-radius:25px;
     padding:15px;
+    border-radius:25px;
+    background:rgba(255,255,255,.58);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.75);
     box-shadow:0 15px 40px rgba(110,70,130,.09);
+    height:max-content;
 }
 
 .side-panel h3{
-    font-size:13px;
+    font-size:12px;
     text-transform:uppercase;
     letter-spacing:1px;
     color:#806284;
@@ -243,8 +249,8 @@ body{
 .view-button{
     width:100%;
     border:none;
+    padding:12px 7px;
     margin-bottom:8px;
-    padding:12px 8px;
     border-radius:14px;
     background:#f6e9f5;
     color:#684f6d;
@@ -262,8 +268,8 @@ body{
 
 .layer-button.active,
 .view-button.active{
-    background:linear-gradient(135deg,#bb7eab,#8f69a2);
     color:white;
+    background:linear-gradient(135deg,#bb7eab,#8f69a2);
 }
 
 /* =========================
@@ -272,14 +278,15 @@ body{
 
 .viewer{
     position:relative;
+    width:100%;
     height:650px;
     min-height:500px;
     overflow:hidden;
     border-radius:35px;
     background:
-        radial-gradient(circle at center,#ffffff 0%,#f6e9f5 55%,#eadcf0 100%);
-    box-shadow:0 20px 60px rgba(100,65,120,.16);
+        radial-gradient(circle at 50% 45%,#ffffff 0%,#f7eaf6 55%,#eadcf0 100%);
     border:1px solid rgba(255,255,255,.8);
+    box-shadow:0 20px 60px rgba(100,65,120,.16);
 }
 
 #threeCanvas{
@@ -287,6 +294,7 @@ body{
     height:100%;
     display:block;
     cursor:grab;
+    touch-action:none;
 }
 
 #threeCanvas:active{
@@ -301,10 +309,10 @@ body{
     position:absolute;
     inset:0;
     display:flex;
-    justify-content:center;
     align-items:center;
-    background:rgba(247,235,247,.92);
-    z-index:20;
+    justify-content:center;
+    background:rgba(247,235,247,.94);
+    z-index:50;
     transition:.5s;
 }
 
@@ -324,7 +332,7 @@ body{
     border-top-color:#936aa2;
     border-radius:50%;
     animation:spin 1s linear infinite;
-    margin:auto auto 15px;
+    margin:0 auto 15px;
 }
 
 @keyframes spin{
@@ -332,97 +340,61 @@ body{
 }
 
 /* =========================
-   VIEWER MESSAGE
+   MENSAJES
 ========================= */
 
 .viewer-message{
     position:absolute;
-    top:20px;
+    top:18px;
     left:50%;
     transform:translateX(-50%);
-    background:rgba(255,255,255,.85);
+    z-index:20;
     padding:9px 17px;
     border-radius:30px;
-    font-size:12px;
-    font-weight:600;
+    background:rgba(255,255,255,.88);
     color:#79577e;
-    z-index:8;
+    font-size:11px;
+    font-weight:700;
     white-space:nowrap;
     box-shadow:0 7px 20px rgba(90,60,100,.08);
 }
 
-/* =========================
-   MODE LABEL
-========================= */
-
 .mode-label{
     position:absolute;
-    bottom:20px;
+    bottom:18px;
     left:50%;
     transform:translateX(-50%);
-    background:rgba(255,255,255,.9);
+    z-index:20;
     padding:9px 18px;
     border-radius:30px;
+    background:rgba(255,255,255,.9);
+    color:#76547c;
     font-size:12px;
     font-weight:700;
-    color:#76547c;
-    z-index:8;
 }
 
 /* =========================
-   ZOOM
-========================= */
-
-.zoom-controls{
-    position:absolute;
-    right:18px;
-    bottom:18px;
-    display:flex;
-    flex-direction:column;
-    gap:7px;
-    z-index:10;
-}
-
-.zoom-btn{
-    width:42px;
-    height:42px;
-    border:none;
-    border-radius:50%;
-    background:rgba(255,255,255,.9);
-    color:#76527d;
-    font-size:23px;
-    font-weight:700;
-    cursor:pointer;
-    box-shadow:0 6px 18px rgba(80,50,90,.12);
-    transition:.2s;
-}
-
-.zoom-btn:hover{
-    transform:scale(1.08);
-}
-
-/* =========================
-   ACTION BUTTONS
+   BOTONES
 ========================= */
 
 .center-actions{
     position:absolute;
-    top:65px;
+    top:60px;
     left:50%;
     transform:translateX(-50%);
+    z-index:25;
     display:flex;
     gap:8px;
-    z-index:9;
 }
 
 .action-btn{
     border:none;
-    padding:11px 15px;
+    padding:10px 14px;
     border-radius:30px;
-    background:rgba(255,255,255,.92);
+    background:rgba(255,255,255,.94);
     color:#704e77;
     font-family:'Montserrat',sans-serif;
-    font-size:12px;
+    font-size:11px;
     font-weight:700;
     cursor:pointer;
     box-shadow:0 8px 20px rgba(80,50,90,.1);
@@ -434,24 +406,65 @@ body{
 }
 
 /* =========================
-   GRID ABDOMINAL
+   ZOOM
+========================= */
+
+.zoom-controls{
+    position:absolute;
+    right:17px;
+    bottom:17px;
+    z-index:25;
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.zoom-btn{
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.93);
+    color:#76527d;
+    font-size:23px;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:0 6px 18px rgba(80,50,90,.12);
+}
+
+/* =========================
+   CUADRÍCULA
 ========================= */
 
 .abdominal-grid{
     position:absolute;
+
+    /*
+       La posición se controla también
+       desde JS para que siga al abdomen.
+    */
+
+    left:50%;
+    top:50%;
+
     width:285px;
     height:370px;
-    left:50%;
-    top:51%;
-    transform:translate(-50%,-50%) scale(.92);
+
+    transform:translate(-50%,-50%) scale(.88);
+
     display:grid;
     grid-template-columns:repeat(3,1fr);
     grid-template-rows:repeat(3,1fr);
-    gap:5px;
-    z-index:15;
+    gap:4px;
+
+    z-index:30;
+
     opacity:0;
     pointer-events:none;
-    transition:.6s;
+
+    transition:
+        opacity .45s ease,
+        transform .45s ease;
 }
 
 .abdominal-grid.show{
@@ -461,30 +474,29 @@ body{
 }
 
 .grid-region{
-    border:1.5px solid rgba(125,77,130,.5);
-    background:rgba(255,239,249,.55);
+    border:1.5px solid rgba(125,77,130,.6);
+    background:rgba(255,238,249,.43);
     backdrop-filter:blur(4px);
     color:#69466f;
     font-family:'Montserrat',sans-serif;
     font-size:9px;
     font-weight:700;
-    padding:4px;
+    padding:3px;
     cursor:pointer;
     transition:.2s;
-    box-shadow:inset 0 0 15px rgba(255,255,255,.25);
 }
 
 .grid-region:hover{
-    background:rgba(203,139,181,.75);
+    background:rgba(193,123,171,.8);
     color:white;
     transform:scale(1.04);
-    z-index:3;
+    z-index:4;
 }
 
 .grid-region.selected{
-    background:rgba(161,91,139,.9);
+    background:rgba(157,87,137,.9);
     color:white;
-    box-shadow:0 0 0 3px rgba(255,255,255,.8);
+    box-shadow:0 0 0 3px rgba(255,255,255,.85);
 }
 
 /* =========================
@@ -524,16 +536,15 @@ body{
 
 .region-card:hover{
     transform:translateY(-4px);
-    box-shadow:0 18px 35px rgba(100,65,120,.14);
 }
 
 .region-number{
     display:inline-flex;
     width:28px;
     height:28px;
-    border-radius:50%;
     align-items:center;
     justify-content:center;
+    border-radius:50%;
     background:#c98bb6;
     color:white;
     font-size:12px;
@@ -553,19 +564,19 @@ body{
 }
 
 /* =========================
-   MODAL
+   MODALES
 ========================= */
 
 .modal{
     position:fixed;
     inset:0;
-    background:rgba(50,30,55,.38);
-    backdrop-filter:blur(7px);
+    z-index:100;
     display:flex;
     justify-content:center;
     align-items:center;
     padding:20px;
-    z-index:100;
+    background:rgba(50,30,55,.4);
+    backdrop-filter:blur(7px);
     opacity:0;
     pointer-events:none;
     transition:.3s;
@@ -580,11 +591,11 @@ body{
     width:min(650px,95%);
     max-height:90vh;
     overflow-y:auto;
-    background:#fffafd;
-    border-radius:30px;
-    padding:35px;
-    box-shadow:0 30px 80px rgba(50,30,60,.25);
     position:relative;
+    padding:35px;
+    border-radius:30px;
+    background:#fffafd;
+    box-shadow:0 30px 80px rgba(50,30,60,.25);
     transform:translateY(20px) scale(.97);
     transition:.3s;
 }
@@ -595,16 +606,16 @@ body{
 
 .close-modal{
     position:absolute;
-    right:18px;
     top:15px;
-    border:none;
-    background:#f2e1f0;
+    right:18px;
     width:35px;
     height:35px;
+    border:none;
     border-radius:50%;
-    cursor:pointer;
+    background:#f2e1f0;
     color:#704d76;
     font-size:20px;
+    cursor:pointer;
 }
 
 .modal-card h2{
@@ -634,18 +645,18 @@ body{
 }
 
 .quiz-progress{
+    color:#90658f;
     font-size:12px;
     font-weight:700;
-    color:#90658f;
     margin-bottom:15px;
 }
 
 .quiz-question{
+    color:#624866;
     font-size:20px;
     font-weight:700;
-    color:#624866;
-    margin-bottom:20px;
     line-height:1.4;
+    margin-bottom:20px;
 }
 
 .quiz-options{
@@ -654,19 +665,14 @@ body{
 }
 
 .quiz-option{
-    border:2px solid #ead8e8;
-    background:#fff8fd;
     padding:14px;
+    border:2px solid #ead8e8;
     border-radius:15px;
-    cursor:pointer;
-    font-family:'Montserrat',sans-serif;
+    background:#fff8fd;
     color:#664c6b;
+    font-family:'Montserrat',sans-serif;
     font-weight:600;
-    transition:.2s;
-}
-
-.quiz-option:hover{
-    background:#f4e4f2;
+    cursor:pointer;
 }
 
 .quiz-option.correct{
@@ -680,9 +686,9 @@ body{
 }
 
 .quiz-result{
+    min-height:22px;
     margin-top:15px;
     font-weight:700;
-    min-height:22px;
 }
 
 .next-question{
@@ -696,25 +702,9 @@ body{
     cursor:pointer;
 }
 
-/* =========================
-   COMPLETE
-========================= */
-
-.complete-box{
-    text-align:center;
-}
-
 .complete-icon{
     font-size:60px;
     margin-bottom:10px;
-}
-
-.complete-box h2{
-    margin-bottom:10px;
-}
-
-.complete-box p{
-    margin-bottom:20px;
 }
 
 /* =========================
@@ -742,7 +732,6 @@ footer{
         display:grid;
         grid-template-columns:repeat(4,1fr);
         gap:7px;
-        align-items:center;
     }
 
     .side-panel h3{
@@ -766,10 +755,6 @@ footer{
         padding:50px 20px;
     }
 
-    .cover-title{
-        font-size:58px;
-    }
-
     .app-header{
         flex-direction:column;
         text-align:center;
@@ -786,26 +771,24 @@ footer{
     }
 
     .viewer-message{
-        font-size:10px;
         max-width:80%;
-        text-align:center;
         white-space:normal;
+        text-align:center;
     }
 
     .center-actions{
-        top:65px;
-        width:90%;
+        width:92%;
         justify-content:center;
     }
 
     .action-btn{
         padding:9px 10px;
-        font-size:10px;
+        font-size:9px;
     }
 
     .abdominal-grid{
-        width:220px;
-        height:285px;
+        width:225px;
+        height:290px;
     }
 
     .grid-region{
@@ -831,6 +814,7 @@ footer{
 <div class="sparkle"></div>
 <div class="sparkle"></div>
 
+
 <!-- =========================
      PORTADA
 ========================= -->
@@ -851,7 +835,9 @@ footer{
             Explora el cuerpo humano en 3D
         </p>
 
-        <button class="start-button" onclick="startExperience()">
+        <button
+            class="start-button"
+            onclick="startExperience()">
             ✨ Comenzar exploración
         </button>
 
@@ -866,466 +852,371 @@ footer{
 
 <main id="app">
 
-    <header class="app-header">
+<header class="app-header">
 
-        <div class="logo">
-            Abdomen 360°
+    <div class="logo">
+        Abdomen 360°
+    </div>
+
+    <div class="student-name">
+        Hislaine Changoluisa
+    </div>
+
+</header>
+
+
+<section class="intro">
+
+    <h1>
+        Explora el cuerpo humano
+    </h1>
+
+    <p>
+        Gira, acerca y descubre las estructuras del cuerpo humano.
+    </p>
+
+</section>
+
+
+<!-- PROGRESO -->
+
+<div class="progress-box">
+
+    <div class="progress-top">
+
+        <span id="progressText">
+            0 de 9 regiones
+        </span>
+
+        <span id="progressPercent">
+            0%
+        </span>
+
+    </div>
+
+    <div class="progress-bar">
+
+        <div
+            class="progress-fill"
+            id="progressFill">
         </div>
 
-        <div class="student-name">
-            Hislaine Changoluisa
-        </div>
+    </div>
 
-    </header>
+</div>
 
 
-    <section class="intro">
+<!-- =========================
+     ANATOMÍA
+========================= -->
 
-        <h1>Explora el cuerpo humano</h1>
-
-        <p>
-            Gira, acerca y descubre las estructuras del cuerpo humano.
-        </p>
-
-    </section>
+<section class="anatomy-layout">
 
 
-    <!-- PROGRESO -->
+<!-- CAPAS -->
 
-    <div class="progress-box">
+<aside class="side-panel">
 
-        <div class="progress-top">
+    <h3>Capas</h3>
 
-            <span id="progressText">
-                Paso 1 de 9
-            </span>
+    <button
+        class="layer-button active"
+        id="layerBody"
+        onclick="showBodyLayer()">
+        🧍 Cuerpo
+    </button>
 
-            <span id="progressPercent">
-                0%
-            </span>
+    <button
+        class="layer-button"
+        id="layerMuscle"
+        onclick="showMuscleLayer()">
+        💪 Músculos
+    </button>
 
-        </div>
+    <button
+        class="layer-button"
+        id="layerBone"
+        onclick="showBoneLayer()">
+        🦴 Huesos
+    </button>
 
-        <div class="progress-bar">
+    <button
+        class="layer-button"
+        id="layerOrgan"
+        onclick="showOrganLayer()">
+        🫀 Órganos
+    </button>
 
-            <div
-                class="progress-fill"
-                id="progressFill">
-            </div>
+</aside>
+
+
+<!-- VIEWER -->
+
+<div class="viewer" id="viewer">
+
+    <canvas id="threeCanvas"></canvas>
+
+
+    <div
+        class="loading"
+        id="loading">
+
+        <div class="loading-box">
+
+            <div class="loading-spinner"></div>
+
+            <p>
+                Cargando cuerpo humano...
+            </p>
 
         </div>
 
     </div>
 
 
-    <!-- =========================
-         ANATOMÍA
-    ========================= -->
+    <div
+        class="viewer-message"
+        id="viewerMessage">
 
-    <section class="anatomy-layout">
+        Arrastra para girar • rueda para acercar
 
+    </div>
 
-        <!-- PANEL IZQUIERDO -->
 
-        <aside class="side-panel">
+    <div class="center-actions">
 
-            <h3>Capas</h3>
+        <button
+            class="action-btn"
+            onclick="exploreAbdomen()">
+            🔎 Explorar abdomen
+        </button>
 
-            <button
-                class="layer-button active"
-                id="layerBody"
-                onclick="showBodyLayer()">
-                🧍 Cuerpo
-            </button>
+        <button
+            class="action-btn"
+            onclick="openAnatomy()">
+            📖 Abrir anatomía
+        </button>
+
+    </div>
+
+
+    <div
+        class="mode-label"
+        id="modeLabel">
 
-            <button
-                class="layer-button"
-                id="layerMuscle"
-                onclick="showMuscleLayer()">
-                💪 Músculos
-            </button>
+        Vista completa
 
-            <button
-                class="layer-button"
-                id="layerBone"
-                onclick="showBoneLayer()">
-                🦴 Huesos
-            </button>
+    </div>
 
-            <button
-                class="layer-button"
-                id="layerOrgan"
-                onclick="showOrganLayer()">
-                🫀 Órganos
-            </button>
 
-        </aside>
+    <!-- ZOOM -->
 
+    <div class="zoom-controls">
 
-        <!-- =========================
-             VIEWER
-        ========================= -->
+        <button
+            class="zoom-btn"
+            onclick="zoomIn()">
+            +
+        </button>
 
-        <div class="viewer" id="viewer">
+        <button
+            class="zoom-btn"
+            onclick="zoomOut()">
+            −
+        </button>
 
-            <canvas id="threeCanvas"></canvas>
+    </div>
 
 
-            <div
-                class="loading"
-                id="loading">
+    <!-- CUADRÍCULA -->
 
-                <div class="loading-box">
+    <div
+        class="abdominal-grid"
+        id="abdominalGrid">
 
-                    <div class="loading-spinner"></div>
+        <button
+            class="grid-region"
+            data-region="0"
+            onclick="openRegion(0)">
+            Hipocondrio<br>derecho
+        </button>
 
-                    <p>
-                        Cargando cuerpo humano...
-                    </p>
+        <button
+            class="grid-region"
+            data-region="1"
+            onclick="openRegion(1)">
+            Epigastrio
+        </button>
 
-                </div>
+        <button
+            class="grid-region"
+            data-region="2"
+            onclick="openRegion(2)">
+            Hipocondrio<br>izquierdo
+        </button>
 
-            </div>
+        <button
+            class="grid-region"
+            data-region="3"
+            onclick="openRegion(3)">
+            Lumbar<br>derecha
+        </button>
 
+        <button
+            class="grid-region"
+            data-region="4"
+            onclick="openRegion(4)">
+            Umbilical
+        </button>
 
-            <div
-                class="viewer-message"
-                id="viewerMessage">
-
-                Arrastra para girar • rueda para acercar
-
-            </div>
-
-
-            <div
-                class="center-actions">
-
-                <button
-                    class="action-btn"
-                    onclick="exploreAbdomen()">
-                    🔎 Explorar abdomen
-                </button>
-
-                <button
-                    class="action-btn"
-                    onclick="openAnatomy()">
-                    📖 Abrir anatomía
-                </button>
-
-            </div>
-
-
-            <div
-                class="mode-label"
-                id="modeLabel">
-
-                Vista completa
-
-            </div>
-
-
-            <!-- ZOOM -->
-
-            <div class="zoom-controls">
-
-                <button
-                    class="zoom-btn"
-                    onclick="zoomIn()">
-                    +
-                </button>
-
-                <button
-                    class="zoom-btn"
-                    onclick="zoomOut()">
-                    −
-                </button>
-
-            </div>
-
-
-            <!-- =========================
-                 CUADRÍCULA 3X3
-            ========================= -->
-
-            <div
-                class="abdominal-grid"
-                id="abdominalGrid">
-
-                <button
-                    class="grid-region"
-                    data-region="0"
-                    onclick="openRegion(0)">
-                    Hipocondrio<br>derecho
-                </button>
-
-                <button
-                    class="grid-region"
-                    data-region="1"
-                    onclick="openRegion(1)">
-                    Epigastrio
-                </button>
-
-                <button
-                    class="grid-region"
-                    data-region="2"
-                    onclick="openRegion(2)">
-                    Hipocondrio<br>izquierdo
-                </button>
-
-                <button
-                    class="grid-region"
-                    data-region="3"
-                    onclick="openRegion(3)">
-                    Lumbar<br>derecha
-                </button>
-
-                <button
-                    class="grid-region"
-                    data-region="4"
-                    onclick="openRegion(4)">
-                    Umbilical
-                </button>
-
-                <button
-                    class="grid-region"
-                    data-region="5"
-                    onclick="openRegion(5)">
-                    Lumbar<br>izquierda
-                </button>
-
-                <button
-                    class="grid-region"
-                    data-region="6"
-                    onclick="openRegion(6)">
-                    Ilíaca<br>derecha
-                </button>
-
-                <button
-                    class="grid-region"
-                    data-region="7"
-                    onclick="openRegion(7)">
-                    Hipogastrio
-                </button>
-
-                <button
-                    class="grid-region"
-                    data-region="8"
-                    onclick="openRegion(8)">
-                    Ilíaca<br>izquierda
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- =========================
-             PANEL DERECHO
-        ========================= -->
-
-        <aside class="side-panel">
-
-            <h3>Vista</h3>
-
-            <button
-                class="view-button active"
-                onclick="setFrontView()">
-                Frente
-            </button>
-
-            <button
-                class="view-button"
-                onclick="setSideView()">
-                Lateral
-            </button>
-
-            <button
-                class="view-button"
-                onclick="setBackView()">
-                Espalda
-            </button>
-
-            <button
-                class="view-button"
-                onclick="resetView()">
-                ↻ Centrar
-            </button>
-
-        </aside>
-
-    </section>
-
-
-    <!-- =========================
-         REGIONES
-    ========================= -->
-
-    <section class="regions-section">
-
-        <h2 class="regions-title">
-            Las 9 regiones abdominales
-        </h2>
-
-        <div class="regions-grid">
-
-            <button
-                class="region-card"
-                onclick="openRegion(0)">
-
-                <span class="region-number">1</span>
-
-                <h3>Hipocondrio derecho</h3>
-
-                <p>
-                    Hígado, vesícula biliar,
-                    duodeno y parte del colon.
-                </p>
-
-            </button>
-
-
-            <button
-                class="region-card"
-                onclick="openRegion(1)">
-
-                <span class="region-number">2</span>
-
-                <h3>Epigastrio</h3>
-
-                <p>
-                    Estómago, páncreas,
-                    duodeno y parte del hígado.
-                </p>
-
-            </button>
-
-
-            <button
-                class="region-card"
-                onclick="openRegion(2)">
-
-                <span class="region-number">3</span>
-
-                <h3>Hipocondrio izquierdo</h3>
-
-                <p>
-                    Bazo, estómago, colon
-                    y parte del páncreas.
-                </p>
-
-            </button>
-
-
-            <button
-                class="region-card"
-                onclick="openRegion(3)">
-
-                <span class="region-number">4</span>
-
-                <h3>Región lumbar derecha</h3>
-
-                <p>
-                    Riñón derecho, colon ascendente
-                    e intestino delgado.
-                </p>
-
-            </button>
-
-
-            <button
-                class="region-card"
-                onclick="openRegion(4)">
-
-                <span class="region-number">5</span>
-
-                <h3>Región umbilical</h3>
-
-                <p>
-                    Intestino delgado, colon transverso
-                    y parte del duodeno.
-                </p>
-
-            </button>
-
-
-            <button
-                class="region-card"
-                onclick="openRegion(5)">
-
-                <span class="region-number">6</span>
-
-                <h3>Región lumbar izquierda</h3>
-
-                <p>
-                    Riñón izquierdo, colon descendente
-                    e intestino delgado.
-                </p>
-
-            </button>
-
-
-            <button
-                class="region-card"
-                onclick="openRegion(6)">
-
-                <span class="region-number">7</span>
-
-                <h3>Región ilíaca derecha</h3>
-
-                <p>
-                    Ciego, apéndice e íleon.
-                </p>
-
-            </button>
-
-
-            <button
-                class="region-card"
-                onclick="openRegion(7)">
-
-                <span class="region-number">8</span>
-
-                <h3>Hipogastrio</h3>
-
-                <p>
-                    Intestino delgado, vejiga
-                    y parte del intestino grueso.
-                </p>
-
-            </button>
-
-
-            <button
-                class="region-card"
-                onclick="openRegion(8)">
-
-                <span class="region-number">9</span>
-
-                <h3>Región ilíaca izquierda</h3>
-
-                <p>
-                    Colon sigmoide, intestino delgado
-                    y parte del colon.
-                </p>
-
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <footer>
-
-        Abdomen 360° · Proyecto educativo de anatomía
-
-    </footer>
+        <button
+            class="grid-region"
+            data-region="5"
+            onclick="openRegion(5)">
+            Lumbar<br>izquierda
+        </button>
+
+        <button
+            class="grid-region"
+            data-region="6"
+            onclick="openRegion(6)">
+            Ilíaca<br>derecha
+        </button>
+
+        <button
+            class="grid-region"
+            data-region="7"
+            onclick="openRegion(7)">
+            Hipogastrio
+        </button>
+
+        <button
+            class="grid-region"
+            data-region="8"
+            onclick="openRegion(8)">
+            Ilíaca<br>izquierda
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- VISTA -->
+
+<aside class="side-panel">
+
+    <h3>Vista</h3>
+
+    <button
+        class="view-button active"
+        onclick="setFrontView()">
+        Frente
+    </button>
+
+    <button
+        class="view-button"
+        onclick="setSideView()">
+        Lateral
+    </button>
+
+    <button
+        class="view-button"
+        onclick="setBackView()">
+        Espalda
+    </button>
+
+    <button
+        class="view-button"
+        onclick="resetView()">
+        ↻ Centrar
+    </button>
+
+</aside>
+
+</section>
+
+
+<!-- =========================
+     REGIONES
+========================= -->
+
+<section class="regions-section">
+
+    <h2 class="regions-title">
+        Las 9 regiones abdominales
+    </h2>
+
+    <div class="regions-grid">
+
+        <button class="region-card" onclick="openRegion(0)">
+            <span class="region-number">1</span>
+            <h3>Hipocondrio derecho</h3>
+            <p>Hígado, vesícula biliar, duodeno y parte del colon.</p>
+        </button>
+
+        <button class="region-card" onclick="openRegion(1)">
+            <span class="region-number">2</span>
+            <h3>Epigastrio</h3>
+            <p>Estómago, páncreas, duodeno y parte del hígado.</p>
+        </button>
+
+        <button class="region-card" onclick="openRegion(2)">
+            <span class="region-number">3</span>
+            <h3>Hipocondrio izquierdo</h3>
+            <p>Bazo, estómago, colon y parte del páncreas.</p>
+        </button>
+
+        <button class="region-card" onclick="openRegion(3)">
+            <span class="region-number">4</span>
+            <h3>Región lumbar derecha</h3>
+            <p>Riñón derecho, colon ascendente e intestino delgado.</p>
+        </button>
+
+        <button class="region-card" onclick="openRegion(4)">
+            <span class="region-number">5</span>
+            <h3>Región umbilical</h3>
+            <p>Intestino delgado, colon transverso y duodeno.</p>
+        </button>
+
+        <button class="region-card" onclick="openRegion(5)">
+            <span class="region-number">6</span>
+            <h3>Región lumbar izquierda</h3>
+            <p>Riñón izquierdo, colon descendente e intestino delgado.</p>
+        </button>
+
+        <button class="region-card" onclick="openRegion(6)">
+            <span class="region-number">7</span>
+            <h3>Región ilíaca derecha</h3>
+            <p>Ciego, apéndice e íleon.</p>
+        </button>
+
+        <button class="region-card" onclick="openRegion(7)">
+            <span class="region-number">8</span>
+            <h3>Hipogastrio</h3>
+            <p>Intestino delgado, vejiga y parte del intestino grueso.</p>
+        </button>
+
+        <button class="region-card" onclick="openRegion(8)">
+            <span class="region-number">9</span>
+            <h3>Región ilíaca izquierda</h3>
+            <p>Colon sigmoide, intestino delgado y parte del colon.</p>
+        </button>
+
+    </div>
+
+</section>
+
+
+<footer>
+    Abdomen 360° · Proyecto educativo de anatomía
+</footer>
 
 </main>
 
 
 <!-- =========================
-     MODAL
+     MODAL REGIÓN
 ========================= -->
 
 <div
@@ -1344,28 +1235,16 @@ footer{
             Región
         </h2>
 
-        <h4>
-            ¿Qué encontramos aquí?
-        </h4>
-
+        <h4>¿Qué encontramos aquí?</h4>
         <p id="modalStructures"></p>
 
-        <h4>
-            ¿Qué función cumple?
-        </h4>
-
+        <h4>¿Qué función cumple?</h4>
         <p id="modalFunction"></p>
 
-        <h4>
-            ¿Por qué es importante?
-        </h4>
-
+        <h4>¿Por qué es importante?</h4>
         <p id="modalImportance"></p>
 
-        <h4>
-            💡 ¿Sabías que...?
-        </h4>
-
+        <h4>💡 ¿Sabías que...?</h4>
         <p id="modalFact"></p>
 
     </div>
@@ -1374,7 +1253,7 @@ footer{
 
 
 <!-- =========================
-     QUIZ MODAL
+     QUIZ
 ========================= -->
 
 <div
@@ -1389,7 +1268,9 @@ footer{
             ×
         </button>
 
-        <div class="quiz-progress" id="quizProgress">
+        <div
+            class="quiz-progress"
+            id="quizProgress">
             Pregunta 1 de 5
         </div>
 
@@ -1412,7 +1293,7 @@ footer{
             class="next-question"
             id="nextQuestion"
             onclick="nextQuizQuestion()"
-            style="display:none;">
+            style="display:none">
             Siguiente →
         </button>
 
@@ -1422,14 +1303,14 @@ footer{
 
 
 <!-- =========================
-     COMPLETE MODAL
+     COMPLETADO
 ========================= -->
 
 <div
     class="modal"
     id="completeModal">
 
-    <div class="modal-card complete-box">
+    <div class="modal-card" style="text-align:center">
 
         <div class="complete-icon">
             🏆
@@ -1440,8 +1321,7 @@ footer{
         </h2>
 
         <p>
-            Has recorrido las 9 regiones abdominales.
-            Ahora puedes comprobar cuánto aprendiste.
+            Has explorado las 9 regiones abdominales.
         </p>
 
         <button
@@ -1456,17 +1336,14 @@ footer{
 
 
 <!-- =========================
-     THREE.JS
+     THREE
 ========================= -->
 
 <script type="importmap">
 {
     "imports": {
-        "three":
-        "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
-
-        "three/addons/":
-        "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+        "three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+        "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
     }
 }
 </script>
@@ -1476,19 +1353,25 @@ footer{
 
 import * as THREE from "three";
 
-import { OrbitControls }
+import {
+    OrbitControls
+}
 from "three/addons/controls/OrbitControls.js";
 
-import { GLTFLoader }
+import {
+    GLTFLoader
+}
 from "three/addons/loaders/GLTFLoader.js";
 
-import { DRACOLoader }
+import {
+    DRACOLoader
+}
 from "three/addons/loaders/DRACOLoader.js";
 
 
-/* ==================================
+/* =========================
    ESTADO
-================================== */
+========================= */
 
 window.appState = {
 
@@ -1501,9 +1384,9 @@ window.appState = {
 };
 
 
-/* ==================================
+/* =========================
    ESCENA
-================================== */
+========================= */
 
 const canvas =
     document.getElementById("threeCanvas");
@@ -1514,21 +1397,22 @@ const viewer =
 const scene =
     new THREE.Scene();
 
-scene.background =
-    new THREE.Color(0xf6eaf5);
+
+scene.background = null;
 
 
-/* ==================================
+/* =========================
    CÁMARA
-================================== */
+========================= */
 
 const camera =
     new THREE.PerspectiveCamera(
-        45,
+        35,
         1,
-        0.01,
+        .01,
         100
     );
+
 
 camera.position.set(
     0,
@@ -1537,14 +1421,14 @@ camera.position.set(
 );
 
 
-/* ==================================
+/* =========================
    RENDERER
-================================== */
+========================= */
 
 const renderer =
     new THREE.WebGLRenderer({
 
-        canvas:canvas,
+        canvas,
 
         antialias:true,
 
@@ -1554,86 +1438,85 @@ const renderer =
 
 
 renderer.setPixelRatio(
-    Math.min(window.devicePixelRatio,2)
+    Math.min(
+        window.devicePixelRatio || 1,
+        2
+    )
 );
 
 
-/* ==================================
+/* =========================
    LUCES
-================================== */
+========================= */
 
-const ambientLight =
-    new THREE.AmbientLight(
+scene.add(
+    new THREE.HemisphereLight(
         0xffffff,
-        2.3
-    );
+        0xd8c5df,
+        2.5
+    )
+);
 
-scene.add(ambientLight);
 
-
-const keyLight =
+const light1 =
     new THREE.DirectionalLight(
         0xffffff,
-        2.5
+        3
     );
 
-keyLight.position.set(
+light1.position.set(
     3,
     5,
-    6
+    5
 );
 
-scene.add(keyLight);
+scene.add(light1);
 
 
-const fillLight =
+const light2 =
     new THREE.DirectionalLight(
-        0xffd9ed,
-        1.3
+        0xffd5e8,
+        2
     );
 
-fillLight.position.set(
+light2.position.set(
     -4,
     2,
-    3
+    4
 );
 
-scene.add(fillLight);
+scene.add(light2);
 
 
-const backLight =
+const light3 =
     new THREE.DirectionalLight(
         0xdcc8ff,
-        1.4
+        2
     );
 
-backLight.position.set(
-    0,
-    3,
+light3.position.set(
+    2,
+    2,
     -5
 );
 
-scene.add(backLight);
+scene.add(light3);
 
 
-/* ==================================
+/* =========================
    CONTROLES
-================================== */
+========================= */
 
 const controls =
     new OrbitControls(
         camera,
-        renderer.domElement
+        canvas
     );
 
 controls.enableDamping = true;
-
 controls.dampingFactor = .07;
-
 controls.enablePan = false;
-
-controls.minDistance = 1.1;
-
+controls.minDistance = .75;
 controls.maxDistance = 8;
 
 controls.target.set(
@@ -1643,9 +1526,9 @@ controls.target.set(
 );
 
 
-/* ==================================
+/* =========================
    VARIABLES
-================================== */
+========================= */
 
 let model = null;
 
@@ -1654,6 +1537,15 @@ let modelMeshes = [];
 let originalMaterials = new Map();
 
 let meshTypes = new Map();
+
+let organGroup = null;
+
+let organVisible = false;
+
+
+/* =========================
+   POSICIÓN DE CÁMARA
+========================= */
 
 let originalCameraPosition =
     new THREE.Vector3(
@@ -1672,67 +1564,67 @@ let originalTarget =
 let abdomenCameraPosition =
     new THREE.Vector3(
         0,
-        0.15,
-        2.15
+        .25,
+        1.85
     );
 
 let abdomenTarget =
     new THREE.Vector3(
         0,
-        0.15,
+        .25,
         0
     );
 
 let anatomyCameraPosition =
     new THREE.Vector3(
         0,
-        0.15,
-        1.75
+        .28,
+        1.45
     );
 
 let anatomyTarget =
     new THREE.Vector3(
         0,
-        0.15,
+        .28,
         0
     );
 
 
-/* ==================================
-   CARGADOR DRACO
-================================== */
+/* =========================
+   DRACO
+========================= */
 
-const dracoLoader =
+const draco =
     new DRACOLoader();
 
-dracoLoader.setDecoderPath(
+draco.setDecoderPath(
     "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/libs/draco/"
 );
 
 
-/* ==================================
-   GLTF LOADER
-================================== */
+/* =========================
+   LOADER
+========================= */
 
 const loader =
     new GLTFLoader();
 
 loader.setDRACOLoader(
-    dracoLoader
+    draco
 );
 
 
-/* ==================================
-   URL DEL MODELO
-================================== */
+/* =========================
+   MODELO
+========================= */
 
 const MODEL_URL =
     "./models/models/body.glb";
 
 
-/* ==================================
-   CLASIFICAR MESH
-================================== */
+/* =========================
+   CLASIFICACIÓN
+========================= */
 
 function classifyMesh(mesh){
 
@@ -1744,25 +1636,9 @@ function classifyMesh(mesh){
         ).toLowerCase();
 
 
-    /* MÚSCULOS */
-
     if(
-        text.includes("muscle") ||
-        text.includes("musculo") ||
-        text.includes("musc") ||
-        text.includes("rectus") ||
-        text.includes("oblique") ||
-        text.includes("obliquus") ||
-        text.includes("transversus") ||
-        text.includes("abdominis") ||
-        text.includes("pector") ||
-        text.includes("deltoid") ||
-        text.includes("trapezi") ||
-        text.includes("biceps") ||
-        text.includes("triceps") ||
-        text.includes("glute") ||
-        text.includes("gastrocn") ||
-        text.includes("soleus")
+        /muscle|musculo|musc|rectus|oblique|obliquus|transversus|abdominis|pector|deltoid|trapezi|biceps|triceps|glute|gastrocn|soleus/
+        .test(text)
     ){
 
         return "muscle";
@@ -1770,22 +1646,9 @@ function classifyMesh(mesh){
     }
 
 
-    /* HUESOS */
-
     if(
-        text.includes("bone") ||
-        text.includes("skeleton") ||
-        text.includes("hueso") ||
-        text.includes("osseous") ||
-        text.includes("femur") ||
-        text.includes("tibia") ||
-        text.includes("fibula") ||
-        text.includes("pelvis") ||
-        text.includes("vertebra") ||
-        text.includes("rib") ||
-        text.includes("sternum") ||
-        text.includes("skull") ||
-        text.includes("clavicle")
+        /bone|skeleton|hueso|osseous|femur|tibia|fibula|pelvis|vertebra|rib|sternum|skull|clavicle/
+        .test(text)
     ){
 
         return "bone";
@@ -1793,26 +1656,9 @@ function classifyMesh(mesh){
     }
 
 
-    /* ÓRGANOS */
-
     if(
-        text.includes("organ") ||
-        text.includes("liver") ||
-        text.includes("hepatic") ||
-        text.includes("heart") ||
-        text.includes("cardiac") ||
-        text.includes("lung") ||
-        text.includes("kidney") ||
-        text.includes("renal") ||
-        text.includes("stomach") ||
-        text.includes("spleen") ||
-        text.includes("pancreas") ||
-        text.includes("intestin") ||
-        text.includes("colon") ||
-        text.includes("bladder") ||
-        text.includes("gallbladder") ||
-        text.includes("duodenum") ||
-        text.includes("appendix")
+        /organ|liver|hepatic|heart|cardiac|lung|kidney|renal|stomach|spleen|pancreas|intestin|colon|bladder|gallbladder|duodenum|appendix/
+        .test(text)
     ){
 
         return "organ";
@@ -1820,14 +1666,9 @@ function classifyMesh(mesh){
     }
 
 
-    /* PIEL */
-
     if(
-        text.includes("skin") ||
-        text.includes("dermis") ||
-        text.includes("epiderm") ||
-        text.includes("surface") ||
-        text.includes("body")
+        /skin|dermis|epiderm|surface/
+        .test(text)
     ){
 
         return "skin";
@@ -1840,9 +1681,9 @@ function classifyMesh(mesh){
 }
 
 
-/* ==================================
-   CARGAR MODELO
-================================== */
+/* =========================
+   CARGAR
+========================= */
 
 loader.load(
 
@@ -1858,10 +1699,45 @@ loader.load(
 
 
         /*
-         * Primero calculamos el tamaño
+         * CENTRAR
          */
 
-        const box =
+        model.scale.setScalar(1);
+
+        model.position.set(
+            0,
+            0,
+            0
+        );
+
+
+        model.updateMatrixWorld(
+            true
+        );
+
+
+        let box =
+            new THREE.Box3()
+            .setFromObject(model);
+
+
+        const center =
+            box.getCenter(
+                new THREE.Vector3()
+            );
+
+
+        model.position.sub(
+            center
+        );
+
+
+        model.updateMatrixWorld(
+            true
+        );
+
+
+        box =
             new THREE.Box3()
             .setFromObject(model);
 
@@ -1872,27 +1748,6 @@ loader.load(
             );
 
 
-        const center =
-            box.getCenter(
-                new THREE.Vector3()
-            );
-
-
-        /*
-         * CENTRAR MODELO
-         */
-
-        model.position.x -= center.x;
-
-        model.position.y -= center.y;
-
-        model.position.z -= center.z;
-
-
-        /*
-         * ESCALAR
-         */
-
         const maxSize =
             Math.max(
                 size.x,
@@ -1901,40 +1756,43 @@ loader.load(
             );
 
 
-        if(maxSize > 0){
-
-            const scale =
-                3.2 / maxSize;
-
-            model.scale.setScalar(
-                scale
-            );
-
-        }
+        const scale =
+            3.2 / maxSize;
 
 
-        /*
-         * Recalcular centro después
-         */
+        model.scale.setScalar(
+            scale
+        );
+
 
         model.updateMatrixWorld(
             true
         );
 
 
-        const finalBox =
+        /*
+         * VOLVER A CENTRAR
+         */
+
+        box =
             new THREE.Box3()
             .setFromObject(model);
 
 
         const finalCenter =
-            finalBox.getCenter(
+            box.getCenter(
                 new THREE.Vector3()
             );
 
 
-        model.position.y -=
-            finalCenter.y;
+        model.position.sub(
+            finalCenter
+        );
+
+
+        model.updateMatrixWorld(
+            true
+        );
 
 
         /*
@@ -1942,7 +1800,7 @@ loader.load(
          */
 
         model.traverse(
-            function(child){
+            child => {
 
                 if(!child.isMesh)
                     return;
@@ -1959,18 +1817,13 @@ loader.load(
                 );
 
 
-                const type =
-                    classifyMesh(child);
-
-
                 meshTypes.set(
                     child,
-                    type
+                    classifyMesh(child)
                 );
 
 
                 child.castShadow = true;
-
                 child.receiveShadow = true;
 
             }
@@ -1978,57 +1831,22 @@ loader.load(
 
 
         /*
-         * SI NO SE ENCUENTRAN MÚSCULOS
-         * NO ESCONDER EL MODELO COMPLETO
+         * Crear órganos independientes
          */
 
-        const muscleCount =
-            modelMeshes.filter(
-                m => meshTypes.get(m) === "muscle"
-            ).length;
+        createOrgans();
 
 
-        console.log(
-            "Meshes:",
-            modelMeshes.length,
-            "Músculos:",
-            muscleCount
-        );
+        window.appState.modelLoaded =
+            true;
 
-
-        window.appState.modelLoaded = true;
-
-
-        /*
-         * Vista inicial
-         */
-
-        camera.position.copy(
-            originalCameraPosition
-        );
-
-        controls.target.copy(
-            originalTarget
-        );
-
-        controls.update();
-
-
-        /*
-         * Ocultar loading
-         */
 
         document
             .getElementById("loading")
             .classList.add("hide");
 
 
-        /*
-         * CORREGIR TAMAÑO
-         */
-
         resizeThree();
-
 
     },
 
@@ -2036,7 +1854,7 @@ loader.load(
 
         if(xhr.total){
 
-            const percent =
+            const percentage =
                 Math.round(
                     xhr.loaded /
                     xhr.total *
@@ -2044,10 +1862,12 @@ loader.load(
                 );
 
             document
-                .querySelector(".loading-box p")
+                .querySelector(
+                    ".loading-box p"
+                )
                 .textContent =
                 "Cargando cuerpo humano... " +
-                percent +
+                percentage +
                 "%";
 
         }
@@ -2056,39 +1876,395 @@ loader.load(
 
     function(error){
 
-        console.error(
-            "Error cargando modelo:",
-            error
-        );
-
+        console.error(error);
 
         document
-            .querySelector(".loading-box p")
+            .querySelector(
+                ".loading-box p"
+            )
             .textContent =
-            "No se pudo cargar el modelo. Revisa que body.glb esté dentro de models/models.";
+            "No se pudo cargar body.glb";
 
     }
 
 );
 
 
-/* ==================================
+/* =========================================================
+   ÓRGANOS 3D SIMPLIFICADOS
+   ========================================================= */
+
+function createOrgans(){
+
+    organGroup =
+        new THREE.Group();
+
+
+    organGroup.visible = false;
+
+
+    /*
+     * Todo el grupo representa
+     * la cavidad abdominal.
+     */
+
+    const abdomen =
+        new THREE.Group();
+
+
+    /*
+     * HÍGADO
+     */
+
+    const liverGeometry =
+        new THREE.SphereGeometry(
+            .48,
+            32,
+            20
+        );
+
+
+    const liverMaterial =
+        new THREE.MeshStandardMaterial({
+
+            color:0x8e3e42,
+
+            roughness:.55,
+
+            metalness:.05
+
+        });
+
+
+    const liver =
+        new THREE.Mesh(
+            liverGeometry,
+            liverMaterial
+        );
+
+
+    liver.scale.set(
+        1.65,
+        .75,
+        .65
+    );
+
+
+    liver.position.set(
+        .42,
+        .42,
+        .05
+    );
+
+
+    abdomen.add(liver);
+
+
+    /*
+     * ESTÓMAGO
+     */
+
+    const stomachGeometry =
+        new THREE.SphereGeometry(
+            .30,
+            28,
+            20
+        );
+
+
+    const stomachMaterial =
+        new THREE.MeshStandardMaterial({
+
+            color:0xc87879,
+
+            roughness:.6
+
+        });
+
+
+    const stomach =
+        new THREE.Mesh(
+            stomachGeometry,
+            stomachMaterial
+        );
+
+
+    stomach.scale.set(
+        .9,
+        1.25,
+        .8
+    );
+
+
+    stomach.position.set(
+        -.38,
+        .20,
+        .08
+    );
+
+
+    abdomen.add(stomach);
+
+
+    /*
+     * BAZO
+     */
+
+    const spleen =
+        new THREE.Mesh(
+            new THREE.SphereGeometry(
+                .18,
+                24,
+                16
+            ),
+            new THREE.MeshStandardMaterial({
+                color:0x71384d,
+                roughness:.55
+            })
+        );
+
+
+    spleen.scale.set(
+        1.25,
+        .8,
+        .65
+    );
+
+
+    spleen.position.set(
+        -.65,
+        .38,
+        .05
+    );
+
+
+    abdomen.add(spleen);
+
+
+    /*
+     * RIÑÓN DERECHO
+     */
+
+    const kidneyMaterial =
+        new THREE.MeshStandardMaterial({
+            color:0x8e5360,
+            roughness:.55
+        });
+
+
+    const kidneyRight =
+        createKidney(
+            kidneyMaterial
+        );
+
+
+    kidneyRight.position.set(
+        .63,
+        -.02,
+        .02
+    );
+
+
+    abdomen.add(kidneyRight);
+
+
+    /*
+     * RIÑÓN IZQUIERDO
+     */
+
+    const kidneyLeft =
+        createKidney(
+            kidneyMaterial.clone()
+        );
+
+
+    kidneyLeft.position.set(
+        -.63,
+        -.02,
+        .02
+    );
+
+
+    abdomen.add(kidneyLeft);
+
+
+    /*
+     * PÁNCREAS
+     */
+
+    const pancreas =
+        new THREE.Mesh(
+            new THREE.CapsuleGeometry(
+                .08,
+                .75,
+                8,
+                16
+            ),
+            new THREE.MeshStandardMaterial({
+                color:0xd99a68,
+                roughness:.55
+            })
+        );
+
+
+    pancreas.rotation.z =
+        Math.PI / 2;
+
+
+    pancreas.position.set(
+        0,
+        .02,
+        .16
+    );
+
+
+    abdomen.add(pancreas);
+
+
+    /*
+     * INTESTINOS
+     */
+
+    const intestineMaterial =
+        new THREE.MeshStandardMaterial({
+            color:0xd98f92,
+            roughness:.7
+        });
+
+
+    for(
+        let i=0;
+        i<10;
+        i++
+    ){
+
+        const angle =
+            i * Math.PI * 2 / 10;
+
+
+        const radius =
+            .35 +
+            (i % 2) * .08;
+
+
+        const loop =
+            new THREE.Mesh(
+                new THREE.TorusGeometry(
+                    .15,
+                    .035,
+                    10,
+                    28
+                ),
+                intestineMaterial.clone()
+            );
+
+
+        loop.rotation.x =
+            Math.PI / 2;
+
+
+        loop.position.set(
+            Math.cos(angle) * radius,
+            -.35 + (i%3)*.08,
+            .10
+        );
+
+
+        abdomen.add(loop);
+
+    }
+
+
+    /*
+     * GRUPO FINAL
+     */
+
+    organGroup.add(
+        abdomen
+    );
+
+
+    /*
+     * Luz especial para órganos
+     */
+
+    const organLight =
+        new THREE.PointLight(
+            0xffc3d8,
+            1.4,
+            3
+        );
+
+
+    organLight.position.set(
+        0,
+        .3,
+        1
+    );
+
+
+    organGroup.add(
+        organLight
+    );
+
+
+    scene.add(
+        organGroup
+    );
+
+}
+
+
+/* =========================
+   CREAR RIÑÓN
+========================= */
+
+function createKidney(material){
+
+    const kidney =
+        new THREE.Mesh(
+            new THREE.SphereGeometry(
+                .20,
+                24,
+                16
+            ),
+            material
+        );
+
+
+    kidney.scale.set(
+        .65,
+        1.25,
+        .75
+    );
+
+
+    return kidney;
+
+}
+
+
+/* =========================
    RESIZE
-================================== */
+========================= */
 
 function resizeThree(){
 
+    const rect =
+        viewer.getBoundingClientRect();
+
+
     const width =
         Math.max(
-            viewer.clientWidth,
-            300
+            Math.floor(rect.width),
+            1
         );
 
 
     const height =
         Math.max(
-            viewer.clientHeight,
-            300
+            Math.floor(rect.height),
+            1
         );
 
 
@@ -2105,6 +2281,13 @@ function resizeThree(){
 
     camera.updateProjectionMatrix();
 
+
+    /*
+     * Reposicionar cuadrícula
+     */
+
+    positionGrid();
+
 }
 
 
@@ -2118,223 +2301,170 @@ window.addEventListener(
 );
 
 
-/*
- * También detecta cambios de tamaño
- * cuando se abre la aplicación.
- */
-
 if(window.ResizeObserver){
 
-    const resizeObserver =
+    const observer =
         new ResizeObserver(
             resizeThree
         );
 
-    resizeObserver.observe(
+    observer.observe(
         viewer
     );
 
 }
 
 
-/* ==================================
-   ANIMAR CÁMARA
-================================== */
+/* =========================
+   POSICIÓN CUADRÍCULA
+========================= */
 
-function animateCamera(
-    targetPosition,
-    targetLookAt,
-    duration = 900
-){
+function positionGrid(){
 
-    const startPosition =
-        camera.position.clone();
-
-
-    const startTarget =
-        controls.target.clone();
-
-
-    const startTime =
-        performance.now();
-
-
-    function step(now){
-
-        const progress =
-            Math.min(
-                (now - startTime) /
-                duration,
-                1
-            );
-
-
-        const eased =
-            1 -
-            Math.pow(
-                1 - progress,
-                3
-            );
-
-
-        camera.position.lerpVectors(
-            startPosition,
-            targetPosition,
-            eased
+    const grid =
+        document.getElementById(
+            "abdominalGrid"
         );
 
 
-        controls.target.lerpVectors(
-            startTarget,
-            targetLookAt,
-            eased
-        );
-
-
-        controls.update();
-
-
-        if(progress < 1){
-
-            requestAnimationFrame(step);
-
-        }
-
-    }
-
-
-    requestAnimationFrame(step);
-
-}
-
-
-/* ==================================
-   FADE MATERIAL
-================================== */
-
-function setMeshOpacity(
-    mesh,
-    opacity
-){
-
-    const material =
-        mesh.material;
-
-
-    if(!material)
+    if(!grid)
         return;
 
 
     /*
-     * Si hay varios materiales
+     * Cuando está en anatomía,
+     * la cuadrícula queda en el centro
+     * exacto de la zona enfocada.
      */
 
-    if(Array.isArray(material)){
+    if(
+        window.appState &&
+        window.appState.anatomyOpened
+    ){
 
-        material.forEach(
-            mat => {
+        grid.style.left =
+            "50%";
 
-                mat.transparent = true;
-
-                mat.opacity = opacity;
-
-                mat.needsUpdate = true;
-
-            }
-        );
-
-    }else{
-
-        material.transparent = true;
-
-        material.opacity = opacity;
-
-        material.needsUpdate = true;
+        grid.style.top =
+            "50%";
 
     }
 
 }
 
 
-/* ==================================
-   OCULTAR MESH
-================================== */
+/* =========================
+   MATERIAL
+========================= */
+
+function showMesh(mesh){
+
+    mesh.visible = true;
+
+
+    const original =
+        originalMaterials.get(mesh);
+
+
+    if(!original)
+        return;
+
+
+    if(Array.isArray(original)){
+
+        mesh.material =
+            original.map(
+                material => {
+
+                    const clone =
+                        material.clone();
+
+                    clone.transparent = false;
+                    clone.opacity = 1;
+
+                    return clone;
+
+                }
+            );
+
+    }else{
+
+        const clone =
+            original.clone();
+
+        clone.transparent = false;
+        clone.opacity = 1;
+
+        mesh.material =
+            clone;
+
+    }
+
+}
+
 
 function hideMesh(mesh){
-
-    setMeshOpacity(
-        mesh,
-        0
-    );
 
     mesh.visible = false;
 
 }
 
 
-/* ==================================
-   MOSTRAR MESH
-================================== */
+/* =========================
+   ILUMINAR
+========================= */
 
-function showMesh(mesh){
+function illuminateMesh(
+    mesh,
+    color = 0xb94e6d
+){
 
-    mesh.visible = true;
-
-    /*
-     * Clonamos el material original
-     * para poder modificarlo sin destruirlo
-     */
-
-    const original =
-        originalMaterials.get(mesh);
+    const materials =
+        Array.isArray(mesh.material)
+        ? mesh.material
+        : [mesh.material];
 
 
-    if(original){
+    materials.forEach(
+        material => {
 
-        if(Array.isArray(original)){
+            if(!material)
+                return;
 
-            mesh.material =
-                original.map(
-                    mat => {
 
-                        const clone =
-                            mat.clone();
+            if(material.color){
 
-                        clone.transparent =
-                            false;
-
-                        clone.opacity =
-                            1;
-
-                        return clone;
-
-                    }
+                material.color.set(
+                    color
                 );
 
-        }else{
+            }
 
-            const clone =
-                original.clone();
 
-            clone.transparent =
-                false;
+            if(material.emissive){
 
-            clone.opacity =
-                1;
+                material.emissive.set(
+                    color
+                );
 
-            mesh.material =
-                clone;
+                material.emissiveIntensity =
+                    .3;
+
+            }
+
+
+            material.needsUpdate =
+                true;
 
         }
-
-    }
+    );
 
 }
 
 
-/* ==================================
+/* =========================
    MOSTRAR TODO
-================================== */
+========================= */
 
 function showAllLayer(){
 
@@ -2346,68 +2476,28 @@ function showAllLayer(){
         }
     );
 
-}
 
+    if(organGroup){
 
-/* ==================================
-   RESALTAR COLOR
-================================== */
-
-function tintMesh(
-    mesh,
-    color
-){
-
-    const material =
-        mesh.material;
-
-
-    if(!material)
-        return;
-
-
-    if(Array.isArray(material)){
-
-        material.forEach(
-            mat => {
-
-                if(mat.color){
-
-                    mat.color =
-                        new THREE.Color(
-                            color
-                        );
-
-                }
-
-            }
-        );
-
-    }else{
-
-        if(material.color){
-
-            material.color =
-                new THREE.Color(
-                    color
-                );
-
-        }
+        organGroup.visible =
+            false;
 
     }
 
+
+    organVisible = false;
+
 }
 
 
-/* ==================================
+/* =========================
    CAPA CUERPO
-================================== */
+========================= */
 
 window.showBodyLayer =
 function(){
 
     showAllLayer();
-
 
     setActiveLayer(
         "layerBody"
@@ -2419,12 +2509,18 @@ function(){
         .textContent =
         "Vista completa";
 
+
+    document
+        .getElementById("viewerMessage")
+        .textContent =
+        "Arrastra para girar • rueda para acercar";
+
 };
 
 
-/* ==================================
-   CAPA MÚSCULOS
-================================== */
+/* =========================
+   MÚSCULOS
+========================= */
 
 window.showMuscleLayer =
 function(){
@@ -2433,20 +2529,45 @@ function(){
         return;
 
 
-    const muscleMeshes =
+    const muscles =
         modelMeshes.filter(
             mesh =>
                 meshTypes.get(mesh) === "muscle"
         );
 
 
-    /*
-     * Si el modelo no tiene músculos
-     * identificables, mostramos todo
-     * excepto piel.
-     */
+    if(muscles.length > 0){
 
-    if(muscleMeshes.length === 0){
+        modelMeshes.forEach(
+            mesh => {
+
+                if(
+                    meshTypes.get(mesh) === "muscle"
+                ){
+
+                    showMesh(mesh);
+
+                    illuminateMesh(
+                        mesh,
+                        0xb94e6d
+                    );
+
+                }else{
+
+                    hideMesh(mesh);
+
+                }
+
+            }
+        );
+
+    }else{
+
+        /*
+         * Si el GLB no tiene músculos
+         * separados, mostramos la estructura
+         * disponible sin desaparecer.
+         */
 
         modelMeshes.forEach(
             mesh => {
@@ -2466,32 +2587,14 @@ function(){
             }
         );
 
-    }else{
-
-        modelMeshes.forEach(
-            mesh => {
-
-                if(
-                    meshTypes.get(mesh) === "muscle"
-                ){
-
-                    showMesh(mesh);
-
-                    tintMesh(
-                        mesh,
-                        0xb85d72
-                    );
-
-                }else{
-
-                    hideMesh(mesh);
-
-                }
-
-            }
-        );
-
     }
+
+
+    if(organGroup)
+        organGroup.visible = false;
+
+
+    organVisible = false;
 
 
     setActiveLayer(
@@ -2504,12 +2607,18 @@ function(){
         .textContent =
         "Músculos";
 
+
+    document
+        .getElementById("viewerMessage")
+        .textContent =
+        "Capa muscular 3D";
+
 };
 
 
-/* ==================================
-   CAPA HUESOS
-================================== */
+/* =========================
+   HUESOS
+========================= */
 
 window.showBoneLayer =
 function(){
@@ -2518,14 +2627,34 @@ function(){
         return;
 
 
-    const boneMeshes =
+    const bones =
         modelMeshes.filter(
             mesh =>
                 meshTypes.get(mesh) === "bone"
         );
 
 
-    if(boneMeshes.length === 0){
+    if(bones.length > 0){
+
+        modelMeshes.forEach(
+            mesh => {
+
+                if(
+                    meshTypes.get(mesh) === "bone"
+                ){
+
+                    showMesh(mesh);
+
+                }else{
+
+                    hideMesh(mesh);
+
+                }
+
+            }
+        );
+
+    }else{
 
         modelMeshes.forEach(
             mesh => {
@@ -2546,27 +2675,14 @@ function(){
             }
         );
 
-    }else{
-
-        modelMeshes.forEach(
-            mesh => {
-
-                if(
-                    meshTypes.get(mesh) === "bone"
-                ){
-
-                    showMesh(mesh);
-
-                }else{
-
-                    hideMesh(mesh);
-
-                }
-
-            }
-        );
-
     }
+
+
+    if(organGroup)
+        organGroup.visible = false;
+
+
+    organVisible = false;
 
 
     setActiveLayer(
@@ -2579,12 +2695,18 @@ function(){
         .textContent =
         "Huesos";
 
+
+    document
+        .getElementById("viewerMessage")
+        .textContent =
+        "Capa ósea 3D";
+
 };
 
 
-/* ==================================
-   CAPA ÓRGANOS
-================================== */
+/* =========================
+   ÓRGANOS
+========================= */
 
 window.showOrganLayer =
 function(){
@@ -2593,72 +2715,29 @@ function(){
         return;
 
 
-    const organMeshes =
-        modelMeshes.filter(
-            mesh =>
-                meshTypes.get(mesh) === "organ"
-        );
+    /*
+     * Ocultar modelo externo
+     */
+
+    modelMeshes.forEach(
+        mesh => {
+
+            hideMesh(mesh);
+
+        }
+    );
 
 
     /*
-     * Si hay órganos reales identificados
+     * Mostrar órganos creados
      */
 
-    if(organMeshes.length > 0){
+    if(organGroup){
 
-        modelMeshes.forEach(
-            mesh => {
+        organGroup.visible =
+            true;
 
-                if(
-                    meshTypes.get(mesh) === "organ"
-                ){
-
-                    showMesh(mesh);
-
-                }else{
-
-                    hideMesh(mesh);
-
-                }
-
-            }
-        );
-
-    }else{
-
-        /*
-         * Si el GLB no contiene órganos
-         * separados, mantenemos visible
-         * el interior para no dejar pantalla
-         * vacía.
-         */
-
-        modelMeshes.forEach(
-            mesh => {
-
-                if(
-                    meshTypes.get(mesh) === "skin"
-                ){
-
-                    hideMesh(mesh);
-
-                }else{
-
-                    showMesh(mesh);
-
-                }
-
-            }
-        );
-
-        /*
-         * Aviso suave
-         */
-
-        document
-            .getElementById("viewerMessage")
-            .textContent =
-            "El modelo muestra las estructuras internas disponibles";
+        organVisible = true;
 
     }
 
@@ -2668,17 +2747,38 @@ function(){
     );
 
 
+    /*
+     * Centrar en abdomen
+     */
+
+    window.appState.abdomenFocused =
+        true;
+
+
+    animateCamera(
+        anatomyCameraPosition,
+        anatomyTarget,
+        700
+    );
+
+
     document
         .getElementById("modeLabel")
         .textContent =
-        "Órganos";
+        "Órganos 3D";
+
+
+    document
+        .getElementById("viewerMessage")
+        .textContent =
+        "Órganos internos del abdomen";
 
 };
 
 
-/* ==================================
-   BOTONES ACTIVOS
-================================== */
+/* =========================
+   ACTIVE LAYER
+========================= */
 
 function setActiveLayer(id){
 
@@ -2692,19 +2792,95 @@ function setActiveLayer(id){
         );
 
 
-    const button =
+    const element =
         document.getElementById(id);
 
 
-    if(button)
-        button.classList.add("active");
+    if(element)
+        element.classList.add(
+            "active"
+        );
 
 }
 
 
-/* ==================================
+/* =========================
+   CÁMARA
+========================= */
+
+function animateCamera(
+    position,
+    target,
+    duration = 800
+){
+
+    const start =
+        camera.position.clone();
+
+
+    const startTarget =
+        controls.target.clone();
+
+
+    const time =
+        performance.now();
+
+
+    function animate(now){
+
+        const progress =
+            Math.min(
+                (now-time)/duration,
+                1
+            );
+
+
+        const eased =
+            1 -
+            Math.pow(
+                1-progress,
+                3
+            );
+
+
+        camera.position.lerpVectors(
+            start,
+            position,
+            eased
+        );
+
+
+        controls.target.lerpVectors(
+            startTarget,
+            target,
+            eased
+        );
+
+
+        controls.update();
+
+
+        if(progress < 1){
+
+            requestAnimationFrame(
+                animate
+            );
+
+        }
+
+    }
+
+
+    requestAnimationFrame(
+        animate
+    );
+
+}
+
+
+/* =========================
    EXPLORAR ABDOMEN
-================================== */
+========================= */
 
 window.exploreAbdomen =
 function(){
@@ -2721,14 +2897,22 @@ function(){
         false;
 
 
-    model.rotation.y = 0;
-
-
     /*
-     * Volver a cuerpo completo
+     * Ocultar órganos
      */
 
+    if(organGroup)
+        organGroup.visible = false;
+
+
     showAllLayer();
+
+
+    model.rotation.set(
+        0,
+        0,
+        0
+    );
 
 
     setActiveLayer(
@@ -2739,7 +2923,7 @@ function(){
     animateCamera(
         abdomenCameraPosition,
         abdomenTarget,
-        900
+        850
     );
 
 
@@ -2752,14 +2936,14 @@ function(){
     document
         .getElementById("viewerMessage")
         .textContent =
-        "Ahora puedes abrir la anatomía";
+        "Pulsa «Abrir anatomía» para descubrir los músculos";
 
 };
 
 
-/* ==================================
+/* =========================
    ABRIR ANATOMÍA
-================================== */
+========================= */
 
 window.openAnatomy =
 function(){
@@ -2768,19 +2952,8 @@ function(){
         return;
 
 
-    /*
-     * Si todavía no está en abdomen,
-     * primero acercamos.
-     */
-
-    if(!window.appState.abdomenFocused){
-
-        window.appState.abdomenFocused =
-            true;
-
-        model.rotation.y = 0;
-
-    }
+    window.appState.abdomenFocused =
+        true;
 
 
     window.appState.anatomyOpened =
@@ -2788,17 +2961,25 @@ function(){
 
 
     /*
-     * Intentar mostrar músculos
+     * Ocultar órganos si estaban activos
      */
 
-    const muscleMeshes =
+    if(organGroup)
+        organGroup.visible = false;
+
+
+    /*
+     * Músculos
+     */
+
+    const muscles =
         modelMeshes.filter(
             mesh =>
                 meshTypes.get(mesh) === "muscle"
         );
 
 
-    if(muscleMeshes.length > 0){
+    if(muscles.length > 0){
 
         modelMeshes.forEach(
             mesh => {
@@ -2809,9 +2990,9 @@ function(){
 
                     showMesh(mesh);
 
-                    tintMesh(
+                    illuminateMesh(
                         mesh,
-                        0xb85d72
+                        0xb94e6d
                     );
 
                 }else{
@@ -2826,8 +3007,7 @@ function(){
     }else{
 
         /*
-         * Si el modelo no identifica músculos,
-         * ocultamos únicamente la piel.
+         * Fallback
          */
 
         modelMeshes.forEach(
@@ -2857,63 +3037,42 @@ function(){
 
 
     /*
-     * Animación tipo libro:
-     * la piel desaparece progresivamente.
-     */
-
-    modelMeshes.forEach(
-        mesh => {
-
-            if(
-                meshTypes.get(mesh) === "skin"
-            ){
-
-                mesh.visible = true;
-
-                setMeshOpacity(
-                    mesh,
-                    .45
-                );
-
-                setTimeout(
-                    () => {
-
-                        hideMesh(mesh);
-
-                    },
-                    450
-                );
-
-            }
-
-        }
-    );
-
-
-    /*
-     * Cámara más cerca
+     * Cámara
      */
 
     animateCamera(
         anatomyCameraPosition,
         anatomyTarget,
-        1000
+        950
     );
 
 
     /*
-     * Mostrar cuadrícula
+     * Cuadrícula
      */
+
+    const grid =
+        document.getElementById(
+            "abdominalGrid"
+        );
+
+
+    grid.style.left =
+        "50%";
+
+    grid.style.top =
+        "50%";
+
 
     setTimeout(
         () => {
 
-            document
-                .getElementById("abdominalGrid")
-                .classList.add("show");
+            grid.classList.add(
+                "show"
+            );
 
         },
-        550
+        400
     );
 
 
@@ -2926,14 +3085,14 @@ function(){
     document
         .getElementById("viewerMessage")
         .textContent =
-        "Selecciona una región abdominal";
+        "Selecciona una región";
 
 };
 
 
-/* ==================================
-   VISTA FRONTAL
-================================== */
+/* =========================
+   FRENTE
+========================= */
 
 window.setFrontView =
 function(){
@@ -2945,35 +3104,45 @@ function(){
     model.rotation.y = 0;
 
 
-    animateCamera(
+    if(
         window.appState.anatomyOpened
-            ? anatomyCameraPosition
-            :
-              window.appState.abdomenFocused
-                ? abdomenCameraPosition
-                : originalCameraPosition,
+    ){
 
-        window.appState.anatomyOpened
-            ? anatomyTarget
-            :
-              window.appState.abdomenFocused
-                ? abdomenTarget
-                : originalTarget,
+        animateCamera(
+            anatomyCameraPosition,
+            anatomyTarget,
+            500
+        );
 
-        500
-    );
+    }else if(
+        window.appState.abdomenFocused
+    ){
+
+        animateCamera(
+            abdomenCameraPosition,
+            abdomenTarget,
+            500
+        );
+
+    }else{
+
+        animateCamera(
+            originalCameraPosition,
+            originalTarget,
+            500
+        );
+
+    }
 
 
-    setActiveView(
-        0
-    );
+    setActiveView(0);
 
 };
 
 
-/* ==================================
+/* =========================
    LATERAL
-================================== */
+========================= */
 
 window.setSideView =
 function(){
@@ -2983,36 +3152,44 @@ function(){
 
 
     model.rotation.y =
-        Math.PI / 2;
+        Math.PI/2;
+
+
+    const distance =
+        window.appState.anatomyOpened
+        ? 1.45
+        : window.appState.abdomenFocused
+            ? 1.85
+            : 4.8;
+
+
+    const target =
+        window.appState.anatomyOpened
+        ? anatomyTarget
+        : window.appState.abdomenFocused
+            ? abdomenTarget
+            : originalTarget;
 
 
     animateCamera(
         new THREE.Vector3(
-            0,
-            .15,
-            window.appState.anatomyOpened
-                ? 1.8
-                : 4.8
+            distance,
+            .28,
+            0
         ),
-
-        window.appState.anatomyOpened
-            ? anatomyTarget
-            : originalTarget,
-
+        target,
         500
     );
 
 
-    setActiveView(
-        1
-    );
+    setActiveView(1);
 
 };
 
 
-/* ==================================
+/* =========================
    ESPALDA
-================================== */
+========================= */
 
 window.setBackView =
 function(){
@@ -3025,42 +3202,43 @@ function(){
         Math.PI;
 
 
+    const position =
+        window.appState.anatomyOpened
+        ? anatomyCameraPosition
+        : window.appState.abdomenFocused
+            ? abdomenCameraPosition
+            : originalCameraPosition;
+
+
+    const target =
+        window.appState.anatomyOpened
+        ? anatomyTarget
+        : window.appState.abdomenFocused
+            ? abdomenTarget
+            : originalTarget;
+
+
     animateCamera(
-        window.appState.anatomyOpened
-            ? anatomyCameraPosition
-            : originalCameraPosition,
-
-        window.appState.anatomyOpened
-            ? anatomyTarget
-            : originalTarget,
-
+        position,
+        target,
         500
     );
 
 
-    setActiveView(
-        2
-    );
+    setActiveView(2);
 
 };
 
 
-/* ==================================
+/* =========================
    CENTRAR
-================================== */
+========================= */
 
 window.resetView =
 function(){
 
     if(!model)
         return;
-
-
-    model.rotation.set(
-        0,
-        0,
-        0
-    );
 
 
     window.appState.abdomenFocused =
@@ -3071,9 +3249,11 @@ function(){
         false;
 
 
-    document
-        .getElementById("abdominalGrid")
-        .classList.remove("show");
+    model.rotation.set(
+        0,
+        0,
+        0
+    );
 
 
     showAllLayer();
@@ -3084,10 +3264,31 @@ function(){
     );
 
 
+    document
+        .getElementById(
+            "abdominalGrid"
+        )
+        .classList.remove(
+            "show"
+        );
+
+
+    document
+        .querySelectorAll(
+            ".grid-region"
+        )
+        .forEach(
+            button =>
+                button.classList.remove(
+                    "selected"
+                )
+        );
+
+
     animateCamera(
         originalCameraPosition,
         originalTarget,
-        800
+        700
     );
 
 
@@ -3103,26 +3304,21 @@ function(){
         "Arrastra para girar • rueda para acercar";
 
 
-    document
-        .querySelectorAll(".grid-region")
-        .forEach(
-            button =>
-                button.classList.remove(
-                    "selected"
-                )
-        );
+    setActiveView(0);
 
 };
 
 
-/* ==================================
-   VISTA ACTIVA
-================================== */
+/* =========================
+   ACTIVE VIEW
+========================= */
 
 function setActiveView(index){
 
     document
-        .querySelectorAll(".view-button")
+        .querySelectorAll(
+            ".view-button"
+        )
         .forEach(
             button =>
                 button.classList.remove(
@@ -3139,14 +3335,16 @@ function setActiveView(index){
 
     if(buttons[index])
         buttons[index]
-            .classList.add("active");
+            .classList.add(
+                "active"
+            );
 
 }
 
 
-/* ==================================
+/* =========================
    ZOOM +
-================================== */
+========================= */
 
 window.zoomIn =
 function(){
@@ -3168,7 +3366,7 @@ function(){
 
     const newDistance =
         Math.max(
-            distance - .35,
+            distance-.3,
             controls.minDistance
         );
 
@@ -3189,9 +3387,9 @@ function(){
 };
 
 
-/* ==================================
+/* =========================
    ZOOM -
-================================== */
+========================= */
 
 window.zoomOut =
 function(){
@@ -3213,7 +3411,7 @@ function(){
 
     const newDistance =
         Math.min(
-            distance + .35,
+            distance+.3,
             controls.maxDistance
         );
 
@@ -3234,9 +3432,9 @@ function(){
 };
 
 
-/* ==================================
+/* =========================
    ANIMACIÓN
-================================== */
+========================= */
 
 function animate(){
 
@@ -3258,217 +3456,97 @@ function animate(){
 
 animate();
 
-
-/*
- * Primera medida
- */
-
 resizeThree();
 
 </script>
 
 
 <!-- =========================
-     DATOS DE REGIONES
+     DATOS
 ========================= -->
 
 <script>
 
 const regions = [
 
-    {
-
-        name:
-        "Hipocondrio derecho",
-
-        structures:
-        "Hígado, vesícula biliar, duodeno y parte del colon.",
-
-        function:
-        "Participa principalmente en la digestión y en funciones metabólicas del organismo, especialmente por la actividad del hígado y la vesícula biliar.",
-
-        importance:
-        "Es una zona importante para ubicar estructuras del lado superior derecho del abdomen.",
-
-        fact:
-        "El hígado es uno de los órganos internos más grandes del cuerpo y realiza muchas funciones diferentes."
-
-    },
-
-
-    {
-
-        name:
-        "Epigastrio",
-
-        structures:
-        "Estómago, páncreas, duodeno y parte del hígado.",
-
-        function:
-        "Participa principalmente en la digestión de los alimentos y en la regulación de diferentes procesos metabólicos.",
-
-        importance:
-        "Permite localizar varias estructuras digestivas importantes en la parte superior y central del abdomen.",
-
-        fact:
-        "El páncreas tiene funciones tanto digestivas como relacionadas con el control de la glucosa en la sangre."
-
-    },
-
-
-    {
-
-        name:
-        "Hipocondrio izquierdo",
-
-        structures:
-        "Bazo, parte del estómago, colon y parte del páncreas.",
-
-        function:
-        "Contiene estructuras relacionadas con la digestión y con funciones del sistema inmunitario y sanguíneo.",
-
-        importance:
-        "Ayuda a ubicar las estructuras situadas en la parte superior izquierda del abdomen.",
-
-        fact:
-        "El bazo participa en funciones relacionadas con la sangre y el sistema inmunitario."
-
-    },
-
-
-    {
-
-        name:
-        "Región lumbar derecha",
-
-        structures:
-        "Riñón derecho, colon ascendente e intestino delgado.",
-
-        function:
-        "Incluye estructuras relacionadas con la eliminación de sustancias y con el recorrido del contenido intestinal.",
-
-        importance:
-        "Es útil para identificar estructuras ubicadas en la zona media derecha del abdomen.",
-
-        fact:
-        "Los riñones ayudan a filtrar la sangre y producir la orina."
-
-    },
-
-
-    {
-
-        name:
-        "Región umbilical",
-
-        structures:
-        "Intestino delgado, colon transverso y parte del duodeno.",
-
-        function:
-        "Participa principalmente en el proceso digestivo y en el movimiento y absorción de nutrientes.",
-
-        importance:
-        "Es la región central del abdomen y sirve como referencia para localizar otras regiones.",
-
-        fact:
-        "El intestino delgado es el principal sitio de absorción de muchos nutrientes."
-
-    },
-
-
-    {
-
-        name:
-        "Región lumbar izquierda",
-
-        structures:
-        "Riñón izquierdo, colon descendente e intestino delgado.",
-
-        function:
-        "Contiene estructuras relacionadas con la eliminación de sustancias y con el tránsito intestinal.",
-
-        importance:
-        "Permite ubicar estructuras situadas en la zona media izquierda del abdomen.",
-
-        fact:
-        "Aunque están a ambos lados, los riñones no están exactamente a la misma altura debido a la posición del hígado."
-
-    },
-
-
-    {
-
-        name:
-        "Región ilíaca derecha",
-
-        structures:
-        "Ciego, apéndice e íleon.",
-
-        function:
-        "Participa en el tránsito del contenido intestinal y en la conexión entre partes del intestino.",
-
-        importance:
-        "Es una referencia anatómica importante en la parte inferior derecha del abdomen.",
-
-        fact:
-        "El apéndice es una pequeña prolongación que nace del ciego."
-
-    },
-
-
-    {
-
-        name:
-        "Hipogastrio",
-
-        structures:
-        "Intestino delgado, vejiga urinaria y parte del intestino grueso.",
-
-        function:
-        "Incluye estructuras relacionadas con la digestión y, dependiendo de su llenado, con el almacenamiento de la orina.",
-
-        importance:
-        "Es la región central inferior del abdomen.",
-
-        fact:
-        "La vejiga cambia de tamaño dependiendo de la cantidad de orina que contiene."
-
-    },
-
-
-    {
-
-        name:
-        "Región ilíaca izquierda",
-
-        structures:
-        "Colon sigmoide, intestino delgado y parte del colon.",
-
-        function:
-        "Participa principalmente en el recorrido y almacenamiento temporal del contenido intestinal.",
-
-        importance:
-        "Es una referencia anatómica para localizar estructuras de la parte inferior izquierda del abdomen.",
-
-        fact:
-        "El colon sigmoide conecta el colon descendente con el recto."
-
-    }
+{
+name:"Hipocondrio derecho",
+structures:"Hígado, vesícula biliar, duodeno y parte del colon.",
+function:"Participa principalmente en la digestión y en diferentes funciones metabólicas.",
+importance:"Ayuda a localizar estructuras importantes de la parte superior derecha del abdomen.",
+fact:"El hígado es uno de los órganos internos más grandes del cuerpo."
+},
+
+{
+name:"Epigastrio",
+structures:"Estómago, páncreas, duodeno y parte del hígado.",
+function:"Participa principalmente en la digestión y en procesos metabólicos.",
+importance:"Permite ubicar varias estructuras digestivas importantes.",
+fact:"El páncreas participa tanto en la digestión como en el control de la glucosa."
+},
+
+{
+name:"Hipocondrio izquierdo",
+structures:"Bazo, parte del estómago, colon y parte del páncreas.",
+function:"Contiene estructuras relacionadas con la digestión y el sistema inmunitario.",
+importance:"Ayuda a ubicar estructuras de la parte superior izquierda.",
+fact:"El bazo participa en funciones relacionadas con la sangre y el sistema inmunitario."
+},
+
+{
+name:"Región lumbar derecha",
+structures:"Riñón derecho, colon ascendente e intestino delgado.",
+function:"Incluye estructuras relacionadas con la eliminación y el tránsito intestinal.",
+importance:"Permite localizar estructuras de la zona media derecha.",
+fact:"Los riñones ayudan a filtrar la sangre y producir la orina."
+},
+
+{
+name:"Región umbilical",
+structures:"Intestino delgado, colon transverso y parte del duodeno.",
+function:"Participa principalmente en la digestión y absorción de nutrientes.",
+importance:"Es la región central del abdomen.",
+fact:"El intestino delgado es un lugar principal para la absorción de nutrientes."
+},
+
+{
+name:"Región lumbar izquierda",
+structures:"Riñón izquierdo, colon descendente e intestino delgado.",
+function:"Participa en la eliminación de sustancias y el tránsito intestinal.",
+importance:"Permite ubicar estructuras de la zona media izquierda.",
+fact:"Los riñones se encuentran hacia la parte posterior del abdomen."
+},
+
+{
+name:"Región ilíaca derecha",
+structures:"Ciego, apéndice e íleon.",
+function:"Participa en el tránsito del contenido intestinal.",
+importance:"Es una referencia anatómica importante de la parte inferior derecha.",
+fact:"El apéndice es una pequeña prolongación que nace del ciego."
+},
+
+{
+name:"Hipogastrio",
+structures:"Intestino delgado, vejiga urinaria y parte del intestino grueso.",
+function:"Incluye estructuras relacionadas con la digestión y el almacenamiento de la orina.",
+importance:"Es la región central inferior del abdomen.",
+fact:"La vejiga cambia de tamaño según la cantidad de orina que contiene."
+},
+
+{
+name:"Región ilíaca izquierda",
+structures:"Colon sigmoide, intestino delgado y parte del colon.",
+function:"Participa en el recorrido y almacenamiento temporal del contenido intestinal.",
+importance:"Ayuda a localizar estructuras de la parte inferior izquierda.",
+fact:"El colon sigmoide conecta el colon descendente con el recto."
+}
 
 ];
 
 
-/* ==================================
-   REGIONES VISITADAS
-================================== */
-
 const visitedRegions =
     new Set();
 
-
-/* ==================================
-   ABRIR REGIÓN
-================================== */
 
 window.openRegion =
 function(index){
@@ -3477,32 +3555,20 @@ function(index){
         regions[index];
 
 
-    /*
-     * Marcar como visitada
-     */
-
-    visitedRegions.add(
-        index
-    );
-
+    visitedRegions.add(index);
 
     updateProgress();
 
 
-    /*
-     * Resaltar cuadrícula
-     */
-
     document
-        .querySelectorAll(".grid-region")
+        .querySelectorAll(
+            ".grid-region"
+        )
         .forEach(
-            button => {
-
+            button =>
                 button.classList.remove(
                     "selected"
-                );
-
-            }
+                )
         );
 
 
@@ -3512,19 +3578,11 @@ function(index){
         );
 
 
-    if(selected){
-
+    if(selected)
         selected.classList.add(
             "selected"
         );
 
-    }
-
-
-    /*
-     * Si se abre desde las tarjetas,
-     * también llevar al abdomen.
-     */
 
     if(
         !window.appState.abdomenFocused
@@ -3543,10 +3601,6 @@ function(index){
 
     }
 
-
-    /*
-     * Llenar modal
-     */
 
     document
         .getElementById("modalTitle")
@@ -3578,19 +3632,12 @@ function(index){
         region.fact;
 
 
-    /*
-     * Mostrar modal
-     */
-
     document
         .getElementById("modal")
-        .classList.add("show");
+        .classList.add(
+            "show"
+        );
 
-
-    /*
-     * Si ya visitó las 9,
-     * mostrar completado después.
-     */
 
     if(
         visitedRegions.size === 9
@@ -3600,21 +3647,21 @@ function(index){
             () => {
 
                 document
-                    .getElementById("completeModal")
-                    .classList.add("show");
+                    .getElementById(
+                        "completeModal"
+                    )
+                    .classList.add(
+                        "show"
+                    );
 
             },
-            900
+            800
         );
 
     }
 
 };
 
-
-/* ==================================
-   CERRAR MODAL
-================================== */
 
 window.closeModal =
 function(){
@@ -3628,10 +3675,6 @@ function(){
 };
 
 
-/* ==================================
-   PROGRESO
-================================== */
-
 function updateProgress(){
 
     const count =
@@ -3640,7 +3683,7 @@ function updateProgress(){
 
     const percent =
         Math.round(
-            count / 9 * 100
+            count/9*100
         );
 
 
@@ -3664,95 +3707,66 @@ function updateProgress(){
 }
 
 
-/* ==================================
+/* =========================
    QUIZ
-================================== */
+========================= */
 
 const quizQuestions = [
 
-    {
+{
+question:"¿Qué región contiene principalmente el hígado?",
+options:[
+"Hipocondrio derecho",
+"Hipocondrio izquierdo",
+"Hipogastrio",
+"Región ilíaca izquierda"
+],
+answer:0
+},
 
-        question:
-        "¿Qué región contiene principalmente el hígado?",
+{
+question:"¿En qué región encontramos principalmente el estómago?",
+options:[
+"Región ilíaca derecha",
+"Epigastrio",
+"Región lumbar izquierda",
+"Hipogastrio"
+],
+answer:1
+},
 
-        options:[
-            "Hipocondrio derecho",
-            "Hipocondrio izquierdo",
-            "Hipogastrio",
-            "Región ilíaca izquierda"
-        ],
+{
+question:"¿Cuál es la región central del abdomen?",
+options:[
+"Epigastrio",
+"Hipogastrio",
+"Región umbilical",
+"Hipocondrio derecho"
+],
+answer:2
+},
 
-        answer:0
+{
+question:"¿Dónde encontramos principalmente el apéndice?",
+options:[
+"Región ilíaca derecha",
+"Hipocondrio izquierdo",
+"Epigastrio",
+"Región lumbar izquierda"
+],
+answer:0
+},
 
-    },
-
-
-    {
-
-        question:
-        "¿En qué región se encuentra principalmente el estómago?",
-
-        options:[
-            "Región ilíaca derecha",
-            "Epigastrio",
-            "Región lumbar izquierda",
-            "Hipogastrio"
-        ],
-
-        answer:1
-
-    },
-
-
-    {
-
-        question:
-        "¿Cuál es la región central del abdomen?",
-
-        options:[
-            "Epigastrio",
-            "Hipogastrio",
-            "Región umbilical",
-            "Hipocondrio derecho"
-        ],
-
-        answer:2
-
-    },
-
-
-    {
-
-        question:
-        "¿Dónde encontramos principalmente el apéndice?",
-
-        options:[
-            "Región ilíaca derecha",
-            "Hipocondrio izquierdo",
-            "Epigastrio",
-            "Región lumbar izquierda"
-        ],
-
-        answer:0
-
-    },
-
-
-    {
-
-        question:
-        "¿Qué región contiene el colon sigmoide?",
-
-        options:[
-            "Hipocondrio derecho",
-            "Región ilíaca izquierda",
-            "Región umbilical",
-            "Hipocondrio izquierdo"
-        ],
-
-        answer:1
-
-    }
+{
+question:"¿Qué región contiene el colon sigmoide?",
+options:[
+"Hipocondrio derecho",
+"Región ilíaca izquierda",
+"Región umbilical",
+"Hipocondrio izquierdo"
+],
+answer:1
+}
 
 ];
 
@@ -3764,16 +3778,23 @@ let quizScore = 0;
 let answeredQuestion = false;
 
 
-/* ==================================
-   INICIAR QUIZ
-================================== */
-
 window.startQuiz =
 function(){
 
     document
-        .getElementById("completeModal")
+        .getElementById(
+            "completeModal"
+        )
         .classList.remove(
+            "show"
+        );
+
+
+    document
+        .getElementById(
+            "quizModal"
+        )
+        .classList.add(
             "show"
         );
 
@@ -3783,21 +3804,10 @@ function(){
     quizScore = 0;
 
 
-    document
-        .getElementById("quizModal")
-        .classList.add(
-            "show"
-        );
-
-
     showQuizQuestion();
 
 };
 
-
-/* ==================================
-   MOSTRAR PREGUNTA
-================================== */
 
 function showQuizQuestion(){
 
@@ -3811,20 +3821,25 @@ function showQuizQuestion(){
 
 
     document
-        .getElementById("quizProgress")
+        .getElementById(
+            "quizProgress"
+        )
         .textContent =
-        `Pregunta ${currentQuizQuestion + 1} de ${quizQuestions.length}`;
+        `Pregunta ${currentQuizQuestion+1} de ${quizQuestions.length}`;
 
 
     document
-        .getElementById("quizQuestion")
+        .getElementById(
+            "quizQuestion"
+        )
         .textContent =
         question.question;
 
 
     const options =
-        document
-        .getElementById("quizOptions");
+        document.getElementById(
+            "quizOptions"
+        );
 
 
     options.innerHTML = "";
@@ -3864,25 +3879,25 @@ function showQuizQuestion(){
 
 
     document
-        .getElementById("quizResult")
+        .getElementById(
+            "quizResult"
+        )
         .textContent = "";
 
 
     document
-        .getElementById("nextQuestion")
+        .getElementById(
+            "nextQuestion"
+        )
         .style.display =
         "none";
 
 }
 
 
-/* ==================================
-   RESPONDER QUIZ
-================================== */
-
 function answerQuiz(
     selected,
-    clickedButton
+    clicked
 ){
 
     if(answeredQuestion)
@@ -3899,8 +3914,7 @@ function answerQuiz(
 
 
     const buttons =
-        document
-        .querySelectorAll(
+        document.querySelectorAll(
             ".quiz-option"
         );
 
@@ -3932,36 +3946,38 @@ function answerQuiz(
 
 
         document
-            .getElementById("quizResult")
+            .getElementById(
+                "quizResult"
+            )
             .textContent =
             "✨ ¡Correcto!";
 
     }else{
 
-        clickedButton.classList.add(
+        clicked.classList.add(
             "wrong"
         );
 
 
         document
-            .getElementById("quizResult")
+            .getElementById(
+                "quizResult"
+            )
             .textContent =
-            "💡 Casi. La respuesta correcta está marcada.";
+            "💡 La respuesta correcta está marcada.";
 
     }
 
 
     document
-        .getElementById("nextQuestion")
+        .getElementById(
+            "nextQuestion"
+        )
         .style.display =
         "inline-block";
 
 }
 
-
-/* ==================================
-   SIGUIENTE PREGUNTA
-================================== */
 
 window.nextQuizQuestion =
 function(){
@@ -3974,23 +3990,18 @@ function(){
         quizQuestions.length
     ){
 
-        showQuizFinal();
+        showQuizResult();
 
-        return;
+    }else{
+
+        showQuizQuestion();
 
     }
-
-
-    showQuizQuestion();
 
 };
 
 
-/* ==================================
-   RESULTADO FINAL
-================================== */
-
-function showQuizFinal(){
+function showQuizResult(){
 
     const card =
         document.querySelector(
@@ -4025,16 +4036,16 @@ function showQuizFinal(){
         <p>
             ${
                 quizScore === 5
-                ? "🌟 ¡Excelente! Conoces muy bien las regiones abdominales."
+                ? "🌟 ¡Excelente!"
                 : quizScore >= 3
-                ? "✨ ¡Muy bien! Sigue repasando para aprender todavía más."
-                : "💗 ¡Buen intento! Puedes volver a explorar las regiones y probar otra vez."
+                ? "✨ ¡Muy bien! Sigue repasando."
+                : "💗 Puedes volver a explorar las regiones."
             }
         </p>
 
         <button
             class="next-question"
-            onclick="restartQuiz()">
+            onclick="location.reload()">
             🔄 Intentar otra vez
         </button>
 
@@ -4043,138 +4054,18 @@ function showQuizFinal(){
 }
 
 
-/* ==================================
-   CERRAR QUIZ
-================================== */
-
 window.closeQuiz =
 function(){
 
     document
-        .getElementById("quizModal")
+        .getElementById(
+            "quizModal"
+        )
         .classList.remove(
             "show"
         );
 
 };
-
-
-/* ==================================
-   REPETIR QUIZ
-================================== */
-
-window.restartQuiz =
-function(){
-
-    const card =
-        document.querySelector(
-            "#quizModal .modal-card"
-        );
-
-
-    card.innerHTML = `
-
-        <button
-            class="close-modal"
-            onclick="closeQuiz()">
-            ×
-        </button>
-
-        <div
-            class="quiz-progress"
-            id="quizProgress">
-            Pregunta 1 de 5
-        </div>
-
-        <div
-            class="quiz-question"
-            id="quizQuestion">
-        </div>
-
-        <div
-            class="quiz-options"
-            id="quizOptions">
-        </div>
-
-        <div
-            class="quiz-result"
-            id="quizResult">
-        </div>
-
-        <button
-            class="next-question"
-            id="nextQuestion"
-            onclick="nextQuizQuestion()"
-            style="display:none;">
-            Siguiente →
-        </button>
-
-    `;
-
-
-    startQuiz();
-
-};
-
-
-/* ==================================
-   CERRAR MODALES AL TOCAR AFUERA
-================================== */
-
-document
-    .getElementById("modal")
-    .addEventListener(
-        "click",
-        function(event){
-
-            if(
-                event.target === this
-            ){
-
-                closeModal();
-
-            }
-
-        }
-    );
-
-
-document
-    .getElementById("quizModal")
-    .addEventListener(
-        "click",
-        function(event){
-
-            if(
-                event.target === this
-            ){
-
-                closeQuiz();
-
-            }
-
-        }
-    );
-
-
-document
-    .getElementById("completeModal")
-    .addEventListener(
-        "click",
-        function(event){
-
-            if(
-                event.target === this
-            ){
-
-                this.classList.remove(
-                    "show"
-                );
-
-            }
-
-        }
-    );
 
 </script>
 
@@ -4188,32 +4079,26 @@ document
 function startExperience(){
 
     document
-        .getElementById("cover")
+        .getElementById(
+            "cover"
+        )
         .style.display =
         "none";
 
 
     document
-        .getElementById("app")
+        .getElementById(
+            "app"
+        )
         .style.display =
         "block";
 
 
-    /*
-     * Importante:
-     * el canvas estaba dentro de una sección
-     * oculta, por eso en algunos computadores
-     * podía aparecer vacío.
-     */
-
     requestAnimationFrame(
         () => {
 
-            if(window.resizeThree){
-
+            if(window.resizeThree)
                 window.resizeThree();
-
-            }
 
         }
     );
@@ -4221,13 +4106,9 @@ function startExperience(){
 }
 
 
-/*
- * ESC PARA CERRAR MODALES
- */
-
 document.addEventListener(
     "keydown",
-    function(event){
+    event => {
 
         if(
             event.key === "Escape"
@@ -4240,7 +4121,9 @@ document.addEventListener(
                 closeQuiz();
 
             document
-                .getElementById("completeModal")
+                .getElementById(
+                    "completeModal"
+                )
                 .classList.remove(
                     "show"
                 );
