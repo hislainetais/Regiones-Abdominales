@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Abdomen 360°</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    color:white;
+    background:
+    radial-gradient(circle at top,#173b5c,#071321 55%,#02060b);
+    min-height:100vh;
+}
+
+header{
+    padding:25px;
+    display:flex;
+    justify-content:space-between;
+    border-bottom:1px solid #244967;
+    background:#06101d;
+}
+
+.logo{
+    color:#55e6ff;
+    font-weight:bold;
+    letter-spacing:3px;
+}
+
+.badge{
+    color:#aebfd0;
+    border:1px solid #315b78;
+    padding:8px 15px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+main{
+    max-width:1150px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+.titulo{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.titulo h1{
+    font-size:50px;
+    margin:0;
+    letter-spacing:4px;
+}
+
+.titulo p{
+    color:#aebfd0;
+    font-size:17px;
+}
+
+.contenedor{
+    display:grid;
+    grid-template-columns:1fr 350px;
+    gap:25px;
+}
+
+.mapa,
+.informacion,
+.quiz{
+    background:rgba(10,27,45,.95);
+    border:1px solid #244967;
+    border-radius:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+}
+
+.mapa{
+    padding:25px;
+}
+
+.mapa h2{
+    color:#55e6ff;
+    font-size:15px;
+    letter-spacing:2px;
+}
+
+.abdomen{
+    max-width:550px;
+    margin:auto;
+}
+
+svg{
+    width:100%;
+}
+
+.region{
+    fill:#185174;
+    stroke:#55e6ff;
+    stroke-width:2;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.region:hover{
+    fill:#3a91b5;
+    filter:drop-shadow(0 0 10px #55e6ff);
+}
+
+.region.activa{
+    fill:#a98bff;
+    filter:drop-shadow(0 0 12px #a98bff);
+}
+
+.texto{
+    fill:white;
+    font-size:14px;
+    font-weight:bold;
+    pointer-events:none;
+    text-anchor:middle;
+}
+
+.informacion{
+    padding:28px;
+}
+
+.etiqueta{
+    color:#55e6ff;
+    font-size:12px;
+    letter-spacing:2px;
+}
+
+#nombre{
+    font-size:28px;
+    margin-top:10px;
+}
+
+.informacion h3{
+    color:#a98bff;
+    margin-top:25px;
+}
+
+.informacion p{
+    color:#d5e4ee;
+    line-height:1.6;
+}
+
+.tip{
+    margin-top:25px;
+    padding:15px;
+    background:#081827;
+    border-left:3px solid #55e6ff;
+    color:#aebfd0;
+    font-size:13px;
+}
+
+.quiz{
+    margin-top:25px;
+    padding:25px;
+}
+
+.quiz h2{
+    color:#55e6ff;
+}
+
+button{
+    background:#112d47;
+    border:1px solid #3d718f;
+    color:white;
+    padding:12px 18px;
+    margin:5px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+button:hover{
+    border-color:#55e6ff;
+}
+
+#resultado{
+    margin-top:15px;
+    font-weight:bold;
+}
+
+@media(max-width:800px){
+
+    .contenedor{
+        grid-template-columns:1fr;
+    }
+
+    .titulo h1{
+        font-size:35px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<header>
+
+<div class="logo">
+ABDOMEN 360°
+</div>
+
+<div class="badge">
+ANATOMÍA INTERACTIVA
+</div>
+
+</header>
+
+
+<main>
+
+<div class="titulo">
+
+<h1>Las 9 regiones abdominales</h1>
+
+<p>
+Haz clic sobre una región para explorar su ubicación y las estructuras que pueden encontrarse allí.
+</p>
+
+</div>
+
+
+<div class="contenedor">
+
+
+<!-- MAPA -->
+
+<div class="mapa">
+
+<h2>MAPA ABDOMINAL · HAZ CLIC EN UNA REGIÓN</h2>
+
+<div class="abdomen">
+
+<svg viewBox="0 0 600 650">
+
+<!-- SILUETA -->
+
+<path
+d="M180 50
+Q300 15 420 50
+L470 160
+Q500 220 480 300
+L450 600
+Q300 650 150 600
+L120 300
+Q100 220 130 160Z"
+fill="#071827"
+stroke="#315979"
+stroke-width="4"
+/>
+
+
+<!-- HIPOCONDRIO DERECHO -->
+
+<polygon
+class="region"
+data-region="hd"
+points="130,160 300,160 300,275 130,275"
+/>
+
+
+<!-- EPIGASTRIO -->
+
+<polygon
+class="region"
+data-region="ep"
+points="300,160 470,160 470,275 300,275"
+/>
+
+
+<!-- HIPOCONDRIO IZQUIERDO -->
+
+<polygon
+class="region"
+data-region="hi"
+points="470,160 500,220 480,275 470,275"
+/>
+
+
+<!-- LUMBAR DERECHA -->
+
+<polygon
+class="region"
+data-region="ld"
+points="130,275 300,275 300,405 130,405"
+/>
+
+
+<!-- UMBILICAL -->
+
+<polygon
+class="region"
+data-region="um"
+points="300,275 470,275 470,405 300,405"
+/>
+
+
+<!-- LUMBAR IZQUIERDA -->
+
+<polygon
+class="region"
+data-region="li"
+points="470,275 480,405 470,405 470,275"
+/>
+
+
+<!-- ILIACA DERECHA -->
+
+<polygon
+class="region"
+data-region="id"
+points="130,405 300,405 300,555 150,555"
+/>
+
+
+<!-- HIPOGASTRIO -->
+
+<polygon
+class="region"
+data-region="hip"
+points="300,405 470,405 450,555 300,555"
+/>
+
+
+<!-- ILIACA IZQUIERDA -->
+
+<polygon
+class="region"
+data-region="ii"
+points="450,555 300,555 300,405 470,405"
+/>
+
+
+<!-- TEXTOS -->
+
+<text class="texto" x="215" y="225">H.D.</text>
+
+<text class="texto" x="385" y="225">EP.</text>
+
+<text class="texto" x="485" y="225">H.I.</text>
+
+<text class="texto" x="215" y="350">L.D.</text>
+
+<text class="texto" x="385" y="350">U.</text>
+
+<text class="texto" x="485" y="350">L.I.</text>
+
+<text class="texto" x="215" y="480">I.D.</text>
+
+<text class="texto" x="385" y="480">H.</text>
+
+<text class="texto" x="440" y="520">I.I.</text>
+
+</svg>
+
+</div>
+
+</div>
+
+
+<!-- INFORMACIÓN -->
+
+<div class="informacion">
+
+<div class="etiqueta">
+REGIÓN SELECCIONADA
+</div>
+
+<h2 id="nombre">
+Haz clic en una región
+</h2>
+
+<h3>📍 Ubicación</h3>
+
+<p id="ubicacion">
+Selecciona una región del mapa para comenzar.
+</p>
+
+
+<h3>🫀 Estructuras</h3>
+
+<p id="organos">
+Aquí aparecerá la información anatómica.
+</p>
+
+
+<h3>🧠 ¿Por qué es importante?</h3>
+
+<p>
+Las nueve regiones permiten describir de manera ordenada
+la ubicación de estructuras y zonas del abdomen.
+</p>
+
+
+<div class="tip">
+
+💡 <b>Dato:</b> El abdomen se divide en nueve regiones mediante
+líneas imaginarias que ayudan a localizar estructuras.
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- QUIZ -->
+
+<div class="quiz">
+
+<h2>🧠 MINI QUIZ</h2>
+
+<p>
+¿Cuál es la región que se encuentra en el centro del abdomen?
+</p>
+
+<button onclick="respuesta(false)">
+Hipocondrio derecho
+</button>
+
+<button onclick="respuesta(true)">
+Región umbilical
+</button>
+
+<button onclick="respuesta(false)">
+Hipocondrio izquierdo
+</button>
+
+<div id="resultado"></div>
+
+</div>
+
+
+</main>
+
+
+<script>
+
+const regiones = {
+
+hd:{
+nombre:"Hipocondrio derecho",
+ubicacion:"Parte superior derecha del abdomen.",
+organos:"Hígado, vesícula biliar y partes del duodeno y colon."
+},
+
+ep:{
+nombre:"Epigastrio",
+ubicacion:"Parte superior y central del abdomen.",
+organos:"Estómago, páncreas, duodeno y parte del hígado."
+},
+
+hi:{
+nombre:"Hipocondrio izquierdo",
+ubicacion:"Parte superior izquierda del abdomen.",
+organos:"Bazo, parte del estómago y parte del colon."
+},
+
+ld:{
+nombre:"Región lumbar derecha",
+ubicacion:"Zona media derecha del abdomen.",
+organos:"Colon ascendente, riñón derecho y asas del intestino delgado."
+},
+
+um:{
+nombre:"Región umbilical",
+ubicacion:"Zona central, alrededor del ombligo.",
+organos:"Principalmente asas del intestino delgado y parte del colon transverso."
+},
+
+li:{
+nombre:"Región lumbar izquierda",
+ubicacion:"Zona media izquierda del abdomen.",
+organos:"Colon descendente, riñón izquierdo y asas del intestino delgado."
+},
+
+id:{
+nombre:"Región ilíaca derecha",
+ubicacion:"Parte inferior derecha del abdomen.",
+organos:"Ciego, apéndice, íleon y parte del intestino."
+},
+
+hip:{
+nombre:"Hipogastrio",
+ubicacion:"Parte inferior y central del abdomen.",
+organos:"Asas del intestino delgado y, según el estado de llenado, la vejiga y órganos reproductores."
+},
+
+ii:{
+nombre:"Región ilíaca izquierda",
+ubicacion:"Parte inferior izquierda del abdomen.",
+organos:"Colon sigmoide y asas del intestino delgado."
+}
+
+};
+
+
+document.querySelectorAll(".region").forEach(region => {
+
+region.addEventListener("click",function(){
+
+document.querySelectorAll(".region")
+.forEach(r => r.classList.remove("activa"));
+
+this.classList.add("activa");
+
+let informacion =
+regiones[this.dataset.region];
+
+document.getElementById("nombre")
+.textContent=informacion.nombre;
+
+document.getElementById("ubicacion")
+.textContent=informacion.ubicacion;
+
+document.getElementById("organos")
+.textContent=informacion.organos;
+
+});
+
+});
+
+
+function respuesta(correcta){
+
+let resultado =
+document.getElementById("resultado");
+
+if(correcta){
+
+resultado.textContent =
+"✅ ¡Correcto! La región umbilical está en el centro del abdomen.";
+
+}else{
+
+resultado.textContent =
+"❌ Casi. La región central es la región umbilical.";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
