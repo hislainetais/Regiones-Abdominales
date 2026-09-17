@@ -41,6 +41,7 @@ button{
     opacity:.7;
     animation:float 5s infinite ease-in-out;
     pointer-events:none;
+    z-index:0;
 }
 
 .s1{left:8%;top:18%}
@@ -64,6 +65,8 @@ button{
     align-items:center;
     justify-content:center;
     padding:30px;
+    position:relative;
+    z-index:2;
 }
 
 .cover-box{
@@ -127,6 +130,8 @@ button{
     max-width:1450px;
     margin:auto;
     padding:25px;
+    position:relative;
+    z-index:2;
 }
 
 .header{
@@ -240,6 +245,7 @@ button{
     height:100%;
     display:block;
     cursor:grab;
+    touch-action:none;
 }
 
 #threeCanvas:active{
@@ -257,8 +263,8 @@ button{
     align-items:center;
     justify-content:center;
     flex-direction:column;
-    background:rgba(246,232,245,.88);
-    z-index:20;
+    background:rgba(246,232,245,.92);
+    z-index:50;
     transition:.5s;
 }
 
@@ -288,13 +294,13 @@ button{
 }
 
 /* =========================
-   MENSAJE DEL VISOR
+   MENSAJE
 ========================= */
 
 .viewer-message{
     position:absolute;
     left:50%;
-    bottom:22px;
+    bottom:20px;
     transform:translateX(-50%);
     background:rgba(255,255,255,.9);
     padding:10px 18px;
@@ -302,13 +308,13 @@ button{
     font-size:11px;
     font-weight:600;
     color:#76577f;
-    z-index:10;
+    z-index:12;
     text-align:center;
     white-space:nowrap;
 }
 
 /* =========================
-   BOTÓN CENTRAL
+   BOTONES
 ========================= */
 
 .anatomy-action{
@@ -316,7 +322,7 @@ button{
     left:50%;
     bottom:28px;
     transform:translateX(-50%);
-    z-index:30;
+    z-index:35;
     display:flex;
     gap:10px;
     flex-wrap:wrap;
@@ -342,7 +348,7 @@ button{
 }
 
 .action-btn.secondary{
-    background:rgba(255,255,255,.9);
+    background:rgba(255,255,255,.94);
     color:#60436b;
 }
 
@@ -356,7 +362,7 @@ button{
     left:50%;
     transform:translateX(-50%);
     z-index:25;
-    background:rgba(255,255,255,.9);
+    background:rgba(255,255,255,.92);
     padding:10px 20px;
     border-radius:30px;
     font-size:11px;
@@ -364,76 +370,74 @@ button{
     font-weight:700;
     color:#684871;
     box-shadow:0 5px 20px rgba(70,45,80,.1);
+    white-space:nowrap;
 }
 
 /* =========================
-   CUADRÍCULA ABDOMINAL
+   CUADRÍCULA
 ========================= */
 
 .abdominal-grid{
     position:absolute;
+
+    /*
+       IMPORTANTE:
+       La cuadrícula ahora queda
+       centrada en la zona abdominal.
+    */
     left:50%;
-    top:50%;
-    width:280px;
-    height:390px;
+    top:49%;
+
+    width:min(310px,55%);
+    height:min(390px,57%);
+
     transform:translate(-50%,-50%);
+
     display:none;
+
     grid-template-columns:repeat(3,1fr);
     grid-template-rows:repeat(3,1fr);
-    z-index:18;
+
+    z-index:30;
+
     pointer-events:none;
-    transition:.6s;
+
+    opacity:0;
+    transition:opacity .7s ease;
 }
 
 .abdominal-grid.show{
     display:grid;
+    opacity:1;
+    pointer-events:auto;
 }
 
 .grid-region{
-    border:1.5px solid rgba(104,55,83,.55);
-    background:rgba(255,220,235,.10);
+    border:1.5px solid rgba(104,55,83,.65);
+    background:rgba(255,220,235,.14);
     display:flex;
     align-items:center;
     justify-content:center;
     text-align:center;
     padding:5px;
-    font-size:7px;
+    font-size:8px;
     font-weight:700;
     color:#663d58;
     pointer-events:auto;
     cursor:pointer;
     transition:.25s;
+    backdrop-filter:blur(1px);
 }
 
 .grid-region:hover{
-    background:rgba(255,190,220,.55);
+    background:rgba(255,190,220,.65);
     color:#44243b;
+    transform:scale(1.03);
+    z-index:2;
 }
 
-.grid-region.selected{
-    background:rgba(187,96,139,.55);
-    color:white;
-}
-
-/* =========================
-   ETIQUETAS
-========================= */
-
-.anatomy-note{
-    position:absolute;
-    z-index:19;
-    background:rgba(255,255,255,.9);
-    border-radius:12px;
-    padding:8px 12px;
-    font-size:9px;
-    font-weight:700;
-    color:#684871;
-    box-shadow:0 5px 15px rgba(70,45,80,.12);
-    display:none;
-}
-
-.anatomy-note.show{
-    display:block;
+.grid-region:active{
+    transform:scale(.98);
 }
 
 /* =========================
@@ -594,6 +598,7 @@ footer{
 ========================= */
 
 @media(max-width:1000px){
+
     .anatomy-layout{
         grid-template-columns:1fr;
     }
@@ -624,6 +629,7 @@ footer{
 }
 
 @media(max-width:600px){
+
     #app{
         padding:14px;
     }
@@ -632,9 +638,19 @@ footer{
         align-items:flex-start;
     }
 
+    .logo{
+        font-size:24px;
+    }
+
+    .step{
+        font-size:9px;
+        padding:8px 10px;
+    }
+
     .viewer{
         height:560px;
         min-height:450px;
+        border-radius:25px;
     }
 
     .regions{
@@ -642,8 +658,9 @@ footer{
     }
 
     .abdominal-grid{
-        width:210px;
-        height:310px;
+        width:220px;
+        height:300px;
+        top:48%;
     }
 
     .grid-region{
@@ -652,7 +669,31 @@ footer{
 
     .viewer-message{
         white-space:normal;
-        width:80%;
+        width:82%;
+        bottom:15px;
+    }
+
+    .anatomy-action{
+        bottom:55px;
+        width:90%;
+    }
+
+    .action-btn{
+        padding:12px 15px;
+        font-size:10px;
+    }
+
+    .mode-label{
+        font-size:9px;
+        padding:8px 13px;
+    }
+
+    .modal-box{
+        padding:25px 20px;
+    }
+
+    .modal-box h2{
+        font-size:30px;
     }
 }
 </style>
@@ -733,8 +774,6 @@ footer{
 
     <section class="anatomy-layout">
 
-        <!-- CAPAS -->
-
         <aside class="panel">
 
             <div class="panel-title">
@@ -764,7 +803,9 @@ footer{
 
         </aside>
 
-        <!-- VISOR -->
+        <!-- =========================
+             VISOR 3D
+        ========================= -->
 
         <div class="viewer">
 
@@ -788,7 +829,9 @@ footer{
                 🖱️ Arrastra para girar · rueda para acercar
             </div>
 
-            <!-- CUADRÍCULA -->
+            <!-- =========================
+                 CUADRÍCULA 3x3
+            ========================= -->
 
             <div class="abdominal-grid" id="abdominalGrid">
 
@@ -830,7 +873,9 @@ footer{
 
             </div>
 
-            <!-- BOTONES -->
+            <!-- =========================
+                 BOTONES
+            ========================= -->
 
             <div class="anatomy-action">
 
@@ -861,7 +906,9 @@ footer{
 
         </div>
 
-        <!-- VISTAS -->
+        <!-- =========================
+             VISTAS
+        ========================= -->
 
         <aside class="panel">
 
@@ -1061,9 +1108,21 @@ import { DRACOLoader }
 from "three/addons/loaders/DRACOLoader.js";
 
 
-/* =========================
+/* =====================================================
+   ESTADO GLOBAL
+===================================================== */
+
+window.appState = {
+
+    abdomenFocused:false,
+    anatomyOpened:false
+
+};
+
+
+/* =====================================================
    VARIABLES
-========================= */
+===================================================== */
 
 let scene;
 let camera;
@@ -1073,69 +1132,159 @@ let model;
 
 let modelMeshes = [];
 
-let originalCameraPosition =
-    new THREE.Vector3(0,1.5,4.5);
-
-let abdomenCameraPosition =
-    new THREE.Vector3(0,1.35,2.3);
-
-let anatomyOpened = false;
-let abdomenFocused = false;
-
-
-/* =========================
-   ESCENA
-========================= */
-
-scene = new THREE.Scene();
-
-scene.background = new THREE.Color(0xf5e8f4);
-
-
-/* =========================
-   CÁMARA
-========================= */
-
-camera = new THREE.PerspectiveCamera(
-    35,
-    window.innerWidth / window.innerHeight,
-    0.01,
-    1000
-);
-
-camera.position.copy(originalCameraPosition);
-
-
-/* =========================
-   RENDERER
-========================= */
+let muscleCount = 0;
+let boneCount = 0;
+let skinCount = 0;
 
 const canvas =
     document.getElementById("threeCanvas");
 
-renderer = new THREE.WebGLRenderer({
-    canvas:canvas,
-    antialias:true,
-    alpha:true
-});
 
-renderer.setPixelRatio(
-    Math.min(window.devicePixelRatio,2)
+/* =====================================================
+   POSICIONES DE CÁMARA
+===================================================== */
+
+/*
+   El cuerpo completo queda centrado
+   en 0,0,0.
+*/
+
+const fullCamera =
+    new THREE.Vector3(
+        0,
+        0.15,
+        4.8
+    );
+
+const fullTarget =
+    new THREE.Vector3(
+        0,
+        0,
+        0
+    );
+
+
+/*
+   Esta cámara se acerca al torso.
+   No usamos la posición antigua porque
+   estaba demasiado arriba.
+*/
+
+const abdomenCamera =
+    new THREE.Vector3(
+        0,
+        0.35,
+        2.15
+    );
+
+const abdomenTarget =
+    new THREE.Vector3(
+        0,
+        0.35,
+        0
+    );
+
+
+/* =====================================================
+   ESCENA
+===================================================== */
+
+scene =
+    new THREE.Scene();
+
+
+/* =====================================================
+   CÁMARA
+===================================================== */
+
+camera =
+    new THREE.PerspectiveCamera(
+        35,
+        1,
+        0.01,
+        1000
+    );
+
+camera.position.copy(
+    fullCamera
 );
 
-renderer.setSize(
-    canvas.clientWidth,
-    canvas.clientHeight,
-    false
+
+/* =====================================================
+   RENDERER
+===================================================== */
+
+renderer =
+    new THREE.WebGLRenderer({
+
+        canvas:canvas,
+
+        antialias:true,
+
+        alpha:true,
+
+        powerPreference:"high-performance"
+
+    });
+
+
+renderer.setPixelRatio(
+    Math.min(
+        window.devicePixelRatio || 1,
+        2
+    )
 );
 
 renderer.outputColorSpace =
     THREE.SRGBColorSpace;
 
 
-/* =========================
+/*
+   IMPORTANTE PARA LAPTOP:
+   No dependemos del tamaño de la
+   ventana. Tomamos el tamaño REAL
+   del visor.
+*/
+
+function resizeRenderer(){
+
+    const viewer =
+        canvas.parentElement;
+
+    if(!viewer) return;
+
+    const width =
+        Math.max(
+            viewer.clientWidth,
+            1
+        );
+
+    const height =
+        Math.max(
+            viewer.clientHeight,
+            1
+        );
+
+    camera.aspect =
+        width / height;
+
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(
+        width,
+        height,
+        false
+    );
+
+}
+
+
+resizeRenderer();
+
+
+/* =====================================================
    LUCES
-========================= */
+===================================================== */
 
 const ambient =
     new THREE.HemisphereLight(
@@ -1153,7 +1302,11 @@ const light =
         3
     );
 
-light.position.set(3,6,5);
+light.position.set(
+    3,
+    6,
+    5
+);
 
 scene.add(light);
 
@@ -1164,19 +1317,24 @@ const light2 =
         2
     );
 
-light2.position.set(-4,2,3);
+light2.position.set(
+    -4,
+    2,
+    3
+);
 
 scene.add(light2);
 
 
-/* =========================
+/* =====================================================
    CONTROLES
-========================= */
+===================================================== */
 
-controls = new OrbitControls(
-    camera,
-    renderer.domElement
-);
+controls =
+    new OrbitControls(
+        camera,
+        renderer.domElement
+    );
 
 controls.enableDamping = true;
 controls.dampingFactor = .06;
@@ -1184,34 +1342,39 @@ controls.dampingFactor = .06;
 controls.enableZoom = true;
 controls.enablePan = false;
 
-controls.minDistance = .8;
+controls.minDistance = .7;
 controls.maxDistance = 9;
 
-controls.target.set(0,1.4,0);
+controls.target.copy(
+    fullTarget
+);
 
 
-/* =========================
+/* =====================================================
    CARGADOR
-========================= */
+===================================================== */
 
 const loader =
     new GLTFLoader();
 
+
 const dracoLoader =
     new DRACOLoader();
+
 
 dracoLoader.setDecoderPath(
     "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/libs/draco/"
 );
+
 
 loader.setDRACOLoader(
     dracoLoader
 );
 
 
-/* =========================
+/* =====================================================
    MODELO
-========================= */
+===================================================== */
 
 const MODEL_URL =
     "./models/models/body.glb";
@@ -1223,51 +1386,102 @@ loader.load(
 
     function(gltf){
 
-        model = gltf.scene;
+        model =
+            gltf.scene;
 
         scene.add(model);
 
+
         modelMeshes = [];
 
-        model.traverse(function(object){
 
-            if(object.isMesh){
+        model.traverse(
+            function(object){
+
+                if(!object.isMesh)
+                    return;
+
 
                 object.castShadow = true;
                 object.receiveShadow = true;
 
-                modelMeshes.push(object);
 
-                /*
-                 Guardamos nombres para
-                 reconocer piel, músculos,
-                 huesos y órganos.
-                */
+                modelMeshes.push(
+                    object
+                );
+
 
                 object.userData.originalVisible =
                     true;
 
+
                 object.userData.originalMaterial =
                     object.material;
 
+
+                /*
+                   Guardamos estado del material.
+                */
+
+                object.userData.materialStates =
+                    getMaterialStates(
+                        object.material
+                    );
+
             }
+        );
 
-        });
 
+        /*
+           PRIMERO centramos y escalamos.
+           Esto corrige el problema de
+           desaparición en laptop.
+        */
 
         centerModel();
 
+
+        /*
+           Después clasificamos.
+        */
+
         classifyModel();
 
-        document
-        .getElementById("loading")
-        .classList.add("hide");
 
         console.log(
             "Modelo cargado:",
             modelMeshes.length,
-            "elementos"
+            "mallas"
         );
+
+        console.log(
+            "Músculos:",
+            muscleCount,
+            "Huesos:",
+            boneCount,
+            "Piel:",
+            skinCount
+        );
+
+
+        /*
+           Mostramos TODO al comenzar.
+        */
+
+        restoreAllMeshes();
+
+
+        /*
+           Actualizamos tamaño DESPUÉS
+           de que el modelo esté listo.
+        */
+
+        resizeRenderer();
+
+
+        document
+            .getElementById("loading")
+            .classList.add("hide");
 
     },
 
@@ -1286,7 +1500,8 @@ loader.load(
                 ".loading-text"
             ).textContent =
                 "Cargando cuerpo humano 3D... "
-                + percent + "%";
+                + percent +
+                "%";
 
         }
 
@@ -1309,33 +1524,43 @@ loader.load(
 );
 
 
-/* =========================
-   CENTRAR MODELO
-========================= */
+/* =====================================================
+   CENTRAR Y ESCALAR MODELO
+===================================================== */
 
 function centerModel(){
+
+    if(!model)
+        return;
+
+
+    /*
+       Reiniciamos primero.
+    */
+
+    model.scale.setScalar(1);
+
+    model.position.set(
+        0,
+        0,
+        0
+    );
+
+
+    /*
+       Calculamos tamaño ORIGINAL.
+    */
 
     const box =
         new THREE.Box3()
         .setFromObject(model);
 
-    const center =
-        box.getCenter(
-            new THREE.Vector3()
-        );
-
-    model.position.sub(center);
-
-    /*
-     Ajustamos el cuerpo para
-     que quede aproximadamente
-     en el centro del visor.
-    */
 
     const size =
         box.getSize(
             new THREE.Vector3()
         );
+
 
     const maxSize =
         Math.max(
@@ -1344,156 +1569,399 @@ function centerModel(){
             size.z
         );
 
+
+    /*
+       El cuerpo tendrá aproximadamente
+       3.4 unidades de altura.
+    */
+
     const scale =
-        3.2 / maxSize;
+        3.4 / maxSize;
 
-    model.scale.setScalar(scale);
 
-    model.position.y = -1.35;
+    model.scale.setScalar(
+        scale
+    );
+
+
+    /*
+       VOLVEMOS a calcular el cuadro
+       después del escalado.
+    */
+
+    const scaledBox =
+        new THREE.Box3()
+        .setFromObject(model);
+
+
+    const center =
+        scaledBox.getCenter(
+            new THREE.Vector3()
+        );
+
+
+    /*
+       Centramos EXACTAMENTE.
+    */
+
+    model.position.sub(
+        center
+    );
+
+
+    /*
+       Importante:
+       NO ponemos model.position.y
+       manualmente.
+    */
 
 }
 
 
-/* =========================
-   CLASIFICAR ELEMENTOS
-========================= */
+/* =====================================================
+   ESTADOS DE MATERIALES
+===================================================== */
+
+function getMaterialStates(material){
+
+    const materials =
+        Array.isArray(material)
+            ? material
+            : [material];
+
+
+    return materials.map(
+        mat => ({
+
+            transparent:
+                mat.transparent,
+
+            opacity:
+                mat.opacity,
+
+            depthWrite:
+                mat.depthWrite
+
+        })
+    );
+
+}
+
+
+function restoreMaterial(mesh){
+
+    if(
+        !mesh.userData.originalMaterial
+    )
+        return;
+
+
+    mesh.material =
+        mesh.userData.originalMaterial;
+
+
+    const materials =
+        Array.isArray(
+            mesh.material
+        )
+            ? mesh.material
+            : [mesh.material];
+
+
+    const states =
+        mesh.userData.materialStates
+        || [];
+
+
+    materials.forEach(
+        (material,index) => {
+
+            const state =
+                states[index];
+
+            if(!state)
+                return;
+
+            material.transparent =
+                state.transparent;
+
+            material.opacity =
+                state.opacity;
+
+            material.depthWrite =
+                state.depthWrite;
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   CLASIFICAR MODELO
+===================================================== */
 
 function classifyModel(){
 
-    modelMeshes.forEach(mesh => {
-
-        const name =
-            (
-                mesh.name +
-                " " +
-                (mesh.userData.type || "") +
-                " " +
-                (mesh.userData.name || "") +
-                " " +
-                (mesh.userData.nameDetail || "")
-            ).toLowerCase();
+    muscleCount = 0;
+    boneCount = 0;
+    skinCount = 0;
 
 
-        if(
-            name.includes("muscle") ||
-            name.includes("musculo") ||
-            name.includes("muscle_")
-        ){
+    modelMeshes.forEach(
+        mesh => {
 
-            mesh.userData.layer =
-                "muscle";
+            const materialName =
+                getMaterialName(
+                    mesh.material
+                );
+
+
+            const parentName =
+                mesh.parent
+                    ? mesh.parent.name
+                    : "";
+
+
+            const name =
+                (
+                    mesh.name +
+                    " " +
+                    parentName +
+                    " " +
+                    materialName +
+                    " " +
+                    (mesh.userData.type || "") +
+                    " " +
+                    (mesh.userData.name || "") +
+                    " " +
+                    (mesh.userData.nameDetail || "")
+                ).toLowerCase();
+
+
+            /*
+               MÚSCULOS
+            */
+
+            if(
+                name.includes("muscle") ||
+                name.includes("musculo") ||
+                name.includes("músculo") ||
+                name.includes("rectus") ||
+                name.includes("oblique") ||
+                name.includes("transversus") ||
+                name.includes("abdominis")
+            ){
+
+                mesh.userData.layer =
+                    "muscle";
+
+                muscleCount++;
+
+            }
+
+
+            /*
+               HUESOS
+            */
+
+            else if(
+                name.includes("bone") ||
+                name.includes("skeleton") ||
+                name.includes("hueso") ||
+                name.includes("osseo") ||
+                name.includes("osseous") ||
+                name.includes("femur") ||
+                name.includes("rib") ||
+                name.includes("pelvis") ||
+                name.includes("vertebra")
+            ){
+
+                mesh.userData.layer =
+                    "bone";
+
+                boneCount++;
+
+            }
+
+
+            /*
+               PIEL
+            */
+
+            else if(
+                name.includes("skin") ||
+                name.includes("dermis") ||
+                name.includes("epiderm") ||
+                name.includes("cutaneous") ||
+                name.includes("body_surface")
+            ){
+
+                mesh.userData.layer =
+                    "skin";
+
+                skinCount++;
+
+            }
+
+
+            else{
+
+                mesh.userData.layer =
+                    "other";
+
+            }
 
         }
-
-        else if(
-            name.includes("bone") ||
-            name.includes("skeleton") ||
-            name.includes("hueso") ||
-            name.includes("osseo")
-        ){
-
-            mesh.userData.layer =
-                "bone";
-
-        }
-
-        else if(
-            name.includes("skin") ||
-            name.includes("skin_") ||
-            name.includes("dermis") ||
-            name.includes("epiderm")
-        ){
-
-            mesh.userData.layer =
-                "skin";
-
-        }
-
-        else{
-
-            mesh.userData.layer =
-                "other";
-
-        }
-
-    });
+    );
 
 }
 
 
-/* =========================
-   CUERPO COMPLETO
-========================= */
+function getMaterialName(material){
 
-window.showAllLayer = function(){
+    const materials =
+        Array.isArray(material)
+            ? material
+            : [material];
 
-    anatomyOpened = false;
 
-    modelMeshes.forEach(mesh => {
+    return materials
+        .map(
+            mat => mat && mat.name
+                ? mat.name
+                : ""
+        )
+        .join(" ");
 
-        mesh.visible = true;
+}
 
-        if(
-            mesh.userData.originalMaterial
-        ){
 
-            mesh.material =
-                mesh.userData.originalMaterial;
+/* =====================================================
+   RESTAURAR TODO
+===================================================== */
+
+function restoreAllMeshes(){
+
+    modelMeshes.forEach(
+        mesh => {
+
+            mesh.visible = true;
+
+            restoreMaterial(
+                mesh
+            );
 
         }
+    );
 
-    });
+}
 
-    setActiveButton("btnAll");
+
+/* =====================================================
+   CUERPO COMPLETO
+===================================================== */
+
+window.showAllLayer =
+function(){
+
+    if(!model)
+        return;
+
+
+    window.appState.anatomyOpened =
+        false;
+
+
+    window.appState.abdomenFocused =
+        false;
+
+
+    restoreAllMeshes();
+
+
+    document
+        .getElementById("abdominalGrid")
+        .classList.remove("show");
+
 
     document
         .getElementById("modeLabel")
         .textContent =
         "CUERPO COMPLETO";
 
+
+    document
+        .getElementById("viewerMessage")
+        .textContent =
+        "🖱️ Arrastra para girar · rueda para acercar";
+
+
+    setActiveButton(
+        "btnAll"
+    );
+
 };
 
 
-/* =========================
+/* =====================================================
    MÚSCULOS
-========================= */
+===================================================== */
 
-window.showMusclesLayer = function(){
+window.showMusclesLayer =
+function(){
 
-    modelMeshes.forEach(mesh => {
+    if(!model)
+        return;
 
-        if(
-            mesh.userData.layer ===
-            "muscle"
-        ){
 
-            mesh.visible = true;
+    /*
+       Si el modelo no tiene músculos
+       reconocidos, NO dejamos el visor
+       vacío.
+    */
 
-        }
+    if(muscleCount === 0){
 
-        else if(
-            mesh.userData.layer ===
-            "bone"
-        ){
+        modelMeshes.forEach(
+            mesh => {
 
-            mesh.visible = false;
+                mesh.visible =
+                    mesh.userData.layer !==
+                    "skin";
 
-        }
+                restoreMaterial(
+                    mesh
+                );
 
-        else{
+            }
+        );
 
-            /*
-             Conservamos algunos elementos
-             para que el modelo no quede vacío.
-            */
+    }
 
-            mesh.visible = false;
+    else{
 
-        }
+        modelMeshes.forEach(
+            mesh => {
 
-    });
+                mesh.visible =
+                    mesh.userData.layer ===
+                    "muscle";
 
-    setActiveButton("btnMuscles");
+                restoreMaterial(
+                    mesh
+                );
+
+            }
+        );
+
+    }
+
+
+    setActiveButton(
+        "btnMuscles"
+    );
+
 
     document
         .getElementById("modeLabel")
@@ -1503,21 +1971,58 @@ window.showMusclesLayer = function(){
 };
 
 
-/* =========================
+/* =====================================================
    HUESOS
-========================= */
+===================================================== */
 
-window.showBonesLayer = function(){
+window.showBonesLayer =
+function(){
 
-    modelMeshes.forEach(mesh => {
+    if(!model)
+        return;
 
-        mesh.visible =
-            mesh.userData.layer ===
-            "bone";
 
-    });
+    if(boneCount === 0){
 
-    setActiveButton("btnBones");
+        modelMeshes.forEach(
+            mesh => {
+
+                mesh.visible =
+                    mesh.userData.layer !==
+                    "skin";
+
+                restoreMaterial(
+                    mesh
+                );
+
+            }
+        );
+
+    }
+
+    else{
+
+        modelMeshes.forEach(
+            mesh => {
+
+                mesh.visible =
+                    mesh.userData.layer ===
+                    "bone";
+
+                restoreMaterial(
+                    mesh
+                );
+
+            }
+        );
+
+    }
+
+
+    setActiveButton(
+        "btnBones"
+    );
+
 
     document
         .getElementById("modeLabel")
@@ -1527,36 +2032,50 @@ window.showBonesLayer = function(){
 };
 
 
-/* =========================
-   BOTONES ACTIVOS
-========================= */
+/* =====================================================
+   BOTÓN ACTIVO
+===================================================== */
 
 function setActiveButton(id){
 
     document
-        .querySelectorAll(".control-btn")
-        .forEach(button => {
-            button.classList.remove("active");
-        });
+        .querySelectorAll(
+            ".control-btn"
+        )
+        .forEach(
+            button => {
+
+                button.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
 
     const button =
         document.getElementById(id);
 
+
     if(button){
-        button.classList.add("active");
+
+        button.classList.add(
+            "active"
+        );
+
     }
 
 }
 
 
-/* =========================
+/* =====================================================
    ANIMAR CÁMARA
-========================= */
+===================================================== */
 
 function animateCamera(
     position,
     target,
-    duration = 1000
+    duration=1000
 ){
 
     const startPosition =
@@ -1574,16 +2093,18 @@ function animateCamera(
         const now =
             performance.now();
 
+
         let progress =
             (now - start) /
             duration;
 
-        progress =
-            Math.min(progress,1);
 
-        /*
-         Suavizado.
-        */
+        progress =
+            Math.min(
+                progress,
+                1
+            );
+
 
         const eased =
             1 -
@@ -1598,6 +2119,7 @@ function animateCamera(
             position,
             eased
         );
+
 
         controls.target.lerpVectors(
             startTarget,
@@ -1616,51 +2138,80 @@ function animateCamera(
 
     }
 
+
     animate();
 
 }
 
 
-/* =========================
+/* =====================================================
    EXPLORAR ABDOMEN
-========================= */
+===================================================== */
 
 window.exploreAbdomen =
 function(){
 
-    if(!model) return;
+    if(!model)
+        return;
 
-    abdomenFocused = true;
+
+    window.appState.abdomenFocused =
+        true;
+
+
+    window.appState.anatomyOpened =
+        false;
+
+
+    /*
+       Nos aseguramos de estar viendo
+       el frente antes de entrar.
+    */
+
+    model.rotation.y = 0;
+
 
     document
         .getElementById("stepLabel")
         .textContent =
         "PASO 2 · EXPLORANDO ABDOMEN";
 
+
     document
         .getElementById("mainTitle")
         .textContent =
         "Explora el abdomen";
 
+
     document
         .getElementById("mainDescription")
         .textContent =
-        "Acércate a la zona abdominal. Puedes seguir girando el cuerpo en 3D.";
+        "Hemos acercado el cuerpo. Ahora puedes abrir la anatomía abdominal.";
+
 
     document
         .getElementById("modeLabel")
         .textContent =
         "ABDOMEN · ACERCAMIENTO";
 
+
+    document
+        .getElementById("viewerMessage")
+        .textContent =
+        "🖱️ Puedes girar el cuerpo · usa la rueda para acercarte";
+
+
     document
         .getElementById("exploreBtn")
         .style.display =
         "none";
 
+
     document
         .getElementById("openBtn")
         .style.display =
         "block";
+
 
     document
         .getElementById("backBodyBtn")
@@ -1668,85 +2219,138 @@ function(){
         "block";
 
 
+    document
+        .getElementById("abdominalGrid")
+        .classList.remove("show");
+
+
     /*
-     Acercamos la cámara
-     hacia la zona abdominal.
+       Zoom REAL hacia el torso.
     */
 
     animateCamera(
-        abdomenCameraPosition,
-        new THREE.Vector3(
-            0,
-            1.0,
-            0
-        ),
-        1300
+        abdomenCamera,
+        abdomenTarget,
+        1200
     );
 
 };
 
 
-/* =========================
+/* =====================================================
    ABRIR ANATOMÍA
-========================= */
+===================================================== */
 
 window.openAnatomy =
 function(){
 
-    if(!model) return;
+    if(!model)
+        return;
 
-    anatomyOpened = true;
 
-
-    /*
-     Ocultamos la capa de piel.
-    */
-
-    modelMeshes.forEach(mesh => {
-
-        if(
-            mesh.userData.layer ===
-            "skin"
-        ){
-
-            fadeMesh(mesh,false);
-
-        }
-
-    });
+    window.appState.anatomyOpened =
+        true;
 
 
     /*
-     Mostramos músculos.
+       Primero mantenemos el zoom.
     */
 
-    modelMeshes.forEach(mesh => {
+    animateCamera(
+        abdomenCamera,
+        abdomenTarget,
+        700
+    );
 
-        if(
-            mesh.userData.layer ===
-            "muscle"
-        ){
 
-            mesh.visible = true;
+    /*
+       Si encontramos músculos,
+       mostramos solamente músculos.
+    */
 
-        }
+    if(muscleCount > 0){
+
+        modelMeshes.forEach(
+            mesh => {
+
+                if(
+                    mesh.userData.layer ===
+                    "muscle"
+                ){
+
+                    mesh.visible = true;
+
+                    restoreMaterial(
+                        mesh
+                    );
+
+                    prepareMuscleMaterial(
+                        mesh
+                    );
+
+                }
+
+                else if(
+                    mesh.userData.layer ===
+                    "skin"
+                ){
+
+                    fadeSkin(
+                        mesh
+                    );
+
+                }
+
+                else{
+
+                    mesh.visible =
+                        false;
+
+                }
+
+            }
+        );
+
+    }
+
+    else{
 
         /*
-         Huesos y otros elementos
-         se mantienen ocultos para
-         que destaquen los músculos.
+           Si el GLB no identifica
+           músculos por nombre,
+           nunca dejamos la pantalla
+           vacía.
         */
 
-        else if(
-            mesh.userData.layer !==
-            "muscle"
-        ){
+        modelMeshes.forEach(
+            mesh => {
 
-            mesh.visible = false;
+                if(
+                    mesh.userData.layer ===
+                    "skin"
+                ){
 
-        }
+                    fadeSkin(
+                        mesh
+                    );
 
-    });
+                }
+
+                else{
+
+                    mesh.visible =
+                        true;
+
+                    restoreMaterial(
+                        mesh
+                    );
+
+                }
+
+            }
+        );
+
+    }
 
 
     document
@@ -1754,108 +2358,277 @@ function(){
         .textContent =
         "PASO 3 · ANATOMÍA ABDOMINAL";
 
+
     document
         .getElementById("mainTitle")
         .textContent =
         "Músculos y regiones abdominales";
 
+
     document
         .getElementById("mainDescription")
         .textContent =
-        "Gira el modelo 3D y selecciona cualquiera de las nueve regiones.";
+        "Ahora selecciona una de las nueve regiones de la cuadrícula.";
+
 
     document
         .getElementById("modeLabel")
         .textContent =
         "MÚSCULOS ABDOMINALES 3D";
 
+
+    document
+        .getElementById("viewerMessage")
+        .textContent =
+        "✨ Haz clic en una región de la cuadrícula para ver su información";
+
+
     document
         .getElementById("openBtn")
         .style.display =
         "none";
 
-    document
-        .getElementById("abdominalGrid")
-        .classList.add("show");
+
+    /*
+       La cuadrícula aparece DESPUÉS
+       de abrir la anatomía.
+    */
+
+    setTimeout(
+        function(){
+
+            document
+                .getElementById("abdominalGrid")
+                .classList.add("show");
+
+        },
+        500
+    );
 
 };
 
 
-/* =========================
-   EFECTO DE CAPA
-========================= */
+/* =====================================================
+   PREPARAR MÚSCULOS
+===================================================== */
 
-function fadeMesh(mesh, visible){
+function prepareMuscleMaterial(mesh){
 
     /*
-     El modelo puede tener materiales
-     simples o arrays de materiales.
+       No destruimos las texturas originales.
+       Solo damos un ligero tono rojizo
+       cuando el material lo permite.
     */
 
-    if(
+    if(!mesh.material)
+        return;
+
+
+    const materials =
         Array.isArray(mesh.material)
-    ){
+            ? mesh.material
+            : [mesh.material];
 
-        mesh.material.forEach(
-            material => {
 
-                material.transparent =
-                    true;
+    materials.forEach(
+        material => {
 
-                material.opacity =
-                    visible ? 1 : 0;
+            if(!material)
+                return;
+
+
+            if(
+                material.color &&
+                !material.map
+            ){
+
+                material =
+                    material.clone();
+
+                material.color.lerp(
+                    new THREE.Color(
+                        0xa84f68
+                    ),
+                    .45
+                );
 
             }
-        );
 
-    }
-
-    else if(mesh.material){
-
-        mesh.material.transparent =
-            true;
-
-        mesh.material.opacity =
-            visible ? 1 : 0;
-
-    }
-
-    mesh.visible = true;
-
-    if(!visible){
-
-        setTimeout(() => {
-
-            mesh.visible = false;
-
-        },600);
-
-    }
+        }
+    );
 
 }
 
 
-/* =========================
+/* =====================================================
+   PIEL
+===================================================== */
+
+function fadeSkin(mesh){
+
+    if(!mesh.material){
+
+        mesh.visible =
+            false;
+
+        return;
+
+    }
+
+
+    /*
+       Clonamos para no modificar
+       permanentemente el material
+       original.
+    */
+
+    const original =
+        mesh.material;
+
+
+    const materials =
+        Array.isArray(original)
+            ? original.map(
+                material =>
+                    material.clone()
+              )
+            : original.clone();
+
+
+    mesh.material =
+        materials;
+
+
+    const mats =
+        Array.isArray(materials)
+            ? materials
+            : [materials];
+
+
+    mats.forEach(
+        material => {
+
+            material.transparent =
+                true;
+
+            material.depthWrite =
+                false;
+
+            material.opacity =
+                1;
+
+        }
+    );
+
+
+    mesh.visible = true;
+
+
+    const start =
+        performance.now();
+
+
+    const duration =
+        750;
+
+
+    function animateFade(){
+
+        const progress =
+            Math.min(
+                (performance.now()-start) /
+                duration,
+                1
+            );
+
+
+        const opacity =
+            1-progress;
+
+
+        mats.forEach(
+            material => {
+
+                material.opacity =
+                    opacity;
+
+            }
+        );
+
+
+        if(progress < 1){
+
+            requestAnimationFrame(
+                animateFade
+            );
+
+        }
+
+        else{
+
+            mesh.visible =
+                false;
+
+        }
+
+    }
+
+
+    animateFade();
+
+}
+
+
+/* =====================================================
    VOLVER AL CUERPO
-========================= */
+===================================================== */
 
 window.returnToBody =
 function(){
 
-    abdomenFocused = false;
-    anatomyOpened = false;
+    if(!model)
+        return;
 
-    showAllLayer();
 
-    animateCamera(
-        originalCameraPosition,
-        new THREE.Vector3(
-            0,
-            0,
-            0
-        ),
-        1200
+    window.appState.abdomenFocused =
+        false;
+
+
+    window.appState.anatomyOpened =
+        false;
+
+
+    restoreAllMeshes();
+
+
+    model.rotation.set(
+        0,
+        0,
+        0
     );
+
+
+    document
+        .getElementById("abdominalGrid")
+        .classList.remove("show");
+
+
+    document
+        .getElementById("exploreBtn")
+        .style.display =
+        "block";
+
+
+    document
+        .getElementById("openBtn")
+        .style.display =
+        "none";
+
+
+    document
+        .getElementById("backBodyBtn")
+        .style.display =
+        "none";
 
 
     document
@@ -1863,132 +2636,197 @@ function(){
         .textContent =
         "PASO 1 · CUERPO COMPLETO";
 
+
     document
         .getElementById("mainTitle")
         .textContent =
         "Explora el cuerpo humano";
+
 
     document
         .getElementById("mainDescription")
         .textContent =
         "Puedes girar el cuerpo con el mouse y acercarte con la rueda. Cuando estés listo, entra en la exploración del abdomen.";
 
+
     document
         .getElementById("modeLabel")
         .textContent =
         "CUERPO COMPLETO";
 
-    document
-        .getElementById("exploreBtn")
-        .style.display =
-        "block";
 
     document
-        .getElementById("openBtn")
-        .style.display =
-        "none";
+        .getElementById("viewerMessage")
+        .textContent =
+        "🖱️ Arrastra para girar · rueda para acercar";
 
-    document
-        .getElementById("backBodyBtn")
-        .style.display =
-        "none";
 
-    document
-        .getElementById("abdominalGrid")
-        .classList.remove("show");
+    setActiveButton(
+        "btnAll"
+    );
+
+
+    animateCamera(
+        fullCamera,
+        fullTarget,
+        1000
+    );
 
 };
 
 
-/* =========================
-   VISTAS
-========================= */
+/* =====================================================
+   VISTA FRONTAL
+===================================================== */
 
 window.frontView =
 function(){
 
+    const position =
+        window.appState.abdomenFocused
+            ? abdomenCamera
+            : fullCamera;
+
+
+    const target =
+        window.appState.abdomenFocused
+            ? abdomenTarget
+            : fullTarget;
+
+
     animateCamera(
-        new THREE.Vector3(
-            0,
-            1.4,
-            4.5
-        ),
-        new THREE.Vector3(
-            0,
-            1.2,
-            0
-        ),
+        position,
+        target,
         700
     );
 
 };
 
+
+/* =====================================================
+   VISTA LATERAL
+===================================================== */
 
 window.sideView =
 function(){
 
+    const position =
+        window.appState.abdomenFocused
+
+            ? new THREE.Vector3(
+                2.15,
+                .35,
+                0
+              )
+
+            : new THREE.Vector3(
+                4.8,
+                .15,
+                0
+              );
+
+
+    const target =
+        window.appState.abdomenFocused
+            ? abdomenTarget
+            : fullTarget;
+
+
     animateCamera(
-        new THREE.Vector3(
-            4.5,
-            1.4,
-            0
-        ),
-        new THREE.Vector3(
-            0,
-            1.2,
-            0
-        ),
+        position,
+        target,
         700
     );
 
 };
 
+
+/* =====================================================
+   VISTA ESPALDA
+===================================================== */
 
 window.backView =
 function(){
 
+    const position =
+        window.appState.abdomenFocused
+
+            ? new THREE.Vector3(
+                0,
+                .35,
+                -2.15
+              )
+
+            : new THREE.Vector3(
+                0,
+                .15,
+                -4.8
+              );
+
+
+    const target =
+        window.appState.abdomenFocused
+            ? abdomenTarget
+            : fullTarget;
+
+
     animateCamera(
-        new THREE.Vector3(
-            0,
-            1.4,
-            -4.5
-        ),
-        new THREE.Vector3(
-            0,
-            1.2,
-            0
-        ),
+        position,
+        target,
         700
     );
 
 };
 
+
+/* =====================================================
+   CENTRAR
+===================================================== */
 
 window.resetView =
 function(){
 
+    model.rotation.set(
+        0,
+        0,
+        0
+    );
+
+
+    const position =
+        window.appState.abdomenFocused
+            ? abdomenCamera
+            : fullCamera;
+
+
+    const target =
+        window.appState.abdomenFocused
+            ? abdomenTarget
+            : fullTarget;
+
+
     animateCamera(
-        originalCameraPosition,
-        new THREE.Vector3(
-            0,
-            1.2,
-            0
-        ),
+        position,
+        target,
         700
     );
 
 };
 
 
-/* =========================
+/* =====================================================
    ANIMACIÓN
-========================= */
+===================================================== */
 
 function animate(){
 
-    requestAnimationFrame(animate);
+    requestAnimationFrame(
+        animate
+    );
+
 
     controls.update();
+
 
     renderer.render(
         scene,
@@ -1997,36 +2835,43 @@ function animate(){
 
 }
 
+
 animate();
 
 
-/* =========================
+/* =====================================================
    RESIZE
-========================= */
+===================================================== */
 
 window.addEventListener(
     "resize",
-    function(){
-
-        const width =
-            canvas.clientWidth;
-
-        const height =
-            canvas.clientHeight;
-
-        camera.aspect =
-            width / height;
-
-        camera.updateProjectionMatrix();
-
-        renderer.setSize(
-            width,
-            height,
-            false
-        );
-
-    }
+    resizeRenderer
 );
+
+
+/*
+   También corregimos el tamaño cuando
+   se muestra la aplicación.
+*/
+
+window.updateThreeSize =
+function(){
+
+    setTimeout(
+        function(){
+
+            resizeRenderer();
+
+            renderer.render(
+                scene,
+                camera
+            );
+
+        },
+        100
+    );
+
+};
 
 </script>
 
@@ -2216,9 +3061,9 @@ const regions = [
 ];
 
 
-/* =========================
+/* =====================================================
    ABRIR REGIÓN
-========================= */
+===================================================== */
 
 window.openRegion =
 function(index){
@@ -2226,23 +3071,32 @@ function(index){
     const region =
         regions[index];
 
-    if(!region) return;
+    if(!region)
+        return;
 
 
     /*
-     Si todavía estamos en cuerpo completo,
-     llevamos primero al abdomen.
+       Si todavía estamos viendo
+       todo el cuerpo, primero hacemos
+       zoom al abdomen.
     */
 
-    if(!abdomenFocused){
+    if(
+        !window.appState.abdomenFocused
+    ){
 
-        exploreAbdomen();
+        window.exploreAbdomen();
 
-        setTimeout(() => {
+        setTimeout(
+            function(){
 
-            openRegion(index);
+                window.openRegion(
+                    index
+                );
 
-        },1300);
+            },
+            1350
+        );
 
         return;
 
@@ -2250,44 +3104,61 @@ function(index){
 
 
     /*
-     Si estamos en abdomen pero todavía
-     no abrimos anatomía.
+       Si estamos en el abdomen pero
+       todavía no abrimos los músculos,
+       primero abrimos la anatomía.
     */
 
-    if(!anatomyOpened){
+    if(
+        !window.appState.anatomyOpened
+    ){
 
-        openAnatomy();
+        window.openAnatomy();
 
-        setTimeout(() => {
+        setTimeout(
+            function(){
 
-            openRegion(index);
+                window.openRegion(
+                    index
+                );
 
-        },700);
+            },
+            950
+        );
 
         return;
 
     }
 
+
+    /* =========================
+       MODAL
+    ========================= */
 
     document
         .getElementById("modalNumber")
         .textContent =
-        "REGIÓN 0" + (index + 1);
+        "REGIÓN 0" +
+        (index + 1);
+
 
     document
         .getElementById("modalTitle")
         .textContent =
         region.name;
 
+
     document
         .getElementById("modalLocation")
         .textContent =
         region.location;
 
+
     document
         .getElementById("modalInfo")
         .textContent =
         region.info;
+
 
     document
         .getElementById("modalImportance")
@@ -2300,18 +3171,24 @@ function(index){
             "modalStructures"
         );
 
+
     list.innerHTML = "";
+
 
     region.structures.forEach(
         structure => {
 
             const li =
-                document.createElement("li");
+                document.createElement(
+                    "li"
+                );
 
             li.textContent =
                 structure;
 
-            list.appendChild(li);
+            list.appendChild(
+                li
+            );
 
         }
     );
@@ -2324,9 +3201,9 @@ function(index){
 };
 
 
-/* =========================
+/* =====================================================
    CERRAR MODAL
-========================= */
+===================================================== */
 
 window.closeModal =
 function(){
@@ -2338,9 +3215,9 @@ function(){
 };
 
 
-/* =========================
+/* =====================================================
    INICIAR EXPERIENCIA
-========================= */
+===================================================== */
 
 window.startExperience =
 function(){
@@ -2350,10 +3227,32 @@ function(){
         .style.display =
         "none";
 
+
     document
         .getElementById("app")
         .style.display =
         "block";
+
+
+    /*
+       ESTA PARTE ES MUY IMPORTANTE
+       PARA QUE FUNCIONE EN LAPTOP.
+
+       Cuando la página estaba en la portada,
+       el canvas tenía tamaño 0.
+       Ahora que #app está visible,
+       obligamos a Three.js a recalcular
+       su tamaño.
+    */
+
+    if(
+        window.updateThreeSize
+    ){
+
+        window.updateThreeSize();
+
+    }
+
 
     window.scrollTo({
         top:0,
@@ -2363,10 +3262,9 @@ function(){
 };
 
 
-/* =========================
-   CERRAR MODAL AL HACER CLICK
-   AFUERA
-========================= */
+/* =====================================================
+   CERRAR MODAL AL HACER CLICK AFUERA
+===================================================== */
 
 document
     .getElementById("modal")
@@ -2386,15 +3284,17 @@ document
     );
 
 
-/* =========================
-   TECLA ESC
-========================= */
+/* =====================================================
+   ESC
+===================================================== */
 
 document.addEventListener(
     "keydown",
     function(event){
 
-        if(event.key === "Escape"){
+        if(
+            event.key === "Escape"
+        ){
 
             closeModal();
 
