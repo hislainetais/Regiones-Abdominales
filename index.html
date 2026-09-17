@@ -3,553 +3,1110 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Abdomen 360°</title>
+<title>Abdomen 360° | Hislaine Changoluisa</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Montserrat:wght@400;500;600;700&display=swap');
 
 *{
     box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    color:white;
-    background:
-    radial-gradient(circle at top,#173b5c,#071321 55%,#02060b);
     min-height:100vh;
+    font-family:'Montserrat',sans-serif;
+    color:#68445b;
+    overflow-x:hidden;
+    background:
+        radial-gradient(circle at 15% 15%,#fff 0%,transparent 22%),
+        radial-gradient(circle at 85% 80%,#f8cfe3 0%,transparent 25%),
+        linear-gradient(135deg,#fff7fb,#f8eafa,#ffe8f1);
 }
 
-header{
-    padding:25px;
+/* =========================
+   BRILLITOS
+========================= */
+
+.sparkles{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:0;
+}
+
+.sparkles span{
+    position:absolute;
+    width:5px;
+    height:5px;
+    background:white;
+    border-radius:50%;
+    box-shadow:0 0 12px 4px rgba(255,255,255,.9);
+    animation:floatSparkle 5s infinite ease-in-out;
+}
+
+.sparkles span:nth-child(1){left:8%;top:18%;animation-delay:0s}
+.sparkles span:nth-child(2){left:18%;top:75%;animation-delay:1s}
+.sparkles span:nth-child(3){left:31%;top:28%;animation-delay:2s}
+.sparkles span:nth-child(4){left:48%;top:12%;animation-delay:.5s}
+.sparkles span:nth-child(5){left:67%;top:30%;animation-delay:1.5s}
+.sparkles span:nth-child(6){left:83%;top:15%;animation-delay:2.5s}
+.sparkles span:nth-child(7){left:92%;top:67%;animation-delay:.8s}
+.sparkles span:nth-child(8){left:72%;top:88%;animation-delay:1.8s}
+.sparkles span:nth-child(9){left:42%;top:85%;animation-delay:3s}
+.sparkles span:nth-child(10){left:4%;top:52%;animation-delay:1.2s}
+
+@keyframes floatSparkle{
+    0%,100%{opacity:.2;transform:scale(.5) translateY(0)}
+    50%{opacity:1;transform:scale(1.5) translateY(-15px)}
+}
+
+/* =========================
+   PORTADA
+========================= */
+
+.screen{
+    min-height:100vh;
+    position:relative;
+    z-index:2;
     display:flex;
-    justify-content:space-between;
-    border-bottom:1px solid #244967;
-    background:#06101d;
+    align-items:center;
+    justify-content:center;
+    padding:30px;
 }
 
-.logo{
-    color:#55e6ff;
-    font-weight:bold;
-    letter-spacing:3px;
+.cover{
+    text-align:center;
+    max-width:850px;
+    animation:appear 1.2s ease;
+}
+
+@keyframes appear{
+    from{opacity:0;transform:translateY(30px)}
+    to{opacity:1;transform:translateY(0)}
 }
 
 .badge{
-    color:#aebfd0;
-    border:1px solid #315b78;
-    padding:8px 15px;
-    border-radius:20px;
+    display:inline-block;
+    padding:9px 20px;
+    border-radius:50px;
+    background:rgba(255,255,255,.55);
+    border:1px solid rgba(255,255,255,.9);
+    backdrop-filter:blur(15px);
     font-size:12px;
+    letter-spacing:3px;
+    color:#a15d83;
+    margin-bottom:20px;
 }
 
-main{
-    max-width:1150px;
-    margin:auto;
-    padding:40px 20px;
+h1{
+    font-family:'DM Serif Display',serif;
+    font-size:clamp(55px,10vw,115px);
+    line-height:.9;
+    color:#874f70;
+    text-shadow:
+        0 4px 0 #f4c5db,
+        0 15px 35px rgba(129,76,107,.2);
 }
 
-.titulo{
-    text-align:center;
+.subtitle{
+    font-size:clamp(16px,2vw,23px);
+    margin:25px 0;
+    color:#8c647d;
+}
+
+.credit{
+    font-size:14px;
+    line-height:2;
     margin-bottom:35px;
 }
 
-.titulo h1{
-    font-size:50px;
-    margin:0;
-    letter-spacing:4px;
+.credit strong{
+    color:#934f76;
 }
 
-.titulo p{
-    color:#aebfd0;
-    font-size:17px;
+.start-btn,
+.action-btn{
+    border:none;
+    cursor:pointer;
+    color:white;
+    font-family:'Montserrat',sans-serif;
+    font-weight:700;
+    letter-spacing:1px;
+    padding:17px 35px;
+    border-radius:50px;
+    background:linear-gradient(135deg,#c8759e,#9563a4);
+    box-shadow:
+        0 12px 30px rgba(154,91,130,.3),
+        inset 0 1px rgba(255,255,255,.7);
+    transition:.3s;
 }
 
-.contenedor{
-    display:grid;
-    grid-template-columns:1fr 350px;
-    gap:25px;
+.start-btn:hover,
+.action-btn:hover{
+    transform:translateY(-4px) scale(1.03);
+    box-shadow:0 18px 35px rgba(154,91,130,.4);
 }
 
-.mapa,
-.informacion,
-.quiz{
-    background:rgba(10,27,45,.95);
-    border:1px solid #244967;
-    border-radius:25px;
-    box-shadow:0 15px 40px rgba(0,0,0,.35);
-}
+/* =========================
+   APP
+========================= */
 
-.mapa{
+#app{
+    display:none;
+    min-height:100vh;
+    position:relative;
+    z-index:2;
     padding:25px;
 }
 
-.mapa h2{
-    color:#55e6ff;
-    font-size:15px;
-    letter-spacing:2px;
-}
-
-.abdomen{
-    max-width:550px;
+header{
+    max-width:1200px;
     margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
 }
 
-svg{
-    width:100%;
+.logo{
+    font-family:'DM Serif Display',serif;
+    font-size:30px;
+    color:#8d5575;
+}
+
+.step{
+    padding:9px 16px;
+    border-radius:30px;
+    background:rgba(255,255,255,.55);
+    backdrop-filter:blur(15px);
+    border:1px solid white;
+    font-size:12px;
+    font-weight:700;
+    color:#97617f;
+}
+
+.content{
+    max-width:1200px;
+    margin:35px auto;
+    text-align:center;
+}
+
+.title{
+    font-family:'DM Serif Display',serif;
+    font-size:clamp(35px,5vw,58px);
+    color:#814c6c;
+    margin-bottom:8px;
+}
+
+.description{
+    color:#977187;
+    max-width:650px;
+    margin:0 auto 25px;
+    line-height:1.7;
+}
+
+/* =========================
+   ABDOMEN 3D
+========================= */
+
+.anatomy-stage{
+    width:min(580px,94vw);
+    height:650px;
+    margin:10px auto 20px;
+    perspective:1200px;
+    position:relative;
+}
+
+.body-3d{
+    width:360px;
+    height:570px;
+    position:absolute;
+    left:50%;
+    top:35px;
+    transform:translateX(-50%) rotateY(-5deg) rotateX(2deg);
+    transform-style:preserve-3d;
+    transition:1s ease;
+    filter:drop-shadow(0 35px 30px rgba(113,65,91,.2));
+}
+
+.body-3d.exploring{
+    transform:translateX(-50%) rotateY(7deg) rotateX(-2deg) scale(1.02);
+}
+
+/* torso shape */
+
+.torso{
+    position:absolute;
+    inset:0;
+    border-radius:
+        45% 45% 25% 25% /
+        18% 18% 70% 70%;
+    background:
+        radial-gradient(circle at 50% 35%,#ffe9e7,#f5c4c5 55%,#d9909c);
+    box-shadow:
+        inset -30px -25px 50px rgba(115,53,73,.18),
+        inset 20px 20px 40px rgba(255,255,255,.45),
+        25px 30px 0 rgba(180,102,131,.12);
+    border:4px solid rgba(255,255,255,.7);
+    overflow:hidden;
+}
+
+/* cuello */
+
+.neck{
+    position:absolute;
+    width:105px;
+    height:100px;
+    top:-55px;
+    left:127px;
+    border-radius:40px;
+    background:linear-gradient(90deg,#d78e99,#ffe0dd,#d78e99);
+}
+
+/* sombra central */
+
+.torso:after{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:8%;
+    width:4px;
+    height:83%;
+    transform:translateX(-50%);
+    background:rgba(125,62,79,.13);
+    border-radius:50%;
+}
+
+/* =========================
+   MUSCULOS
+========================= */
+
+.muscles{
+    position:absolute;
+    inset:0;
+    opacity:0;
+    transform:translateZ(-30px) scale(.96);
+    transition:.8s;
+    pointer-events:none;
+}
+
+.body-3d.muscle-mode .muscles{
+    opacity:1;
+    transform:translateZ(20px) scale(1);
+}
+
+.muscle{
+    position:absolute;
+    background:
+        linear-gradient(145deg,#f08eaa,#c85f88);
+    border:2px solid rgba(255,255,255,.55);
+    box-shadow:
+        inset 3px 4px 8px rgba(255,255,255,.25),
+        inset -5px -5px 10px rgba(99,40,67,.18),
+        0 5px 10px rgba(101,48,73,.12);
+}
+
+.rectus{
+    width:64px;
+    height:145px;
+    left:148px;
+    border-radius:25px 25px 18px 18px;
+}
+
+.rectus.left{left:75px}
+.rectus.right{left:221px}
+
+.r1{top:155px}
+.r2{top:315px}
+
+.oblique{
+    width:74px;
+    height:190px;
+    top:180px;
+    border-radius:45% 20% 45% 20%;
+    opacity:.82;
+}
+
+.oblique.left{
+    left:35px;
+    transform:rotate(12deg);
+}
+
+.oblique.right{
+    right:35px;
+    transform:rotate(-12deg);
+}
+
+.muscle-label{
+    position:absolute;
+    bottom:45px;
+    left:50%;
+    transform:translateX(-50%);
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(10px);
+    padding:8px 14px;
+    border-radius:30px;
+    font-size:11px;
+    font-weight:700;
+    color:#874f70;
+    white-space:nowrap;
+}
+
+/* =========================
+   REGION GRID
+========================= */
+
+.regions{
+    position:absolute;
+    inset:115px 38px 110px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    grid-template-rows:repeat(3,1fr);
+    gap:5px;
+    opacity:0;
+    pointer-events:none;
+    transition:.7s;
+}
+
+.regions.active{
+    opacity:1;
+    pointer-events:auto;
 }
 
 .region{
-    fill:#185174;
-    stroke:#55e6ff;
-    stroke-width:2;
+    border:1px solid rgba(255,255,255,.8);
+    background:rgba(255,151,190,.25);
+    backdrop-filter:blur(3px);
+    color:#70465e;
+    font-family:'Montserrat',sans-serif;
+    font-size:9px;
+    font-weight:700;
     cursor:pointer;
+    border-radius:8px;
     transition:.25s;
+    padding:4px;
 }
 
 .region:hover{
-    fill:#3a91b5;
-    filter:drop-shadow(0 0 10px #55e6ff);
+    background:rgba(255,255,255,.7);
+    transform:scale(1.05);
+    box-shadow:0 5px 15px rgba(119,62,91,.2);
 }
 
-.region.activa{
-    fill:#a98bff;
-    filter:drop-shadow(0 0 12px #a98bff);
+/* =========================
+   CONTROLES
+========================= */
+
+.controls{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:-5px;
 }
 
-.texto{
-    fill:white;
-    font-size:14px;
-    font-weight:bold;
-    pointer-events:none;
-    text-anchor:middle;
+.hidden{
+    display:none!important;
 }
 
-.informacion{
-    padding:28px;
-}
-
-.etiqueta{
-    color:#55e6ff;
+.hint{
+    margin:10px auto;
+    color:#9b7089;
     font-size:12px;
-    letter-spacing:2px;
 }
 
-#nombre{
-    font-size:28px;
-    margin-top:10px;
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    background:rgba(77,42,65,.45);
+    backdrop-filter:blur(12px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    opacity:0;
+    pointer-events:none;
+    transition:.35s;
 }
 
-.informacion h3{
-    color:#a98bff;
-    margin-top:25px;
+.modal.open{
+    opacity:1;
+    pointer-events:auto;
 }
 
-.informacion p{
-    color:#d5e4ee;
-    line-height:1.6;
+.modal-card{
+    width:min(900px,95vw);
+    max-height:90vh;
+    overflow:auto;
+    position:relative;
+    border-radius:35px;
+    padding:45px;
+    background:
+        linear-gradient(145deg,rgba(255,255,255,.96),rgba(255,235,245,.94));
+    border:2px solid rgba(255,255,255,.9);
+    box-shadow:
+        0 35px 90px rgba(54,28,47,.3),
+        inset 0 1px white;
+    transform:scale(.85) translateY(30px);
+    transition:.4s;
 }
 
-.tip{
-    margin-top:25px;
-    padding:15px;
-    background:#081827;
-    border-left:3px solid #55e6ff;
-    color:#aebfd0;
-    font-size:13px;
+.modal.open .modal-card{
+    transform:scale(1) translateY(0);
 }
 
-.quiz{
-    margin-top:25px;
-    padding:25px;
-}
-
-.quiz h2{
-    color:#55e6ff;
-}
-
-button{
-    background:#112d47;
-    border:1px solid #3d718f;
-    color:white;
-    padding:12px 18px;
-    margin:5px;
-    border-radius:10px;
+.close{
+    position:absolute;
+    right:20px;
+    top:18px;
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:50%;
+    background:#f7d6e5;
+    color:#824d6c;
+    font-size:23px;
     cursor:pointer;
 }
 
-button:hover{
-    border-color:#55e6ff;
+.modal-number{
+    color:#b26a8e;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:3px;
 }
 
-#resultado{
-    margin-top:15px;
-    font-weight:bold;
+.modal h2{
+    font-family:'DM Serif Display',serif;
+    font-size:55px;
+    color:#824d6c;
+    margin:8px 0 25px;
 }
 
-@media(max-width:800px){
+.info-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    text-align:left;
+}
 
-    .contenedor{
+.info-box{
+    padding:20px;
+    border-radius:20px;
+    background:rgba(255,255,255,.7);
+    border:1px solid #f4d5e3;
+}
+
+.info-box h3{
+    color:#a25c80;
+    margin-bottom:8px;
+    font-size:14px;
+}
+
+.info-box p{
+    font-size:14px;
+    line-height:1.7;
+    color:#74566a;
+}
+
+.modal-navigation{
+    display:flex;
+    justify-content:space-between;
+    margin-top:25px;
+    gap:10px;
+}
+
+.nav-btn{
+    border:none;
+    cursor:pointer;
+    padding:12px 20px;
+    border-radius:30px;
+    background:#f2d2e2;
+    color:#774a65;
+    font-weight:700;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    text-align:center;
+    padding:30px 10px 10px;
+    color:#9b7189;
+    font-size:12px;
+}
+
+footer strong{
+    color:#8a4f70;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:650px){
+
+    #app{
+        padding:15px;
+    }
+
+    header{
+        align-items:flex-start;
+    }
+
+    .logo{
+        font-size:23px;
+    }
+
+    .anatomy-stage{
+        height:550px;
+    }
+
+    .body-3d{
+        transform:translateX(-50%) scale(.83);
+        transform-origin:top center;
+    }
+
+    .body-3d.exploring{
+        transform:translateX(-50%) scale(.83) rotateY(5deg);
+    }
+
+    .regions{
+        inset:100px 50px 105px;
+    }
+
+    .region{
+        font-size:7px;
+    }
+
+    .modal-card{
+        padding:35px 20px 25px;
+        border-radius:25px;
+    }
+
+    .modal h2{
+        font-size:42px;
+    }
+
+    .info-grid{
         grid-template-columns:1fr;
     }
-
-    .titulo h1{
-        font-size:35px;
-    }
-
 }
-
 </style>
 </head>
 
-
 <body>
 
+<!-- BRILLITOS -->
+<div class="sparkles">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+</div>
+
+<!-- =========================
+     PORTADA
+========================= -->
+
+<section id="cover" class="screen">
+
+    <div class="cover">
+
+        <div class="badge">ANATOMÍA INTERACTIVA · PRAXIS</div>
+
+        <h1>ABDOMEN<br>360°</h1>
+
+        <p class="subtitle">
+            Explora las 9 regiones abdominales
+            de una manera diferente ✨
+        </p>
+
+        <p class="credit">
+            Trabajo realizado por<br>
+            <strong>Hislaine Changoluisa</strong>
+        </p>
+
+        <button class="start-btn" onclick="startExperience()">
+            ✨ COMENZAR EXPLORACIÓN ✨
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     APLICACIÓN
+========================= -->
+
+<main id="app">
+
 <header>
-
-<div class="logo">
-ABDOMEN 360°
-</div>
-
-<div class="badge">
-ANATOMÍA INTERACTIVA
-</div>
-
+    <div class="logo">ABDOMEN 360°</div>
+    <div id="step" class="step">PASO 1 · ABDOMEN</div>
 </header>
 
+<section class="content">
 
-<main>
+    <h2 id="mainTitle" class="title">
+        Conoce el abdomen
+    </h2>
 
-<div class="titulo">
+    <p id="mainDescription" class="description">
+        Primero observa el abdomen. Haz clic en
+        <b>explorar músculos</b> para descubrir
+        qué hay debajo.
+    </p>
 
-<h1>Las 9 regiones abdominales</h1>
 
-<p>
-Haz clic sobre una región para explorar su ubicación y las estructuras que pueden encontrarse allí.
-</p>
+    <!-- ESCENA 3D -->
 
-</div>
+    <div class="anatomy-stage">
 
+        <div id="body" class="body-3d">
 
-<div class="contenedor">
+            <div class="neck"></div>
 
+            <div class="torso"></div>
 
-<!-- MAPA -->
+            <!-- MÚSCULOS -->
 
-<div class="mapa">
+            <div class="muscles">
 
-<h2>MAPA ABDOMINAL · HAZ CLIC EN UNA REGIÓN</h2>
+                <div class="muscle oblique left"></div>
+                <div class="muscle oblique right"></div>
 
-<div class="abdomen">
+                <div class="muscle rectus left r1"></div>
+                <div class="muscle rectus right r1"></div>
 
-<svg viewBox="0 0 600 650">
+                <div class="muscle rectus left r2"></div>
+                <div class="muscle rectus right r2"></div>
 
-<!-- SILUETA -->
+                <div class="muscle-label">
+                    MÚSCULOS ABDOMINALES
+                </div>
 
-<path
-d="M180 50
-Q300 15 420 50
-L470 160
-Q500 220 480 300
-L450 600
-Q300 650 150 600
-L120 300
-Q100 220 130 160Z"
-fill="#071827"
-stroke="#315979"
-stroke-width="4"
-/>
+            </div>
 
 
-<!-- HIPOCONDRIO DERECHO -->
+            <!-- 9 REGIONES -->
 
-<polygon
-class="region"
-data-region="hd"
-points="130,160 300,160 300,275 130,275"
-/>
+            <div id="regions" class="regions">
 
+                <button class="region" onclick="openRegion(0)">
+                    Hipocondrio<br>derecho
+                </button>
 
-<!-- EPIGASTRIO -->
+                <button class="region" onclick="openRegion(1)">
+                    Epigastrio
+                </button>
 
-<polygon
-class="region"
-data-region="ep"
-points="300,160 470,160 470,275 300,275"
-/>
+                <button class="region" onclick="openRegion(2)">
+                    Hipocondrio<br>izquierdo
+                </button>
 
+                <button class="region" onclick="openRegion(3)">
+                    Región lumbar<br>derecha
+                </button>
 
-<!-- HIPOCONDRIO IZQUIERDO -->
+                <button class="region" onclick="openRegion(4)">
+                    Región<br>umbilical
+                </button>
 
-<polygon
-class="region"
-data-region="hi"
-points="470,160 500,220 480,275 470,275"
-/>
+                <button class="region" onclick="openRegion(5)">
+                    Región lumbar<br>izquierda
+                </button>
 
+                <button class="region" onclick="openRegion(6)">
+                    Región ilíaca<br>derecha
+                </button>
 
-<!-- LUMBAR DERECHA -->
+                <button class="region" onclick="openRegion(7)">
+                    Hipogastrio
+                </button>
 
-<polygon
-class="region"
-data-region="ld"
-points="130,275 300,275 300,405 130,405"
-/>
+                <button class="region" onclick="openRegion(8)">
+                    Región ilíaca<br>izquierda
+                </button>
 
+            </div>
 
-<!-- UMBILICAL -->
+        </div>
 
-<polygon
-class="region"
-data-region="um"
-points="300,275 470,275 470,405 300,405"
-/>
+    </div>
 
 
-<!-- LUMBAR IZQUIERDA -->
+    <!-- BOTONES -->
 
-<polygon
-class="region"
-data-region="li"
-points="470,275 480,405 470,405 470,275"
-/>
+    <div class="controls">
 
+        <button
+            id="muscleBtn"
+            class="action-btn"
+            onclick="showMuscles()">
+            💪 EXPLORAR MÚSCULOS
+        </button>
 
-<!-- ILIACA DERECHA -->
+        <button
+            id="regionBtn"
+            class="action-btn hidden"
+            onclick="showRegions()">
+            ✨ MOSTRAR LAS 9 REGIONES
+        </button>
 
-<polygon
-class="region"
-data-region="id"
-points="130,405 300,405 300,555 150,555"
-/>
+    </div>
 
+    <p id="hint" class="hint">
+        Observa el abdomen y comienza la exploración.
+    </p>
 
-<!-- HIPOGASTRIO -->
+</section>
 
-<polygon
-class="region"
-data-region="hip"
-points="300,405 470,405 450,555 300,555"
-/>
 
-
-<!-- ILIACA IZQUIERDA -->
-
-<polygon
-class="region"
-data-region="ii"
-points="450,555 300,555 300,405 470,405"
-/>
-
-
-<!-- TEXTOS -->
-
-<text class="texto" x="215" y="225">H.D.</text>
-
-<text class="texto" x="385" y="225">EP.</text>
-
-<text class="texto" x="485" y="225">H.I.</text>
-
-<text class="texto" x="215" y="350">L.D.</text>
-
-<text class="texto" x="385" y="350">U.</text>
-
-<text class="texto" x="485" y="350">L.I.</text>
-
-<text class="texto" x="215" y="480">I.D.</text>
-
-<text class="texto" x="385" y="480">H.</text>
-
-<text class="texto" x="440" y="520">I.I.</text>
-
-</svg>
-
-</div>
-
-</div>
-
-
-<!-- INFORMACIÓN -->
-
-<div class="informacion">
-
-<div class="etiqueta">
-REGIÓN SELECCIONADA
-</div>
-
-<h2 id="nombre">
-Haz clic en una región
-</h2>
-
-<h3>📍 Ubicación</h3>
-
-<p id="ubicacion">
-Selecciona una región del mapa para comenzar.
-</p>
-
-
-<h3>🫀 Estructuras</h3>
-
-<p id="organos">
-Aquí aparecerá la información anatómica.
-</p>
-
-
-<h3>🧠 ¿Por qué es importante?</h3>
-
-<p>
-Las nueve regiones permiten describir de manera ordenada
-la ubicación de estructuras y zonas del abdomen.
-</p>
-
-
-<div class="tip">
-
-💡 <b>Dato:</b> El abdomen se divide en nueve regiones mediante
-líneas imaginarias que ayudan a localizar estructuras.
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- QUIZ -->
-
-<div class="quiz">
-
-<h2>🧠 MINI QUIZ</h2>
-
-<p>
-¿Cuál es la región que se encuentra en el centro del abdomen?
-</p>
-
-<button onclick="respuesta(false)">
-Hipocondrio derecho
-</button>
-
-<button onclick="respuesta(true)">
-Región umbilical
-</button>
-
-<button onclick="respuesta(false)">
-Hipocondrio izquierdo
-</button>
-
-<div id="resultado"></div>
-
-</div>
-
+<footer>
+    ✨ Trabajo realizado por
+    <strong>Hislaine Changoluisa</strong>
+    · Praxis · Anatomía Interactiva ✨
+</footer>
 
 </main>
 
 
+<!-- =========================
+     MODAL INFORMACIÓN
+========================= -->
+
+<div id="modal" class="modal">
+
+    <div class="modal-card">
+
+        <button class="close" onclick="closeModal()">×</button>
+
+        <div id="modalNumber" class="modal-number">
+            REGIÓN 1 DE 9
+        </div>
+
+        <h2 id="modalTitle">
+            Epigastrio
+        </h2>
+
+        <div class="info-grid">
+
+            <div class="info-box">
+                <h3>📍 UBICACIÓN</h3>
+                <p id="modalLocation"></p>
+            </div>
+
+            <div class="info-box">
+                <h3>🫀 ESTRUCTURAS PRINCIPALES</h3>
+                <p id="modalOrgans"></p>
+            </div>
+
+            <div class="info-box">
+                <h3>📚 INFORMACIÓN</h3>
+                <p id="modalInfo"></p>
+            </div>
+
+            <div class="info-box">
+                <h3>✨ IMPORTANCIA</h3>
+                <p id="modalImportance"></p>
+            </div>
+
+        </div>
+
+        <div class="modal-navigation">
+
+            <button class="nav-btn" onclick="previousRegion()">
+                ← Anterior
+            </button>
+
+            <button class="nav-btn" onclick="closeModal()">
+                Cerrar
+            </button>
+
+            <button class="nav-btn" onclick="nextRegion()">
+                Siguiente →
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
 <script>
 
-const regiones = {
+/* =========================
+   DATOS DE LAS 9 REGIONES
+========================= */
 
-hd:{
-nombre:"Hipocondrio derecho",
-ubicacion:"Parte superior derecha del abdomen.",
-organos:"Hígado, vesícula biliar y partes del duodeno y colon."
+const regionsData = [
+
+{
+    name:"Hipocondrio derecho",
+    location:"Se encuentra en la parte superior derecha del abdomen.",
+    organs:"Hígado, vesícula biliar y partes del duodeno y colon.",
+    info:"Es una de las regiones superiores del abdomen y contiene principalmente estructuras relacionadas con la digestión.",
+    importance:"Ayuda a ubicar y describir anatómicamente órganos importantes del sistema digestivo."
 },
 
-ep:{
-nombre:"Epigastrio",
-ubicacion:"Parte superior y central del abdomen.",
-organos:"Estómago, páncreas, duodeno y parte del hígado."
+{
+    name:"Epigastrio",
+    location:"Está en la zona superior y central del abdomen.",
+    organs:"Estómago, páncreas, duodeno y parte del hígado.",
+    info:"Se encuentra entre los dos hipocondrios y ocupa una posición central en la parte superior del abdomen.",
+    importance:"Es una región importante para localizar estructuras del aparato digestivo."
 },
 
-hi:{
-nombre:"Hipocondrio izquierdo",
-ubicacion:"Parte superior izquierda del abdomen.",
-organos:"Bazo, parte del estómago y parte del colon."
+{
+    name:"Hipocondrio izquierdo",
+    location:"Se ubica en la parte superior izquierda del abdomen.",
+    organs:"Bazo, parte del estómago y parte del colon.",
+    info:"Es una de las tres regiones superiores del abdomen.",
+    importance:"Permite localizar estructuras como el bazo y parte del estómago."
 },
 
-ld:{
-nombre:"Región lumbar derecha",
-ubicacion:"Zona media derecha del abdomen.",
-organos:"Colon ascendente, riñón derecho y asas del intestino delgado."
+{
+    name:"Región lumbar derecha",
+    location:"Se encuentra en la zona media derecha del abdomen.",
+    organs:"Colon ascendente, riñón derecho e intestino delgado.",
+    info:"Está ubicada entre el hipocondrio derecho y la región ilíaca derecha.",
+    importance:"Ayuda a describir la posición de órganos y estructuras de la zona lateral derecha."
 },
 
-um:{
-nombre:"Región umbilical",
-ubicacion:"Zona central, alrededor del ombligo.",
-organos:"Principalmente asas del intestino delgado y parte del colon transverso."
+{
+    name:"Región umbilical",
+    location:"Se encuentra exactamente en la zona central del abdomen, alrededor del ombligo.",
+    organs:"Principalmente intestino delgado y parte del colon transverso.",
+    info:"Es la región central de las nueve regiones abdominales.",
+    importance:"Sirve como punto de referencia para dividir y describir el abdomen."
 },
 
-li:{
-nombre:"Región lumbar izquierda",
-ubicacion:"Zona media izquierda del abdomen.",
-organos:"Colon descendente, riñón izquierdo y asas del intestino delgado."
+{
+    name:"Región lumbar izquierda",
+    location:"Se ubica en la zona media izquierda del abdomen.",
+    organs:"Colon descendente, riñón izquierdo e intestino delgado.",
+    info:"Está entre el hipocondrio izquierdo y la región ilíaca izquierda.",
+    importance:"Permite localizar estructuras de la parte lateral izquierda del abdomen."
 },
 
-id:{
-nombre:"Región ilíaca derecha",
-ubicacion:"Parte inferior derecha del abdomen.",
-organos:"Ciego, apéndice, íleon y parte del intestino."
+{
+    name:"Región ilíaca derecha",
+    location:"Está en la parte inferior derecha del abdomen.",
+    organs:"Ciego, apéndice e íleon.",
+    info:"También se conoce como región inguinal derecha y forma parte de las tres regiones inferiores.",
+    importance:"Es una zona anatómica importante para localizar el ciego y el apéndice."
 },
 
-hip:{
-nombre:"Hipogastrio",
-ubicacion:"Parte inferior y central del abdomen.",
-organos:"Asas del intestino delgado y, según el estado de llenado, la vejiga y órganos reproductores."
+{
+    name:"Hipogastrio",
+    location:"Se encuentra en la parte inferior y central del abdomen.",
+    organs:"Intestino delgado, vejiga cuando está llena y órganos reproductores internos.",
+    info:"Es la región central de la parte inferior del abdomen.",
+    importance:"Permite describir anatómicamente estructuras ubicadas debajo de la región umbilical."
 },
 
-ii:{
-nombre:"Región ilíaca izquierda",
-ubicacion:"Parte inferior izquierda del abdomen.",
-organos:"Colon sigmoide y asas del intestino delgado."
+{
+    name:"Región ilíaca izquierda",
+    location:"Se encuentra en la parte inferior izquierda del abdomen.",
+    organs:"Colon sigmoide e intestino delgado.",
+    info:"Es la región inferior izquierda y está situada junto al hipogastrio.",
+    importance:"Ayuda a identificar la posición del colon sigmoide y otras estructuras abdominales."
 }
 
-};
+];
+
+let currentRegion = 0;
 
 
-document.querySelectorAll(".region").forEach(region => {
+/* =========================
+   INICIAR
+========================= */
 
-region.addEventListener("click",function(){
+function startExperience(){
 
-document.querySelectorAll(".region")
-.forEach(r => r.classList.remove("activa"));
+    document.getElementById("cover").style.display="none";
+    document.getElementById("app").style.display="block";
 
-this.classList.add("activa");
+    window.scrollTo(0,0);
+}
 
-let informacion =
-regiones[this.dataset.region];
 
-document.getElementById("nombre")
-.textContent=informacion.nombre;
+/* =========================
+   MOSTRAR MÚSCULOS
+========================= */
 
-document.getElementById("ubicacion")
-.textContent=informacion.ubicacion;
+function showMuscles(){
 
-document.getElementById("organos")
-.textContent=informacion.organos;
+    const body = document.getElementById("body");
+
+    body.classList.add("muscle-mode");
+    body.classList.add("exploring");
+
+    document.getElementById("step").textContent =
+        "PASO 2 · MÚSCULOS";
+
+    document.getElementById("mainTitle").textContent =
+        "Descubre los músculos";
+
+    document.getElementById("mainDescription").innerHTML =
+        "Aquí puedes observar una representación visual de los músculos abdominales. " +
+        "Ahora podemos pasar a las <b>9 regiones</b>.";
+
+    document.getElementById("muscleBtn").classList.add("hidden");
+
+    document.getElementById("regionBtn").classList.remove("hidden");
+
+    document.getElementById("hint").textContent =
+        "💪 Explora la capa muscular antes de continuar.";
+
+}
+
+
+/* =========================
+   MOSTRAR REGIONES
+========================= */
+
+function showRegions(){
+
+    document.getElementById("regions").classList.add("active");
+
+    document.getElementById("step").textContent =
+        "PASO 3 · 9 REGIONES";
+
+    document.getElementById("mainTitle").textContent =
+        "Las 9 regiones abdominales";
+
+    document.getElementById("mainDescription").innerHTML =
+        "¡Ya puedes explorar el abdomen! " +
+        "Haz clic sobre cualquiera de las regiones para conocer su información.";
+
+    document.getElementById("regionBtn").classList.add("hidden");
+
+    document.getElementById("hint").textContent =
+        "✨ Haz clic en una región para abrir su información.";
+
+}
+
+
+/* =========================
+   ABRIR REGIÓN
+========================= */
+
+function openRegion(index){
+
+    currentRegion = index;
+
+    const region = regionsData[index];
+
+    document.getElementById("modalNumber").textContent =
+        "REGIÓN " + (index + 1) + " DE 9";
+
+    document.getElementById("modalTitle").textContent =
+        region.name;
+
+    document.getElementById("modalLocation").textContent =
+        region.location;
+
+    document.getElementById("modalOrgans").textContent =
+        region.organs;
+
+    document.getElementById("modalInfo").textContent =
+        region.info;
+
+    document.getElementById("modalImportance").textContent =
+        region.importance;
+
+    document.getElementById("modal").classList.add("open");
+
+}
+
+
+/* =========================
+   CERRAR
+========================= */
+
+function closeModal(){
+
+    document.getElementById("modal").classList.remove("open");
+
+}
+
+
+/* =========================
+   SIGUIENTE
+========================= */
+
+function nextRegion(){
+
+    currentRegion++;
+
+    if(currentRegion >= regionsData.length){
+        currentRegion = 0;
+    }
+
+    openRegion(currentRegion);
+
+}
+
+
+/* =========================
+   ANTERIOR
+========================= */
+
+function previousRegion(){
+
+    currentRegion--;
+
+    if(currentRegion < 0){
+        currentRegion = regionsData.length - 1;
+    }
+
+    openRegion(currentRegion);
+
+}
+
+
+/* =========================
+   CERRAR CON ESC
+========================= */
+
+document.addEventListener("keydown",function(event){
+
+    if(event.key === "Escape"){
+        closeModal();
+    }
 
 });
 
-});
 
+/* =========================
+   CERRAR AL TOCAR AFUERA
+========================= */
 
-function respuesta(correcta){
+document.getElementById("modal").addEventListener(
+    "click",
+    function(event){
 
-let resultado =
-document.getElementById("resultado");
+        if(event.target === this){
+            closeModal();
+        }
 
-if(correcta){
-
-resultado.textContent =
-"✅ ¡Correcto! La región umbilical está en el centro del abdomen.";
-
-}else{
-
-resultado.textContent =
-"❌ Casi. La región central es la región umbilical.";
-
-}
-
-}
+    }
+);
 
 </script>
 
