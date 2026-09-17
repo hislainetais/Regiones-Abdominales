@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Abdomen 360° | Hislaine Changoluisa</title>
 
 <style>
@@ -63,8 +64,14 @@ body{
 .sparkles span:nth-child(10){left:4%;top:52%;animation-delay:1.2s}
 
 @keyframes floatSparkle{
-    0%,100%{opacity:.2;transform:scale(.5) translateY(0)}
-    50%{opacity:1;transform:scale(1.5) translateY(-15px)}
+    0%,100%{
+        opacity:.2;
+        transform:scale(.5) translateY(0)
+    }
+    50%{
+        opacity:1;
+        transform:scale(1.5) translateY(-15px)
+    }
 }
 
 /* =========================
@@ -88,8 +95,14 @@ body{
 }
 
 @keyframes appear{
-    from{opacity:0;transform:translateY(30px)}
-    to{opacity:1;transform:translateY(0)}
+    from{
+        opacity:0;
+        transform:translateY(30px)
+    }
+    to{
+        opacity:1;
+        transform:translateY(0)
+    }
 }
 
 .badge{
@@ -132,14 +145,15 @@ h1{
 }
 
 .start-btn,
-.action-btn{
+.action-btn,
+.layer-btn{
     border:none;
     cursor:pointer;
     color:white;
     font-family:'Montserrat',sans-serif;
     font-weight:700;
     letter-spacing:1px;
-    padding:17px 35px;
+    padding:14px 25px;
     border-radius:50px;
     background:linear-gradient(135deg,#c8759e,#9563a4);
     box-shadow:
@@ -148,9 +162,14 @@ h1{
     transition:.3s;
 }
 
+.start-btn{
+    padding:17px 35px;
+}
+
 .start-btn:hover,
-.action-btn:hover{
-    transform:translateY(-4px) scale(1.03);
+.action-btn:hover,
+.layer-btn:hover{
+    transform:translateY(-3px);
     box-shadow:0 18px 35px rgba(154,91,130,.4);
 }
 
@@ -167,7 +186,7 @@ h1{
 }
 
 header{
-    max-width:1200px;
+    max-width:1250px;
     margin:auto;
     display:flex;
     justify-content:space-between;
@@ -193,7 +212,7 @@ header{
 }
 
 .content{
-    max-width:1200px;
+    max-width:1250px;
     margin:35px auto;
     text-align:center;
 }
@@ -207,197 +226,161 @@ header{
 
 .description{
     color:#977187;
-    max-width:650px;
+    max-width:700px;
     margin:0 auto 25px;
     line-height:1.7;
 }
 
 /* =========================
-   ABDOMEN 3D
+   VISOR 3D REAL
 ========================= */
 
-.anatomy-stage{
-    width:min(580px,94vw);
-    height:650px;
-    margin:10px auto 20px;
-    perspective:1200px;
+.anatomy-layout{
+    width:min(1200px,96vw);
+    margin:auto;
+    display:grid;
+    grid-template-columns:190px minmax(420px,700px) 190px;
+    align-items:center;
+    gap:15px;
+}
+
+.viewer-side{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.side-title{
+    font-size:11px;
+    letter-spacing:2px;
+    font-weight:700;
+    color:#a15d83;
+    margin-bottom:3px;
+}
+
+.layer-btn{
+    width:100%;
+    padding:11px 10px;
+    font-size:11px;
+    background:rgba(255,255,255,.72);
+    color:#7b4d69;
+    border:1px solid rgba(255,255,255,.9);
+    box-shadow:0 7px 20px rgba(110,65,91,.12);
+}
+
+.layer-btn.active{
+    background:linear-gradient(135deg,#c8759e,#9563a4);
+    color:white;
+}
+
+.viewer{
     position:relative;
-}
-
-.body-3d{
-    width:360px;
-    height:570px;
-    position:absolute;
-    left:50%;
-    top:35px;
-    transform:translateX(-50%) rotateY(-5deg) rotateX(2deg);
-    transform-style:preserve-3d;
-    transition:1s ease;
-    filter:drop-shadow(0 35px 30px rgba(113,65,91,.2));
-}
-
-.body-3d.exploring{
-    transform:translateX(-50%) rotateY(7deg) rotateX(-2deg) scale(1.02);
-}
-
-/* torso shape */
-
-.torso{
-    position:absolute;
-    inset:0;
-    border-radius:
-        45% 45% 25% 25% /
-        18% 18% 70% 70%;
-    background:
-        radial-gradient(circle at 50% 35%,#ffe9e7,#f5c4c5 55%,#d9909c);
-    box-shadow:
-        inset -30px -25px 50px rgba(115,53,73,.18),
-        inset 20px 20px 40px rgba(255,255,255,.45),
-        25px 30px 0 rgba(180,102,131,.12);
-    border:4px solid rgba(255,255,255,.7);
+    height:650px;
+    border-radius:35px;
     overflow:hidden;
-}
-
-/* cuello */
-
-.neck{
-    position:absolute;
-    width:105px;
-    height:100px;
-    top:-55px;
-    left:127px;
-    border-radius:40px;
-    background:linear-gradient(90deg,#d78e99,#ffe0dd,#d78e99);
-}
-
-/* sombra central */
-
-.torso:after{
-    content:"";
-    position:absolute;
-    left:50%;
-    top:8%;
-    width:4px;
-    height:83%;
-    transform:translateX(-50%);
-    background:rgba(125,62,79,.13);
-    border-radius:50%;
-}
-
-/* =========================
-   MUSCULOS
-========================= */
-
-.muscles{
-    position:absolute;
-    inset:0;
-    opacity:0;
-    transform:translateZ(-30px) scale(.96);
-    transition:.8s;
-    pointer-events:none;
-}
-
-.body-3d.muscle-mode .muscles{
-    opacity:1;
-    transform:translateZ(20px) scale(1);
-}
-
-.muscle{
-    position:absolute;
     background:
-        linear-gradient(145deg,#f08eaa,#c85f88);
-    border:2px solid rgba(255,255,255,.55);
+        radial-gradient(circle at 50% 38%,rgba(255,255,255,.95),rgba(255,225,240,.65) 45%,rgba(222,190,220,.45));
+    border:2px solid rgba(255,255,255,.85);
     box-shadow:
-        inset 3px 4px 8px rgba(255,255,255,.25),
-        inset -5px -5px 10px rgba(99,40,67,.18),
-        0 5px 10px rgba(101,48,73,.12);
+        0 25px 70px rgba(110,65,91,.18),
+        inset 0 1px white;
 }
 
-.rectus{
-    width:64px;
-    height:145px;
-    left:148px;
-    border-radius:25px 25px 18px 18px;
+#threeCanvas{
+    width:100%;
+    height:100%;
+    display:block;
+    cursor:grab;
 }
 
-.rectus.left{left:75px}
-.rectus.right{left:221px}
-
-.r1{top:155px}
-.r2{top:315px}
-
-.oblique{
-    width:74px;
-    height:190px;
-    top:180px;
-    border-radius:45% 20% 45% 20%;
-    opacity:.82;
+#threeCanvas:active{
+    cursor:grabbing;
 }
 
-.oblique.left{
-    left:35px;
-    transform:rotate(12deg);
-}
-
-.oblique.right{
-    right:35px;
-    transform:rotate(-12deg);
-}
-
-.muscle-label{
+.viewer-top{
     position:absolute;
-    bottom:45px;
+    top:15px;
     left:50%;
     transform:translateX(-50%);
+    z-index:5;
     background:rgba(255,255,255,.75);
-    backdrop-filter:blur(10px);
-    padding:8px 14px;
+    backdrop-filter:blur(12px);
+    border:1px solid white;
     border-radius:30px;
+    padding:9px 17px;
+    color:#85516f;
     font-size:11px;
     font-weight:700;
-    color:#874f70;
-    white-space:nowrap;
+    pointer-events:none;
 }
 
-/* =========================
-   REGION GRID
-========================= */
-
-.regions{
+.viewer-bottom{
     position:absolute;
-    inset:115px 38px 110px;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    grid-template-rows:repeat(3,1fr);
-    gap:5px;
+    bottom:15px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:5;
+    background:rgba(255,255,255,.78);
+    backdrop-filter:blur(12px);
+    border:1px solid white;
+    border-radius:30px;
+    padding:9px 17px;
+    color:#90657e;
+    font-size:10px;
+    white-space:nowrap;
+    pointer-events:none;
+}
+
+.loading{
+    position:absolute;
+    inset:0;
+    z-index:10;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:
+        linear-gradient(145deg,rgba(255,247,251,.98),rgba(248,234,250,.98));
+    color:#8b5674;
+    transition:.5s;
+}
+
+.loading.hide{
     opacity:0;
     pointer-events:none;
-    transition:.7s;
 }
 
-.regions.active{
-    opacity:1;
-    pointer-events:auto;
+.loader-circle{
+    width:55px;
+    height:55px;
+    border:5px solid #f1d4e2;
+    border-top-color:#a05f85;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+    margin-bottom:18px;
 }
 
-.region{
-    border:1px solid rgba(255,255,255,.8);
-    background:rgba(255,151,190,.25);
-    backdrop-filter:blur(3px);
-    color:#70465e;
-    font-family:'Montserrat',sans-serif;
-    font-size:9px;
-    font-weight:700;
-    cursor:pointer;
-    border-radius:8px;
-    transition:.25s;
-    padding:4px;
+@keyframes spin{
+    to{
+        transform:rotate(360deg)
+    }
 }
 
-.region:hover{
-    background:rgba(255,255,255,.7);
-    transform:scale(1.05);
-    box-shadow:0 5px 15px rgba(119,62,91,.2);
+.loading p{
+    font-size:13px;
+    font-weight:600;
+}
+
+.error-message{
+    display:none;
+    max-width:80%;
+    text-align:center;
+    line-height:1.7;
+    color:#89546f;
+}
+
+.error-message strong{
+    color:#a05278;
 }
 
 /* =========================
@@ -409,17 +392,67 @@ header{
     justify-content:center;
     gap:12px;
     flex-wrap:wrap;
-    margin-top:-5px;
-}
-
-.hidden{
-    display:none!important;
+    margin:22px auto 5px;
 }
 
 .hint{
     margin:10px auto;
     color:#9b7089;
     font-size:12px;
+}
+
+/* =========================
+   9 REGIONES
+========================= */
+
+.region-section{
+    max-width:900px;
+    margin:35px auto 10px;
+}
+
+.region-section h3{
+    font-family:'DM Serif Display',serif;
+    font-size:32px;
+    color:#824d6c;
+    margin-bottom:8px;
+}
+
+.region-section p{
+    font-size:12px;
+    color:#98748b;
+    margin-bottom:18px;
+}
+
+.regions{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:9px;
+}
+
+.region{
+    border:1px solid rgba(255,255,255,.9);
+    background:rgba(255,255,255,.62);
+    backdrop-filter:blur(8px);
+    color:#70465e;
+    font-family:'Montserrat',sans-serif;
+    font-size:11px;
+    font-weight:700;
+    cursor:pointer;
+    border-radius:15px;
+    transition:.25s;
+    padding:13px 7px;
+    min-height:55px;
+}
+
+.region:hover{
+    background:rgba(255,255,255,.9);
+    transform:translateY(-3px) scale(1.02);
+    box-shadow:0 8px 20px rgba(119,62,91,.16);
+}
+
+.region.active{
+    background:linear-gradient(135deg,#c8759e,#9563a4);
+    color:white;
 }
 
 /* =========================
@@ -557,6 +590,37 @@ footer strong{
    RESPONSIVE
 ========================= */
 
+@media(max-width:900px){
+
+    .anatomy-layout{
+        grid-template-columns:1fr;
+    }
+
+    .viewer-side{
+        flex-direction:row;
+        justify-content:center;
+        flex-wrap:wrap;
+        order:2;
+    }
+
+    .viewer-side .side-title{
+        width:100%;
+    }
+
+    .layer-btn{
+        width:auto;
+    }
+
+    .viewer{
+        order:1;
+        height:620px;
+    }
+
+    .regions{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+
 @media(max-width:650px){
 
     #app{
@@ -571,25 +635,23 @@ footer strong{
         font-size:23px;
     }
 
-    .anatomy-stage{
-        height:550px;
+    .viewer{
+        height:540px;
+        border-radius:25px;
     }
 
-    .body-3d{
-        transform:translateX(-50%) scale(.83);
-        transform-origin:top center;
-    }
-
-    .body-3d.exploring{
-        transform:translateX(-50%) scale(.83) rotateY(5deg);
+    .viewer-bottom{
+        font-size:8px;
     }
 
     .regions{
-        inset:100px 50px 105px;
+        grid-template-columns:repeat(3,1fr);
+        gap:5px;
     }
 
     .region{
-        font-size:7px;
+        font-size:8px;
+        padding:9px 3px;
     }
 
     .modal-card{
@@ -610,23 +672,24 @@ footer strong{
 
 <body>
 
-<!-- BRILLITOS -->
 <div class="sparkles">
     <span></span><span></span><span></span><span></span><span></span>
     <span></span><span></span><span></span><span></span><span></span>
 </div>
 
-<!-- =========================
-     PORTADA
-========================= -->
+<!-- PORTADA -->
 
 <section id="cover" class="screen">
 
     <div class="cover">
 
-        <div class="badge">ANATOMÍA INTERACTIVA · PRAXIS</div>
+        <div class="badge">
+            ANATOMÍA INTERACTIVA · PRAXIS
+        </div>
 
-        <h1>ABDOMEN<br>360°</h1>
+        <h1>
+            ABDOMEN<br>360°
+        </h1>
 
         <p class="subtitle">
             Explora las 9 regiones abdominales
@@ -647,152 +710,235 @@ footer strong{
 </section>
 
 
-<!-- =========================
-     APLICACIÓN
-========================= -->
+<!-- APP -->
 
 <main id="app">
 
 <header>
-    <div class="logo">ABDOMEN 360°</div>
-    <div id="step" class="step">PASO 1 · ABDOMEN</div>
+
+    <div class="logo">
+        ABDOMEN 360°
+    </div>
+
+    <div id="step" class="step">
+        PASO 1 · CUERPO 3D
+    </div>
+
 </header>
+
 
 <section class="content">
 
     <h2 id="mainTitle" class="title">
-        Conoce el abdomen
+        Explora el cuerpo humano
     </h2>
 
     <p id="mainDescription" class="description">
-        Primero observa el abdomen. Haz clic en
-        <b>explorar músculos</b> para descubrir
-        qué hay debajo.
+        Puedes girar el cuerpo, acercarte y alejarte
+        para observar la anatomía desde diferentes ángulos.
     </p>
 
 
-    <!-- ESCENA 3D -->
+    <!-- VISOR -->
 
-    <div class="anatomy-stage">
+    <div class="anatomy-layout">
 
-        <div id="body" class="body-3d">
+        <!-- CONTROLES IZQUIERDA -->
 
-            <div class="neck"></div>
+        <div class="viewer-side">
 
-            <div class="torso"></div>
+            <div class="side-title">
+                CAPAS ANATÓMICAS
+            </div>
 
-            <!-- MÚSCULOS -->
+            <button
+                id="muscleLayer"
+                class="layer-btn active"
+                onclick="showMusclesLayer()">
+                💪 MÚSCULOS
+            </button>
 
-            <div class="muscles">
+            <button
+                id="boneLayer"
+                class="layer-btn"
+                onclick="showBonesLayer()">
+                🦴 HUESOS
+            </button>
 
-                <div class="muscle oblique left"></div>
-                <div class="muscle oblique right"></div>
+            <button
+                id="allLayer"
+                class="layer-btn"
+                onclick="showAllLayer()">
+                ✨ TODO
+            </button>
 
-                <div class="muscle rectus left r1"></div>
-                <div class="muscle rectus right r1"></div>
+        </div>
 
-                <div class="muscle rectus left r2"></div>
-                <div class="muscle rectus right r2"></div>
 
-                <div class="muscle-label">
-                    MÚSCULOS ABDOMINALES
+        <!-- VISOR 3D -->
+
+        <div class="viewer">
+
+            <div class="viewer-top">
+                🧍 MODELO ANATÓMICO 3D
+            </div>
+
+            <canvas id="threeCanvas"></canvas>
+
+            <div id="loading" class="loading">
+
+                <div class="loader-circle"></div>
+
+                <p>
+                    Cargando cuerpo humano 3D...
+                </p>
+
+                <div id="errorMessage" class="error-message">
+                    <strong>No se pudo cargar el modelo.</strong><br>
+                    Revisa que <b>body.glb</b> esté dentro de
+                    <b>models/models</b>.
                 </div>
 
             </div>
 
-
-            <!-- 9 REGIONES -->
-
-            <div id="regions" class="regions">
-
-                <button class="region" onclick="openRegion(0)">
-                    Hipocondrio<br>derecho
-                </button>
-
-                <button class="region" onclick="openRegion(1)">
-                    Epigastrio
-                </button>
-
-                <button class="region" onclick="openRegion(2)">
-                    Hipocondrio<br>izquierdo
-                </button>
-
-                <button class="region" onclick="openRegion(3)">
-                    Región lumbar<br>derecha
-                </button>
-
-                <button class="region" onclick="openRegion(4)">
-                    Región<br>umbilical
-                </button>
-
-                <button class="region" onclick="openRegion(5)">
-                    Región lumbar<br>izquierda
-                </button>
-
-                <button class="region" onclick="openRegion(6)">
-                    Región ilíaca<br>derecha
-                </button>
-
-                <button class="region" onclick="openRegion(7)">
-                    Hipogastrio
-                </button>
-
-                <button class="region" onclick="openRegion(8)">
-                    Región ilíaca<br>izquierda
-                </button>
-
+            <div class="viewer-bottom">
+                🖱️ Arrastra para girar · 🔍 Rueda para zoom
             </div>
+
+        </div>
+
+
+        <!-- CONTROLES DERECHA -->
+
+        <div class="viewer-side">
+
+            <div class="side-title">
+                VISTA
+            </div>
+
+            <button
+                class="layer-btn"
+                onclick="frontView()">
+                👤 FRONTAL
+            </button>
+
+            <button
+                class="layer-btn"
+                onclick="sideView()">
+                ↔️ LATERAL
+            </button>
+
+            <button
+                class="layer-btn"
+                onclick="backView()">
+                🔄 POSTERIOR
+            </button>
+
+            <button
+                class="layer-btn"
+                onclick="resetView()">
+                🎯 CENTRAR
+            </button>
 
         </div>
 
     </div>
 
 
-    <!-- BOTONES -->
-
     <div class="controls">
 
         <button
-            id="muscleBtn"
             class="action-btn"
-            onclick="showMuscles()">
-            💪 EXPLORAR MÚSCULOS
-        </button>
-
-        <button
-            id="regionBtn"
-            class="action-btn hidden"
-            onclick="showRegions()">
-            ✨ MOSTRAR LAS 9 REGIONES
+            onclick="activateRegions()">
+            ✨ EXPLORAR LAS 9 REGIONES
         </button>
 
     </div>
 
+
     <p id="hint" class="hint">
-        Observa el abdomen y comienza la exploración.
+        Gira el modelo con el mouse para observarlo desde cualquier ángulo.
     </p>
+
+
+    <!-- 9 REGIONES -->
+
+    <section id="regionSection" class="region-section">
+
+        <h3>
+            Las 9 regiones abdominales
+        </h3>
+
+        <p>
+            Selecciona una región para conocer su ubicación,
+            estructuras e importancia.
+        </p>
+
+        <div class="regions">
+
+            <button class="region" onclick="openRegion(0)">
+                Hipocondrio<br>derecho
+            </button>
+
+            <button class="region" onclick="openRegion(1)">
+                Epigastrio
+            </button>
+
+            <button class="region" onclick="openRegion(2)">
+                Hipocondrio<br>izquierdo
+            </button>
+
+            <button class="region" onclick="openRegion(3)">
+                Región lumbar<br>derecha
+            </button>
+
+            <button class="region" onclick="openRegion(4)">
+                Región<br>umbilical
+            </button>
+
+            <button class="region" onclick="openRegion(5)">
+                Región lumbar<br>izquierda
+            </button>
+
+            <button class="region" onclick="openRegion(6)">
+                Región ilíaca<br>derecha
+            </button>
+
+            <button class="region" onclick="openRegion(7)">
+                Hipogastrio
+            </button>
+
+            <button class="region" onclick="openRegion(8)">
+                Región ilíaca<br>izquierda
+            </button>
+
+        </div>
+
+    </section>
 
 </section>
 
 
 <footer>
+
     ✨ Trabajo realizado por
     <strong>Hislaine Changoluisa</strong>
     · Praxis · Anatomía Interactiva ✨
+
 </footer>
 
 </main>
 
 
-<!-- =========================
-     MODAL INFORMACIÓN
-========================= -->
+<!-- MODAL -->
 
 <div id="modal" class="modal">
 
     <div class="modal-card">
 
-        <button class="close" onclick="closeModal()">×</button>
+        <button class="close" onclick="closeModal()">
+            ×
+        </button>
 
         <div id="modalNumber" class="modal-number">
             REGIÓN 1 DE 9
@@ -805,23 +951,43 @@ footer strong{
         <div class="info-grid">
 
             <div class="info-box">
-                <h3>📍 UBICACIÓN</h3>
+
+                <h3>
+                    📍 UBICACIÓN
+                </h3>
+
                 <p id="modalLocation"></p>
+
             </div>
 
             <div class="info-box">
-                <h3>🫀 ESTRUCTURAS PRINCIPALES</h3>
+
+                <h3>
+                    🫀 ESTRUCTURAS PRINCIPALES
+                </h3>
+
                 <p id="modalOrgans"></p>
+
             </div>
 
             <div class="info-box">
-                <h3>📚 INFORMACIÓN</h3>
+
+                <h3>
+                    📚 INFORMACIÓN
+                </h3>
+
                 <p id="modalInfo"></p>
+
             </div>
 
             <div class="info-box">
-                <h3>✨ IMPORTANCIA</h3>
+
+                <h3>
+                    ✨ IMPORTANCIA
+                </h3>
+
                 <p id="modalImportance"></p>
+
             </div>
 
         </div>
@@ -847,10 +1013,660 @@ footer strong{
 </div>
 
 
+<!-- THREE.JS -->
+
+<script type="importmap">
+{
+    "imports":{
+        "three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+        "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+    }
+}
+</script>
+
+
+<script type="module">
+
+import * as THREE from "three";
+
+import {
+    OrbitControls
+} from "three/addons/controls/OrbitControls.js";
+
+import {
+    GLTFLoader
+} from "three/addons/loaders/GLTFLoader.js";
+
+
+/* =========================
+   ESCENA
+========================= */
+
+const canvas =
+    document.getElementById("threeCanvas");
+
+const viewer =
+    document.querySelector(".viewer");
+
+const scene =
+    new THREE.Scene();
+
+scene.background =
+    new THREE.Color(0xf9eaf3);
+
+
+/* =========================
+   CAMARA
+========================= */
+
+const camera =
+    new THREE.PerspectiveCamera(
+        35,
+        viewer.clientWidth / viewer.clientHeight,
+        0.01,
+        1000
+    );
+
+camera.position.set(
+    0,
+    0,
+    4
+);
+
+
+/* =========================
+   RENDERER
+========================= */
+
+const renderer =
+    new THREE.WebGLRenderer({
+        canvas:canvas,
+        antialias:true,
+        alpha:true
+    });
+
+renderer.setPixelRatio(
+    Math.min(window.devicePixelRatio,2)
+);
+
+renderer.setSize(
+    viewer.clientWidth,
+    viewer.clientHeight
+);
+
+renderer.outputColorSpace =
+    THREE.SRGBColorSpace;
+
+
+/* =========================
+   LUCES
+========================= */
+
+const ambient =
+    new THREE.HemisphereLight(
+        0xffffff,
+        0xc99ab8,
+        2.5
+    );
+
+scene.add(ambient);
+
+
+const keyLight =
+    new THREE.DirectionalLight(
+        0xffffff,
+        3
+    );
+
+keyLight.position.set(
+    4,
+    7,
+    6
+);
+
+scene.add(keyLight);
+
+
+const fillLight =
+    new THREE.DirectionalLight(
+        0xffd6ea,
+        2
+    );
+
+fillLight.position.set(
+    -5,
+    2,
+    3
+);
+
+scene.add(fillLight);
+
+
+const rimLight =
+    new THREE.DirectionalLight(
+        0xd9b4ff,
+        2
+    );
+
+rimLight.position.set(
+    0,
+    4,
+    -6
+);
+
+scene.add(rimLight);
+
+
+/* =========================
+   CONTROLES
+========================= */
+
+const controls =
+    new OrbitControls(
+        camera,
+        renderer.domElement
+    );
+
+controls.enableDamping = true;
+controls.dampingFactor = .06;
+
+controls.enablePan = false;
+
+controls.minDistance = .8;
+controls.maxDistance = 8;
+
+controls.target.set(
+    0,
+    0,
+    0
+);
+
+
+/* =========================
+   MODELO
+========================= */
+
+let model = null;
+
+const modelGroups = {
+    muscle:[],
+    bone:[],
+    other:[]
+};
+
+
+/* =========================
+   CARGAR GLB
+========================= */
+
+const loader =
+    new GLTFLoader();
+
+
+loader.load(
+
+    "models/models/body.glb",
+
+    function(gltf){
+
+        model = gltf.scene;
+
+        scene.add(model);
+
+        prepareModel(model);
+
+        centerModel(model);
+
+        document
+            .getElementById("loading")
+            .classList.add("hide");
+
+        animate();
+
+    },
+
+    function(xhr){
+
+        if(xhr.total){
+
+            const percent =
+                Math.round(
+                    xhr.loaded /
+                    xhr.total *
+                    100
+                );
+
+            const text =
+                document.querySelector(
+                    "#loading p"
+                );
+
+            if(text){
+                text.textContent =
+                    "Cargando cuerpo humano 3D... " +
+                    percent +
+                    "%";
+            }
+        }
+
+    },
+
+    function(error){
+
+        console.error(
+            "Error cargando body.glb:",
+            error
+        );
+
+        document
+            .querySelector("#loading p")
+            .style.display="none";
+
+        document
+            .querySelector("#errorMessage")
+            .style.display="block";
+
+    }
+
+);
+
+
+/* =========================
+   PREPARAR MODELO
+========================= */
+
+function prepareModel(object){
+
+    object.traverse(function(child){
+
+        if(child.isMesh){
+
+            child.castShadow = true;
+            child.receiveShadow = true;
+
+            const data =
+                child.userData || {};
+
+            const type =
+                String(
+                    data.type ||
+                    ""
+                ).toLowerCase();
+
+            const name =
+                String(
+                    data.name ||
+                    child.name ||
+                    ""
+                ).toLowerCase();
+
+            if(
+                type.includes("muscle") ||
+                name.includes("muscle") ||
+                name.includes("muscle")
+            ){
+
+                modelGroups.muscle.push(child);
+
+            }
+
+            else if(
+                type.includes("bone") ||
+                name.includes("bone") ||
+                name.includes("os")
+            ){
+
+                modelGroups.bone.push(child);
+
+            }
+
+            else{
+
+                modelGroups.other.push(child);
+
+            }
+
+        }
+
+    });
+
+}
+
+
+/* =========================
+   CENTRAR Y ESCALAR
+========================= */
+
+function centerModel(object){
+
+    const box =
+        new THREE.Box3()
+        .setFromObject(object);
+
+    const center =
+        box.getCenter(
+            new THREE.Vector3()
+        );
+
+    const size =
+        box.getSize(
+            new THREE.Vector3()
+        );
+
+    const maxSize =
+        Math.max(
+            size.x,
+            size.y,
+            size.z
+        );
+
+    const scale =
+        3.2 / maxSize;
+
+    object.scale.setScalar(scale);
+
+    object.position.x =
+        -center.x * scale;
+
+    object.position.y =
+        -center.y * scale;
+
+    object.position.z =
+        -center.z * scale;
+
+    controls.target.set(
+        0,
+        0,
+        0
+    );
+
+    camera.position.set(
+        0,
+        0,
+        4
+    );
+
+    controls.update();
+
+}
+
+
+/* =========================
+   VISIBILIDAD
+========================= */
+
+function setGroupVisibility(
+    group,
+    visible
+){
+
+    group.forEach(function(mesh){
+
+        mesh.visible = visible;
+
+    });
+
+}
+
+
+/* =========================
+   CAPA MÚSCULOS
+========================= */
+
+window.showMusclesLayer =
+function(){
+
+    if(!model) return;
+
+    setGroupVisibility(
+        modelGroups.muscle,
+        true
+    );
+
+    setGroupVisibility(
+        modelGroups.bone,
+        false
+    );
+
+    setGroupVisibility(
+        modelGroups.other,
+        false
+    );
+
+    setActiveButton("muscleLayer");
+
+};
+
+
+/* =========================
+   CAPA HUESOS
+========================= */
+
+window.showBonesLayer =
+function(){
+
+    if(!model) return;
+
+    setGroupVisibility(
+        modelGroups.muscle,
+        false
+    );
+
+    setGroupVisibility(
+        modelGroups.bone,
+        true
+    );
+
+    setGroupVisibility(
+        modelGroups.other,
+        false
+    );
+
+    setActiveButton("boneLayer");
+
+};
+
+
+/* =========================
+   TODO
+========================= */
+
+window.showAllLayer =
+function(){
+
+    if(!model) return;
+
+    setGroupVisibility(
+        modelGroups.muscle,
+        true
+    );
+
+    setGroupVisibility(
+        modelGroups.bone,
+        true
+    );
+
+    setGroupVisibility(
+        modelGroups.other,
+        true
+    );
+
+    setActiveButton("allLayer");
+
+};
+
+
+/* =========================
+   BOTÓN ACTIVO
+========================= */
+
+function setActiveButton(id){
+
+    document
+        .querySelectorAll(".layer-btn")
+        .forEach(function(button){
+
+            button.classList.remove(
+                "active"
+            );
+
+        });
+
+    const button =
+        document.getElementById(id);
+
+    if(button){
+
+        button.classList.add(
+            "active"
+        );
+
+    }
+
+}
+
+
+/* =========================
+   VISTAS
+========================= */
+
+window.frontView =
+function(){
+
+    camera.position.set(
+        0,
+        0,
+        4
+    );
+
+    controls.target.set(
+        0,
+        0,
+        0
+    );
+
+    controls.update();
+
+};
+
+
+window.sideView =
+function(){
+
+    camera.position.set(
+        4,
+        0,
+        0
+    );
+
+    controls.target.set(
+        0,
+        0,
+        0
+    );
+
+    controls.update();
+
+};
+
+
+window.backView =
+function(){
+
+    camera.position.set(
+        0,
+        0,
+        -4
+    );
+
+    controls.target.set(
+        0,
+        0,
+        0
+    );
+
+    controls.update();
+
+};
+
+
+window.resetView =
+function(){
+
+    camera.position.set(
+        0,
+        0,
+        4
+    );
+
+    controls.target.set(
+        0,
+        0,
+        0
+    );
+
+    controls.update();
+
+};
+
+
+/* =========================
+   REDIMENSIONAR
+========================= */
+
+function resize(){
+
+    const width =
+        viewer.clientWidth;
+
+    const height =
+        viewer.clientHeight;
+
+    camera.aspect =
+        width / height;
+
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(
+        width,
+        height
+    );
+
+}
+
+
+window.addEventListener(
+    "resize",
+    resize
+);
+
+
+/* =========================
+   ANIMACIÓN
+========================= */
+
+function animate(){
+
+    requestAnimationFrame(
+        animate
+    );
+
+    controls.update();
+
+    renderer.render(
+        scene,
+        camera
+    );
+
+}
+
+</script>
+
+
 <script>
 
 /* =========================
-   DATOS DE LAS 9 REGIONES
+   DATOS DE LAS REGIONES
 ========================= */
 
 const regionsData = [
@@ -938,66 +1754,55 @@ let currentRegion = 0;
 
 function startExperience(){
 
-    document.getElementById("cover").style.display="none";
-    document.getElementById("app").style.display="block";
+    document
+        .getElementById("cover")
+        .style.display="none";
 
-    window.scrollTo(0,0);
-}
+    document
+        .getElementById("app")
+        .style.display="block";
 
-
-/* =========================
-   MOSTRAR MÚSCULOS
-========================= */
-
-function showMuscles(){
-
-    const body = document.getElementById("body");
-
-    body.classList.add("muscle-mode");
-    body.classList.add("exploring");
-
-    document.getElementById("step").textContent =
-        "PASO 2 · MÚSCULOS";
-
-    document.getElementById("mainTitle").textContent =
-        "Descubre los músculos";
-
-    document.getElementById("mainDescription").innerHTML =
-        "Aquí puedes observar una representación visual de los músculos abdominales. " +
-        "Ahora podemos pasar a las <b>9 regiones</b>.";
-
-    document.getElementById("muscleBtn").classList.add("hidden");
-
-    document.getElementById("regionBtn").classList.remove("hidden");
-
-    document.getElementById("hint").textContent =
-        "💪 Explora la capa muscular antes de continuar.";
+    window.scrollTo(
+        0,
+        0
+    );
 
 }
 
 
 /* =========================
-   MOSTRAR REGIONES
+   REGIONES
 ========================= */
 
-function showRegions(){
+function activateRegions(){
 
-    document.getElementById("regions").classList.add("active");
+    document
+        .getElementById("step")
+        .textContent =
+        "PASO 2 · 9 REGIONES";
 
-    document.getElementById("step").textContent =
-        "PASO 3 · 9 REGIONES";
-
-    document.getElementById("mainTitle").textContent =
+    document
+        .getElementById("mainTitle")
+        .textContent =
         "Las 9 regiones abdominales";
 
-    document.getElementById("mainDescription").innerHTML =
-        "¡Ya puedes explorar el abdomen! " +
-        "Haz clic sobre cualquiera de las regiones para conocer su información.";
+    document
+        .getElementById("mainDescription")
+        .innerHTML =
+        "¡Ahora puedes explorar las 9 regiones del abdomen! " +
+        "Gira el cuerpo 3D y selecciona una región para conocerla.";
 
-    document.getElementById("regionBtn").classList.add("hidden");
+    document
+        .getElementById("hint")
+        .textContent =
+        "✨ Selecciona una de las 9 regiones.";
 
-    document.getElementById("hint").textContent =
-        "✨ Haz clic en una región para abrir su información.";
+    document
+        .getElementById("regionSection")
+        .scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
 
 }
 
@@ -1010,27 +1815,55 @@ function openRegion(index){
 
     currentRegion = index;
 
-    const region = regionsData[index];
+    document
+        .querySelectorAll(".region")
+        .forEach(function(button,i){
 
-    document.getElementById("modalNumber").textContent =
-        "REGIÓN " + (index + 1) + " DE 9";
+            button.classList.toggle(
+                "active",
+                i === index
+            );
 
-    document.getElementById("modalTitle").textContent =
+        });
+
+    const region =
+        regionsData[index];
+
+    document
+        .getElementById("modalNumber")
+        .textContent =
+        "REGIÓN " +
+        (index + 1) +
+        " DE 9";
+
+    document
+        .getElementById("modalTitle")
+        .textContent =
         region.name;
 
-    document.getElementById("modalLocation").textContent =
+    document
+        .getElementById("modalLocation")
+        .textContent =
         region.location;
 
-    document.getElementById("modalOrgans").textContent =
+    document
+        .getElementById("modalOrgans")
+        .textContent =
         region.organs;
 
-    document.getElementById("modalInfo").textContent =
+    document
+        .getElementById("modalInfo")
+        .textContent =
         region.info;
 
-    document.getElementById("modalImportance").textContent =
+    document
+        .getElementById("modalImportance")
+        .textContent =
         region.importance;
 
-    document.getElementById("modal").classList.add("open");
+    document
+        .getElementById("modal")
+        .classList.add("open");
 
 }
 
@@ -1041,7 +1874,9 @@ function openRegion(index){
 
 function closeModal(){
 
-    document.getElementById("modal").classList.remove("open");
+    document
+        .getElementById("modal")
+        .classList.remove("open");
 
 }
 
@@ -1054,11 +1889,18 @@ function nextRegion(){
 
     currentRegion++;
 
-    if(currentRegion >= regionsData.length){
+    if(
+        currentRegion >=
+        regionsData.length
+    ){
+
         currentRegion = 0;
+
     }
 
-    openRegion(currentRegion);
+    openRegion(
+        currentRegion
+    );
 
 }
 
@@ -1072,41 +1914,61 @@ function previousRegion(){
     currentRegion--;
 
     if(currentRegion < 0){
-        currentRegion = regionsData.length - 1;
+
+        currentRegion =
+            regionsData.length - 1;
+
     }
 
-    openRegion(currentRegion);
+    openRegion(
+        currentRegion
+    );
 
 }
 
 
 /* =========================
-   CERRAR CON ESC
+   ESC
 ========================= */
 
-document.addEventListener("keydown",function(event){
-
-    if(event.key === "Escape"){
-        closeModal();
-    }
-
-});
-
-
-/* =========================
-   CERRAR AL TOCAR AFUERA
-========================= */
-
-document.getElementById("modal").addEventListener(
-    "click",
+document.addEventListener(
+    "keydown",
     function(event){
 
-        if(event.target === this){
+        if(
+            event.key ===
+            "Escape"
+        ){
+
             closeModal();
+
         }
 
     }
 );
+
+
+/* =========================
+   CERRAR AFUERA
+========================= */
+
+document
+    .getElementById("modal")
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(
+                event.target ===
+                this
+            ){
+
+                closeModal();
+
+            }
+
+        }
+    );
 
 </script>
 
