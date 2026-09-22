@@ -10,17 +10,15 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Montserrat:wght@400;500;600;700;800&display=swap');
 
 :root{
-    --pink:#f8dce8;
-    --pink2:#f4c9dc;
-    --pink3:#fff4f8;
-    --wine:#8f3155;
-    --wine2:#b44d75;
+    --pink:#f7cddd;
+    --pink-light:#fff4f8;
+    --pink-dark:#b34c76;
+    --wine:#7e3151;
+    --gold:#f3d58a;
     --red:#c62828;
-    --red-dark:#8f1515;
-    --gold:#f5d58a;
     --white:#ffffff;
-    --text:#4c3040;
-    --shadow:0 18px 50px rgba(110,45,75,.16);
+    --text:#563846;
+    --shadow:0 20px 60px rgba(115,45,76,.18);
 }
 
 *{
@@ -38,189 +36,593 @@ body{
     font-family:'Montserrat',sans-serif;
     color:var(--text);
     overflow-x:hidden;
+
     background:
-        radial-gradient(circle at 10% 10%,rgba(255,255,255,.95),transparent 28%),
-        radial-gradient(circle at 90% 20%,rgba(255,221,235,.8),transparent 30%),
-        linear-gradient(135deg,#fff8fb 0%,#fce7f0 48%,#f5d8e6 100%);
+        radial-gradient(circle at 10% 10%,#ffffff 0,transparent 28%),
+        radial-gradient(circle at 90% 15%,#ffe5ef 0,transparent 30%),
+        linear-gradient(135deg,#fff9fc,#f9e2ec,#f3d5e3);
 }
 
-/* =========================
-   FONDO BRILLITOS
-========================= */
+/* =========================================================
+   BRILLITOS GENERALES
+========================================================= */
 
-body::before,
-body::after{
+body::before{
     content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
-    z-index:-1;
-}
+    z-index:999;
 
-body::before{
     background-image:
-        radial-gradient(circle,rgba(255,255,255,.9) 0 2px,transparent 3px),
-        radial-gradient(circle,rgba(255,255,255,.7) 0 1.5px,transparent 2.5px);
-    background-size:95px 110px,145px 160px;
-    background-position:10px 20px,60px 80px;
-    opacity:.65;
+        radial-gradient(circle,#ffffff 0 1.5px,transparent 2px),
+        radial-gradient(circle,#ffffff 0 1px,transparent 1.8px);
+
+    background-size:105px 125px,155px 175px;
+    background-position:20px 15px,70px 90px;
+
+    opacity:.42;
 }
 
-body::after{
+
+/* =========================================================
+   PORTADA
+========================================================= */
+
+#cover{
+    position:fixed;
+    inset:0;
+    z-index:500;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
     background:
-        radial-gradient(circle at 20% 70%,rgba(255,255,255,.4),transparent 20%),
-        radial-gradient(circle at 80% 80%,rgba(255,220,235,.5),transparent 25%);
+        radial-gradient(circle at 50% 20%,
+            rgba(255,255,255,.95),
+            transparent 25%),
+
+        radial-gradient(circle at 20% 80%,
+            rgba(255,187,217,.55),
+            transparent 30%),
+
+        radial-gradient(circle at 80% 70%,
+            rgba(190,213,255,.45),
+            transparent 30%),
+
+        linear-gradient(
+            135deg,
+            #f7c8dc 0%,
+            #fce7ef 38%,
+            #dce7f8 72%,
+            #eac6dc 100%
+        );
+
+    transition:
+        opacity .9s ease,
+        visibility .9s ease;
 }
 
-/* =========================
+#cover.hidden{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+
+/* estrellas */
+
+.star{
+    position:absolute;
+    color:white;
+    font-size:18px;
+    text-shadow:
+        0 0 8px white,
+        0 0 18px #f6d990;
+    animation:twinkle 2.5s infinite ease-in-out;
+}
+
+.star:nth-child(1){top:13%;left:12%;animation-delay:.2s}
+.star:nth-child(2){top:20%;left:82%;animation-delay:1s}
+.star:nth-child(3){top:67%;left:13%;animation-delay:.7s}
+.star:nth-child(4){top:76%;left:88%;animation-delay:1.4s}
+.star:nth-child(5){top:34%;left:91%;animation-delay:.4s}
+.star:nth-child(6){top:81%;left:34%;animation-delay:1.8s}
+.star:nth-child(7){top:15%;left:63%;animation-delay:1.2s}
+.star:nth-child(8){top:60%;left:76%;animation-delay:.8s}
+
+@keyframes twinkle{
+    0%,100%{
+        transform:scale(.7);
+        opacity:.4;
+    }
+    50%{
+        transform:scale(1.35);
+        opacity:1;
+    }
+}
+
+
+/* luna */
+
+.moon{
+    position:absolute;
+    width:150px;
+    height:150px;
+    border-radius:50%;
+
+    right:9%;
+    top:9%;
+
+    background:
+        radial-gradient(circle at 35% 35%,
+            #fffdf2,
+            #f8e6bc 60%,
+            #efd18e);
+
+    box-shadow:
+        0 0 30px rgba(255,255,255,.9),
+        0 0 70px rgba(244,213,140,.55);
+}
+
+.moon::after{
+    content:"";
+    position:absolute;
+    width:145px;
+    height:145px;
+    border-radius:50%;
+    background:#e9d8ea;
+    left:38px;
+    top:-10px;
+}
+
+
+/* castillo decorativo */
+
+.castle{
+    position:absolute;
+    bottom:-5px;
+    left:0;
+    right:0;
+    height:145px;
+
+    opacity:.25;
+
+    background:
+        linear-gradient(
+            to top,
+            #765b82 0 35%,
+            transparent 35%
+        );
+}
+
+.castle::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:28px;
+    transform:translateX(-50%);
+
+    width:340px;
+    height:105px;
+
+    background:
+        linear-gradient(
+            to top,
+            #765b82 0 60%,
+            transparent 60%
+        );
+
+    clip-path:polygon(
+        0 100%,
+        0 45%,
+        12% 45%,
+        12% 15%,
+        22% 45%,
+        35% 45%,
+        35% 0,
+        50% 45%,
+        65% 0,
+        65% 45%,
+        78% 15%,
+        88% 45%,
+        100% 45%,
+        100% 100%
+    );
+}
+
+
+/* contenido portada */
+
+.cover-content{
+    position:relative;
+    z-index:10;
+
+    width:min(700px,90%);
+
+    padding:48px 35px;
+
+    text-align:center;
+
+    border-radius:40px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.73),
+            rgba(255,239,247,.55)
+        );
+
+    border:1px solid rgba(255,255,255,.9);
+
+    box-shadow:
+        0 25px 80px rgba(92,52,100,.18),
+        inset 0 0 40px rgba(255,255,255,.35);
+
+    backdrop-filter:blur(16px);
+}
+
+
+.cover-crown{
+    font-size:38px;
+    margin-bottom:5px;
+
+    filter:
+        drop-shadow(0 0 8px rgba(245,213,138,.8));
+}
+
+
+.cover-small{
+    display:block;
+
+    font-size:10px;
+    letter-spacing:3px;
+    font-weight:800;
+
+    color:#87546d;
+}
+
+
+.cover-title{
+    margin:10px 0 4px;
+
+    font-family:'DM Serif Display',serif;
+
+    font-size:
+        clamp(55px,10vw,100px);
+
+    line-height:.9;
+
+    background:
+        linear-gradient(
+            135deg,
+            #9e3d65,
+            #c95e86,
+            #85558f
+        );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+
+    filter:
+        drop-shadow(
+            0 4px 8px rgba(119,47,77,.13)
+        );
+}
+
+
+.cover-name{
+    font-family:'DM Serif Display',serif;
+
+    font-size:clamp(24px,4vw,36px);
+
+    color:#72324f;
+
+    margin-top:12px;
+}
+
+
+.cover-area{
+    margin-top:5px;
+
+    font-size:11px;
+
+    letter-spacing:2px;
+
+    color:#9b637b;
+
+    font-weight:700;
+}
+
+
+.cover-line{
+    width:100px;
+    height:2px;
+
+    margin:22px auto;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #d29aaf,
+            transparent
+        );
+}
+
+
+.cover-description{
+    max-width:520px;
+
+    margin:0 auto 26px;
+
+    font-size:13px;
+
+    line-height:1.7;
+
+    color:#765666;
+}
+
+
+.cover-button{
+    position:relative;
+    overflow:hidden;
+
+    padding:16px 29px;
+
+    border:none;
+    border-radius:999px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-family:'Montserrat',sans-serif;
+
+    font-weight:800;
+
+    letter-spacing:.5px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a43f68,
+            #c65b83
+        );
+
+    box-shadow:
+        0 12px 30px rgba(157,61,99,.3);
+
+    transition:.25s ease;
+}
+
+.cover-button:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 15px 35px rgba(157,61,99,.4);
+}
+
+.cover-button.flash{
+    animation:buttonFlash .65s ease;
+}
+
+
+/* =========================================================
    APP
-========================= */
+========================================================= */
 
 #app{
-    width:100%;
     min-height:100vh;
 }
 
-/* =========================
+
+/* =========================================================
    HEADER
-========================= */
+========================================================= */
 
 .header{
     width:min(1200px,94%);
     margin:auto;
-    padding:28px 0 10px;
+
+    padding:25px 0 10px;
+
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    gap:20px;
+    justify-content:space-between;
 }
+
 
 .brand{
     display:flex;
     align-items:center;
-    gap:13px;
+    gap:12px;
 }
+
 
 .brand-icon{
     width:48px;
     height:48px;
-    border-radius:16px;
+
     display:grid;
     place-items:center;
+
+    border-radius:16px;
+
     background:rgba(255,255,255,.65);
+
     border:1px solid rgba(255,255,255,.9);
+
     box-shadow:var(--shadow);
-    font-size:24px;
+
+    font-size:23px;
 }
+
 
 .brand-text small{
     display:block;
-    font-size:10px;
+
+    font-size:9px;
+
     letter-spacing:2px;
+
     font-weight:800;
-    color:#9d5874;
+
+    color:#9b5873;
 }
+
 
 .brand-text strong{
     font-family:'DM Serif Display',serif;
+
     font-size:25px;
-    color:#78304e;
+
+    color:#79304f;
 }
 
-/* =========================
+
+/* =========================================================
    HERO
-========================= */
+========================================================= */
 
 .hero{
     width:min(1200px,94%);
-    margin:12px auto 20px;
-    padding:28px;
-    border-radius:30px;
-    background:rgba(255,255,255,.48);
-    border:1px solid rgba(255,255,255,.85);
-    box-shadow:var(--shadow);
-    backdrop-filter:blur(18px);
+    margin:10px auto 20px;
+
+    padding:25px;
+
     text-align:center;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.48);
+
+    border:1px solid rgba(255,255,255,.85);
+
+    box-shadow:var(--shadow);
+
+    backdrop-filter:blur(15px);
 }
+
 
 .badge{
     display:inline-flex;
-    align-items:center;
-    gap:7px;
+
     padding:8px 14px;
+
     border-radius:999px;
-    background:rgba(255,255,255,.72);
-    color:#9c4265;
-    font-size:11px;
+
+    background:rgba(255,255,255,.7);
+
+    color:#9b4165;
+
+    font-size:10px;
+
     font-weight:800;
+
     letter-spacing:1.5px;
-    border:1px solid rgba(255,255,255,.9);
 }
+
 
 .hero h1{
     margin:10px 0 5px;
+
     font-family:'DM Serif Display',serif;
-    font-size:clamp(42px,7vw,76px);
-    line-height:.95;
+
+    font-size:clamp(42px,7vw,72px);
+
     color:#7d3152;
 }
 
+
 .hero p{
-    max-width:720px;
-    margin:12px auto 20px;
+    max-width:700px;
+
+    margin:10px auto 18px;
+
+    font-size:13px;
+
     line-height:1.7;
-    font-size:14px;
+
     color:#704c5d;
 }
 
-/* =========================
-   BUTTONS
-========================= */
 
-button{
-    font-family:'Montserrat',sans-serif;
-    border:none;
-    cursor:pointer;
-}
+/* =========================================================
+   BOTONES
+========================================================= */
 
 .main-button,
 .action-button,
 .nav-button{
     position:relative;
     overflow:hidden;
+
     border-radius:999px;
+
+    cursor:pointer;
+
+    font-family:'Montserrat',sans-serif;
+
     transition:.25s ease;
 }
 
+
 .main-button{
-    padding:14px 24px;
+    padding:14px 25px;
+
     color:white;
+
     font-weight:800;
-    letter-spacing:.4px;
-    background:linear-gradient(135deg,#9d3d63,#c35d83);
-    box-shadow:0 10px 25px rgba(157,61,99,.28);
+
+    background:
+        linear-gradient(
+            135deg,
+            #9d3d63,
+            #c45b82
+        );
+
+    box-shadow:
+        0 10px 25px rgba(157,61,99,.28);
 }
 
+
 .action-button{
-    padding:11px 16px;
+    padding:10px 14px;
+
     color:#71304c;
+
     background:rgba(255,255,255,.72);
+
     border:1px solid rgba(255,255,255,.95);
-    font-size:12px;
+
+    font-size:10px;
+
     font-weight:800;
 }
+
 
 .nav-button{
     padding:12px 18px;
+
     background:#fff;
+
     color:#79324f;
-    font-weight:800;
+
     border:1px solid #f0d4df;
+
+    font-weight:800;
 }
+
 
 button:hover{
     transform:translateY(-2px);
 }
+
 
 /* DESTELLO */
 
@@ -229,562 +631,876 @@ button.flash{
 }
 
 @keyframes buttonFlash{
+
     0%{
-        box-shadow:0 0 0 0 rgba(255,255,255,0);
+        box-shadow:0 0 0 rgba(255,255,255,0);
     }
 
     30%{
         box-shadow:
             0 0 0 4px rgba(255,255,255,.95),
-            0 0 18px 7px rgba(255,255,255,.95),
-            0 0 38px 12px rgba(245,213,138,.9);
+            0 0 20px 7px rgba(255,255,255,.95),
+            0 0 40px 12px rgba(245,213,138,.95);
     }
 
     65%{
         box-shadow:
             0 0 0 3px rgba(255,255,255,.8),
-            0 0 28px 10px rgba(255,255,255,.7),
-            0 0 48px 14px rgba(245,213,138,.65);
+            0 0 30px 10px rgba(255,255,255,.7),
+            0 0 50px 14px rgba(245,213,138,.65);
     }
 
     100%{
-        box-shadow:0 0 0 0 rgba(255,255,255,0);
+        box-shadow:0 0 0 rgba(255,255,255,0);
     }
 }
 
-/* =========================
-   MAIN VIEWER
-========================= */
+
+/* =========================================================
+   VIEWER
+========================================================= */
 
 .main-area{
     width:min(1200px,94%);
-    margin:0 auto 35px;
+    margin:auto;
 }
+
 
 .viewer-card{
     position:relative;
+
     min-height:680px;
-    border-radius:34px;
+
     overflow:hidden;
+
+    border-radius:34px;
+
     background:
-        radial-gradient(circle at 50% 30%,rgba(255,255,255,.9),transparent 35%),
-        linear-gradient(145deg,#fffafd,#f9e2ed);
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(255,255,255,.95),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #fffafd,
+            #f8e0eb
+        );
+
     border:1px solid rgba(255,255,255,.95);
+
     box-shadow:var(--shadow);
 }
 
-.viewer-title{
-    position:absolute;
-    z-index:20;
-    top:20px;
-    left:22px;
-    right:22px;
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    gap:15px;
-    pointer-events:none;
-}
-
-.viewer-title .title-box{
-    padding:12px 16px;
-    border-radius:18px;
-    background:rgba(255,255,255,.64);
-    backdrop-filter:blur(12px);
-    border:1px solid rgba(255,255,255,.9);
-}
-
-.viewer-title strong{
-    display:block;
-    font-size:14px;
-    color:#79324f;
-}
-
-.viewer-title span{
-    font-size:10px;
-    color:#9b647b;
-}
-
-.viewer-actions{
-    display:flex;
-    gap:8px;
-    pointer-events:auto;
-    flex-wrap:wrap;
-    justify-content:flex-end;
-}
 
 #viewer{
     position:absolute;
+
     inset:0;
+
     width:100%;
     height:100%;
+
     min-height:680px;
 }
 
+
 #viewer canvas{
     display:block;
+
     width:100%;
     height:100%;
 }
 
-/* =========================
+
+/* =========================================================
+   TITULO VIEWER
+========================================================= */
+
+.viewer-title{
+    position:absolute;
+
+    z-index:20;
+
+    top:20px;
+    left:22px;
+    right:22px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+    pointer-events:none;
+}
+
+
+.title-box{
+    padding:12px 16px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.65);
+
+    border:1px solid rgba(255,255,255,.9);
+
+    backdrop-filter:blur(12px);
+}
+
+
+.title-box strong{
+    display:block;
+
+    font-size:13px;
+
+    color:#79324f;
+}
+
+
+.title-box span{
+    font-size:9px;
+
+    color:#9b647b;
+}
+
+
+.viewer-actions{
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+    justify-content:flex-end;
+
+    pointer-events:auto;
+}
+
+
+/* =========================================================
    LOADING
-========================= */
+========================================================= */
 
 .loading{
     position:absolute;
+
     inset:0;
+
     z-index:30;
+
     display:flex;
+
     flex-direction:column;
-    justify-content:center;
+
     align-items:center;
-    gap:14px;
-    background:rgba(255,245,249,.8);
+    justify-content:center;
+
+    gap:13px;
+
+    background:rgba(255,245,249,.82);
+
     backdrop-filter:blur(8px);
-    transition:.5s ease;
+
+    transition:.5s;
 }
+
 
 .loading.hidden{
     opacity:0;
+
     pointer-events:none;
 }
+
 
 .spinner{
     width:48px;
     height:48px;
+
     border:4px solid #f1cddd;
+
     border-top-color:#a83e65;
+
     border-radius:50%;
+
     animation:spin .8s linear infinite;
 }
 
+
 @keyframes spin{
-    to{transform:rotate(360deg)}
+    to{
+        transform:rotate(360deg);
+    }
 }
+
 
 .loading strong{
     color:#7d3152;
 }
 
+
 .loading span{
-    font-size:11px;
+    font-size:10px;
+
     color:#976579;
 }
 
-/* =========================
-   CONTROLES 3D
-========================= */
 
-.controls-hint{
-    position:absolute;
-    z-index:15;
-    left:50%;
-    bottom:18px;
-    transform:translateX(-50%);
-    padding:9px 15px;
-    border-radius:999px;
-    background:rgba(255,255,255,.62);
-    backdrop-filter:blur(12px);
-    border:1px solid rgba(255,255,255,.85);
-    font-size:10px;
-    color:#84556a;
-    white-space:nowrap;
-}
-
-/* =========================
-   REGION GRID
-========================= */
+/* =========================================================
+   GRID ABDOMINAL
+========================================================= */
 
 #regionGrid{
+
     position:absolute;
-    z-index:25;
+
+    z-index:40;
+
     display:none;
+
     grid-template-columns:repeat(3,1fr);
+
     grid-template-rows:repeat(3,1fr);
+
     transform:translate(-50%,-50%);
+
     pointer-events:auto;
-    border:2px solid rgba(255,255,255,.95);
-    box-shadow:
-        0 0 20px rgba(255,255,255,.7),
-        0 10px 35px rgba(120,40,75,.2);
-    border-radius:4px;
+
+    border:2px solid rgba(255,255,255,.98);
+
+    border-radius:5px;
+
     overflow:hidden;
-    background:rgba(255,255,255,.08);
+
+    background:rgba(255,255,255,.04);
+
+    box-shadow:
+        0 0 20px rgba(255,255,255,.8),
+        0 12px 35px rgba(100,35,65,.18);
 }
+
 
 #regionGrid.visible{
     display:grid;
 }
 
+
 .region-cell{
+
     min-width:0;
     min-height:0;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
+
     text-align:center;
+
     padding:5px;
-    color:#fff;
-    background:rgba(116,37,61,.17);
-    border:1px solid rgba(255,255,255,.9);
+
+    color:white;
+
+    background:
+        rgba(120,35,58,.13);
+
+    border:1px solid rgba(255,255,255,.95);
+
     backdrop-filter:blur(2px);
+
     text-shadow:
-        0 1px 3px rgba(0,0,0,.65),
-        0 0 8px rgba(0,0,0,.4);
+        0 1px 4px rgba(0,0,0,.7),
+        0 0 7px rgba(0,0,0,.5);
+
+    cursor:pointer;
+
     transition:.2s ease;
-    font-size:clamp(7px,1.2vw,12px);
+
+    font-size:
+        clamp(7px,1.15vw,12px);
+
     font-weight:800;
+
     line-height:1.15;
 }
 
+
 .region-cell:hover{
-    background:rgba(180,48,70,.5);
+    background:rgba(190,35,48,.5);
 }
 
+
 .region-cell.selected{
-    background:rgba(184,27,38,.72);
+
+    background:
+        rgba(185,28,39,.75);
+
     box-shadow:
         inset 0 0 0 2px white,
-        0 0 22px rgba(255,255,255,.9);
+        0 0 25px rgba(255,255,255,.9);
+
     animation:selectedRegion .7s ease;
 }
 
+
 @keyframes selectedRegion{
-    0%{
-        box-shadow:
-            inset 0 0 0 2px white,
-            0 0 0 rgba(255,255,255,0);
-    }
+
     40%{
         box-shadow:
             inset 0 0 0 3px white,
-            0 0 28px 8px rgba(255,255,255,.9);
-    }
-    100%{
-        box-shadow:
-            inset 0 0 0 2px white,
-            0 0 22px rgba(255,255,255,.9);
+            0 0 30px 8px rgba(255,255,255,.95);
     }
 }
+
 
 .region-number{
     display:block;
+
     font-size:9px;
+
     margin-bottom:2px;
-    opacity:.9;
 }
 
-/* =========================
-   REGION ACTION
-========================= */
+
+/* =========================================================
+   BOTÓN REGIONES
+========================================================= */
 
 .region-action{
+
     position:absolute;
-    z-index:20;
+
+    z-index:25;
+
     left:50%;
+
     bottom:55px;
+
     transform:translateX(-50%);
 }
 
+
 .region-action button{
-    padding:15px 23px;
+
+    padding:15px 24px;
+
     border-radius:999px;
-    background:rgba(255,255,255,.88);
+
+    background:rgba(255,255,255,.9);
+
     color:#7b2f4f;
+
     border:1px solid white;
-    box-shadow:0 10px 25px rgba(108,40,68,.15);
+
+    box-shadow:
+        0 10px 25px rgba(108,40,68,.15);
+
     font-weight:800;
+
+    cursor:pointer;
 }
 
-/* =========================
-   INFO BELOW
-========================= */
+
+/* =========================================================
+   HINT
+========================================================= */
+
+.controls-hint{
+
+    position:absolute;
+
+    z-index:15;
+
+    left:50%;
+    bottom:17px;
+
+    transform:translateX(-50%);
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.62);
+
+    border:1px solid rgba(255,255,255,.85);
+
+    backdrop-filter:blur(10px);
+
+    font-size:9px;
+
+    color:#84556a;
+
+    white-space:nowrap;
+}
+
+
+/* =========================================================
+   SECCIÓN REGIONES
+========================================================= */
 
 .info-section{
+
     width:min(1200px,94%);
-    margin:0 auto 45px;
+
+    margin:35px auto;
 }
 
+
 .section-card{
+
     padding:25px;
+
     border-radius:28px;
+
     background:rgba(255,255,255,.55);
+
     border:1px solid rgba(255,255,255,.9);
+
     box-shadow:var(--shadow);
+
     backdrop-filter:blur(16px);
 }
 
+
 .section-title{
+
     text-align:center;
+
     margin-bottom:20px;
 }
 
+
 .section-title h2{
+
     font-family:'DM Serif Display',serif;
-    color:#79324f;
+
     font-size:36px;
+
+    color:#79324f;
 }
+
 
 .section-title p{
-    font-size:12px;
+
+    font-size:11px;
+
     color:#866071;
-    margin-top:5px;
 }
 
+
 .region-list{
+
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+
+    grid-template-columns:
+        repeat(3,1fr);
+
     gap:10px;
 }
 
+
 .region-list button{
-    padding:15px;
-    border-radius:18px;
+
+    padding:14px;
+
+    border-radius:17px;
+
     background:rgba(255,255,255,.72);
+
     border:1px solid #f0d7e1;
+
     color:#71304c;
+
     font-weight:700;
-    transition:.2s;
+
+    cursor:pointer;
 }
 
-.region-list button:hover{
-    background:#fff;
-    transform:translateY(-2px);
-}
 
-/* =========================
+/* =========================================================
    MODAL
-========================= */
+========================================================= */
 
 .modal{
+
     position:fixed;
+
     inset:0;
-    z-index:100;
+
+    z-index:1000;
+
     display:none;
+
     align-items:center;
     justify-content:center;
+
     padding:20px;
-    background:rgba(63,27,42,.42);
+
+    background:rgba(63,27,42,.45);
+
     backdrop-filter:blur(10px);
 }
+
 
 .modal.open{
     display:flex;
 }
 
+
 .modal-card{
+
     position:relative;
+
     width:min(900px,100%);
+
     max-height:92vh;
+
     overflow:auto;
-    border-radius:32px;
+
     padding:28px;
+
+    border-radius:32px;
+
     background:
-        linear-gradient(145deg,rgba(255,255,255,.98),rgba(255,239,246,.98));
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.98),
+            rgba(255,239,246,.98)
+        );
+
     border:1px solid white;
+
     box-shadow:
-        0 30px 90px rgba(55,18,35,.3),
-        0 0 35px rgba(255,255,255,.45);
+        0 30px 90px rgba(55,18,35,.3);
 }
+
 
 .close{
+
     position:absolute;
+
     top:15px;
     right:15px;
+
     width:40px;
     height:40px;
+
     border-radius:50%;
-    background:#fff;
+
+    background:white;
+
     color:#8c3557;
+
     font-size:20px;
+
     font-weight:800;
-    box-shadow:0 6px 18px rgba(70,20,45,.12);
+
+    cursor:pointer;
 }
 
+
 .modal-number{
+
     color:#a44568;
-    font-size:11px;
+
+    font-size:10px;
+
     font-weight:800;
+
     letter-spacing:2px;
 }
 
+
 .modal-card h2{
-    margin:4px 50px 18px 0;
+
+    margin:5px 50px 18px 0;
+
     font-family:'DM Serif Display',serif;
+
     font-size:clamp(32px,5vw,52px);
+
     color:#7c2f50;
 }
 
+
 .modal-content{
+
     display:grid;
-    grid-template-columns:1fr 1.25fr;
+
+    grid-template-columns:
+        1fr 1.25fr;
+
     gap:24px;
 }
 
+
+/* =========================================================
+   ILUSTRACIÓN
+========================================================= */
+
 .anatomy-picture{
+
     min-height:330px;
+
     border-radius:24px;
+
     overflow:hidden;
+
     background:
-        radial-gradient(circle at 50% 40%,#fff,#f7dce7);
+        radial-gradient(
+            circle at 50% 40%,
+            #fff,
+            #f7dce7
+        );
+
     border:1px solid #f0d4df;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
+
     position:relative;
 }
 
+
 .anatomy-picture::before{
+
     content:"ANATOMÍA ABDOMINAL";
+
     position:absolute;
+
     top:14px;
     left:16px;
+
     font-size:9px;
+
     font-weight:800;
+
     letter-spacing:1.5px;
+
     color:#9d5974;
 }
 
+
 .abdomen-drawing{
+
     width:78%;
     height:78%;
+
     position:relative;
 }
 
-/* Ilustración simple, no órganos flotantes */
+
 .body-outline{
+
     position:absolute;
+
     left:50%;
     top:8%;
+
     transform:translateX(-50%);
+
     width:58%;
     height:84%;
-    border-radius:48% 48% 35% 35%;
+
+    border-radius:
+        48% 48% 35% 35%;
+
     background:
-        linear-gradient(90deg,
-            #e9a9a0 0 8%,
+        linear-gradient(
+            90deg,
+            #e6a59e 0 8%,
             #efbbb3 8% 92%,
-            #e9a9a0 92% 100%);
-    box-shadow:inset 0 0 18px rgba(130,55,55,.15);
+            #e6a59e 92% 100%
+        );
 }
 
+
 .abdomen-lines{
+
     position:absolute;
+
     left:50%;
     top:22%;
+
     transform:translateX(-50%);
+
     width:60%;
     height:55%;
-    border:2px solid rgba(255,255,255,.8);
+
+    border:2px solid rgba(255,255,255,.85);
 }
+
 
 .abdomen-lines::before,
 .abdomen-lines::after{
+
     content:"";
+
     position:absolute;
-    background:rgba(255,255,255,.8);
+
+    background:
+        rgba(255,255,255,.85);
 }
+
 
 .abdomen-lines::before{
+
     width:2px;
+
     height:100%;
+
     left:33.33%;
-    top:0;
-    box-shadow:calc(100% * 1) 0 rgba(255,255,255,.8);
 }
+
 
 .abdomen-lines::after{
+
     width:100%;
+
     height:2px;
+
     top:33.33%;
-    left:0;
-    box-shadow:0 calc(100% * 1) rgba(255,255,255,.8);
 }
+
+
+/* =========================================================
+   INFO
+========================================================= */
 
 .modal-info{
+
     display:flex;
+
     flex-direction:column;
-    gap:12px;
+
+    gap:11px;
 }
 
+
 .info-box{
-    padding:15px 17px;
+
+    padding:14px 16px;
+
     border-radius:18px;
-    background:rgba(255,255,255,.7);
+
+    background:rgba(255,255,255,.72);
+
     border:1px solid #f1dbe4;
 }
 
+
 .info-box h3{
+
     margin-bottom:5px;
+
     color:#a13d62;
-    font-size:11px;
+
+    font-size:10px;
+
     letter-spacing:1px;
+
     text-transform:uppercase;
 }
 
+
 .info-box p{
-    font-size:13px;
+
+    font-size:12px;
+
     line-height:1.65;
+
     color:#624553;
 }
 
+
+/* =========================================================
+   NAVEGACIÓN MODAL
+========================================================= */
+
 .modal-nav{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     gap:10px;
-    margin-top:22px;
+
+    margin-top:20px;
+
     padding-top:18px;
+
     border-top:1px solid #f0dce4;
 }
 
+
 .counter{
-    font-size:11px;
+
+    font-size:10px;
+
     font-weight:800;
+
     color:#976078;
 }
 
-/* =========================
+
+/* =========================================================
    FOOTER
-========================= */
+========================================================= */
 
 footer{
+
     width:min(1200px,94%);
-    margin:0 auto;
+
+    margin:auto;
+
     padding:25px;
+
     text-align:center;
+
     color:#956078;
-    font-size:11px;
+
+    font-size:10px;
 }
 
-/* =========================
+
+/* =========================================================
    RESPONSIVE
-========================= */
+========================================================= */
 
 @media(max-width:800px){
 
-    .header{
-        padding-top:18px;
+    .moon{
+        width:90px;
+        height:90px;
+        right:5%;
+        top:7%;
     }
 
-    .brand-text strong{
-        font-size:21px;
+    .moon::after{
+        width:88px;
+        height:88px;
+        left:25px;
     }
 
-    .hero{
-        padding:22px 16px;
+    .cover-content{
+        padding:40px 20px;
     }
 
-    .hero h1{
-        font-size:46px;
+    .cover-title{
+        font-size:60px;
     }
 
-    .viewer-card{
-        min-height:620px;
-        border-radius:25px;
+    .cover-name{
+        font-size:27px;
     }
 
+    .viewer-card,
     #viewer{
         min-height:620px;
     }
@@ -795,39 +1511,13 @@ footer{
         right:12px;
     }
 
-    .viewer-title .title-box{
-        padding:9px 12px;
-    }
-
-    .viewer-title strong{
-        font-size:11px;
-    }
-
-    .viewer-title span{
-        font-size:8px;
-    }
-
     .viewer-actions{
         max-width:145px;
     }
 
     .action-button{
-        font-size:9px;
-        padding:9px 10px;
-    }
-
-    .controls-hint{
-        bottom:15px;
         font-size:8px;
-    }
-
-    .region-action{
-        bottom:47px;
-    }
-
-    .region-action button{
-        font-size:10px;
-        padding:12px 15px;
+        padding:8px 9px;
     }
 
     .region-list{
@@ -864,20 +1554,19 @@ footer{
     }
 }
 
+
 @media(max-width:430px){
 
-    .brand-icon{
-        width:40px;
-        height:40px;
-        font-size:19px;
+    .cover-title{
+        font-size:50px;
     }
 
-    .brand-text small{
-        font-size:8px;
+    .cover-name{
+        font-size:23px;
     }
 
-    .brand-text strong{
-        font-size:18px;
+    .cover-area{
+        font-size:9px;
     }
 
     .viewer-card,
@@ -887,11 +1576,6 @@ footer{
 
     .viewer-actions{
         max-width:120px;
-    }
-
-    .action-button{
-        padding:7px 8px;
-        font-size:8px;
     }
 
     .region-cell{
@@ -905,21 +1589,97 @@ footer{
 </style>
 </head>
 
+
 <body>
+
+
+<!-- =======================================================
+     PORTADA
+======================================================== -->
+
+<section id="cover">
+
+    <div class="star">✦</div>
+    <div class="star">✧</div>
+    <div class="star">✦</div>
+    <div class="star">✧</div>
+    <div class="star">✦</div>
+    <div class="star">✧</div>
+    <div class="star">✦</div>
+    <div class="star">✧</div>
+
+    <div class="moon"></div>
+
+    <div class="castle"></div>
+
+
+    <div class="cover-content">
+
+        <div class="cover-crown">
+            ♕
+        </div>
+
+        <span class="cover-small">
+            ✨ PRAXIS · ANATOMÍA INTERACTIVA ✨
+        </span>
+
+        <h1 class="cover-title">
+            ABDOMEN<br>360°
+        </h1>
+
+        <div class="cover-line"></div>
+
+        <div class="cover-name">
+            Hislaine Changoluisa
+        </div>
+
+        <div class="cover-area">
+            ÁREA DE TANATOPRAXIA · PRAXIS
+        </div>
+
+        <p class="cover-description">
+            Una exploración interactiva del abdomen humano,
+            sus músculos y sus nueve regiones anatómicas.
+        </p>
+
+        <button
+            class="cover-button"
+            id="enterButton"
+        >
+            ✨ COMENZAR EXPLORACIÓN ✨
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     APP
+======================================================== -->
 
 <div id="app">
 
-    <!-- ================= HEADER ================= -->
 
     <header class="header">
 
         <div class="brand">
 
-            <div class="brand-icon">🫀</div>
+            <div class="brand-icon">
+                🫀
+            </div>
 
             <div class="brand-text">
-                <small>ANATOMÍA INTERACTIVA · PRAXIS</small>
-                <strong>Abdomen 360°</strong>
+
+                <small>
+                    ANATOMÍA INTERACTIVA · PRAXIS
+                </small>
+
+                <strong>
+                    Abdomen 360°
+                </strong>
+
             </div>
 
         </div>
@@ -927,47 +1687,72 @@ footer{
     </header>
 
 
-    <!-- ================= HERO ================= -->
+
+    <!-- HERO -->
 
     <section class="hero">
 
-        <span class="badge">✨ EXPLORACIÓN ANATÓMICA 3D</span>
+        <span class="badge">
+            ✨ EXPLORACIÓN ANATÓMICA 3D
+        </span>
 
-        <h1>ABDOMEN 360°</h1>
+        <h1>
+            ABDOMEN 360°
+        </h1>
 
         <p>
-            Explora el cuerpo humano en 3D, observa la anatomía muscular
-            y descubre las nueve regiones abdominales de una manera
-            diferente, interactiva y visual.
+            Explora el cuerpo humano en 3D, observa su anatomía
+            muscular y descubre las nueve regiones abdominales.
         </p>
 
-        <button class="main-button" id="startExplore">
+        <button
+            class="main-button"
+            id="startExplore"
+        >
             ✨ EXPLORAR ABDOMEN
         </button>
 
     </section>
 
 
-    <!-- ================= VIEWER ================= -->
+
+    <!-- ===================================================
+         VISOR 3D
+    ==================================================== -->
 
     <main class="main-area">
 
         <section class="viewer-card">
 
+
             <div class="viewer-title">
 
                 <div class="title-box">
-                    <strong>🧍 Vista anatómica 3D</strong>
-                    <span>Mueve, gira y acerca el cuerpo</span>
+
+                    <strong>
+                        🧍 Vista anatómica 3D
+                    </strong>
+
+                    <span>
+                        Mueve, gira y acerca el cuerpo
+                    </span>
+
                 </div>
+
 
                 <div class="viewer-actions">
 
-                    <button class="action-button" id="fullBodyBtn">
+                    <button
+                        class="action-button"
+                        id="fullBodyBtn"
+                    >
                         🧍 CUERPO COMPLETO
                     </button>
 
-                    <button class="action-button" id="muscleBtn">
+                    <button
+                        class="action-button"
+                        id="muscleBtn"
+                    >
                         🔴 MÚSCULOS
                     </button>
 
@@ -976,87 +1761,137 @@ footer{
             </div>
 
 
+
             <div id="viewer">
 
-                <div class="loading" id="loading">
+
+                <div
+                    class="loading"
+                    id="loading"
+                >
 
                     <div class="spinner"></div>
 
-                    <strong>Cargando anatomía 3D...</strong>
+                    <strong>
+                        Cargando anatomía 3D...
+                    </strong>
 
-                    <span>Preparando el cuerpo para la exploración ✨</span>
+                    <span>
+                        Preparando el cuerpo para la exploración ✨
+                    </span>
 
                 </div>
 
 
-                <!-- CUADRÍCULA ABDOMINAL -->
+
+                <!-- =================================================
+                     CUADRÍCULA 3 X 3
+                ================================================== -->
 
                 <div id="regionGrid">
 
-                    <button class="region-cell" data-region="0">
+
+                    <button
+                        class="region-cell"
+                        data-region="0"
+                    >
                         <span>
                             <span class="region-number">1</span>
                             HIPOCONDRIO<br>DERECHO
                         </span>
                     </button>
 
-                    <button class="region-cell" data-region="1">
+
+                    <button
+                        class="region-cell"
+                        data-region="1"
+                    >
                         <span>
                             <span class="region-number">2</span>
                             EPIGASTRIO
                         </span>
                     </button>
 
-                    <button class="region-cell" data-region="2">
+
+                    <button
+                        class="region-cell"
+                        data-region="2"
+                    >
                         <span>
                             <span class="region-number">3</span>
                             HIPOCONDRIO<br>IZQUIERDO
                         </span>
                     </button>
 
-                    <button class="region-cell" data-region="3">
+
+                    <button
+                        class="region-cell"
+                        data-region="3"
+                    >
                         <span>
                             <span class="region-number">4</span>
                             LUMBAR<br>DERECHA
                         </span>
                     </button>
 
-                    <button class="region-cell" data-region="4">
+
+                    <button
+                        class="region-cell"
+                        data-region="4"
+                    >
                         <span>
                             <span class="region-number">5</span>
                             REGIÓN<br>UMBILICAL
                         </span>
                     </button>
 
-                    <button class="region-cell" data-region="5">
+
+                    <button
+                        class="region-cell"
+                        data-region="5"
+                    >
                         <span>
                             <span class="region-number">6</span>
                             LUMBAR<br>IZQUIERDA
                         </span>
                     </button>
 
-                    <button class="region-cell" data-region="6">
+
+                    <button
+                        class="region-cell"
+                        data-region="6"
+                    >
                         <span>
                             <span class="region-number">7</span>
                             ILÍACA<br>DERECHA
                         </span>
                     </button>
 
-                    <button class="region-cell" data-region="7">
+
+                    <button
+                        class="region-cell"
+                        data-region="7"
+                    >
                         <span>
                             <span class="region-number">8</span>
                             HIPOGASTRIO
                         </span>
                     </button>
 
-                    <button class="region-cell" data-region="8">
+
+                    <button
+                        class="region-cell"
+                        data-region="8"
+                    >
                         <span>
                             <span class="region-number">9</span>
                             ILÍACA<br>IZQUIERDA
                         </span>
                     </button>
 
+
                 </div>
+
 
 
                 <div class="region-action">
@@ -1067,6 +1902,7 @@ footer{
 
                 </div>
 
+
             </div>
 
 
@@ -1074,12 +1910,16 @@ footer{
                 🖱️ Arrastra para girar · Rueda para acercar/alejar
             </div>
 
+
         </section>
 
     </main>
 
 
-    <!-- ================= REGION LIST ================= -->
+
+    <!-- ===================================================
+         LISTA DE REGIONES
+    ==================================================== -->
 
     <section class="info-section">
 
@@ -1087,10 +1927,12 @@ footer{
 
             <div class="section-title">
 
-                <h2>Las 9 regiones abdominales</h2>
+                <h2>
+                    Las 9 regiones abdominales
+                </h2>
 
                 <p>
-                    También puedes seleccionar directamente una región.
+                    Selecciona una región para conocerla.
                 </p>
 
             </div>
@@ -1141,27 +1983,43 @@ footer{
     </section>
 
 
-    <!-- ================= MODAL ================= -->
 
-    <div class="modal" id="regionModal">
+    <!-- ===================================================
+         MODAL
+    ==================================================== -->
+
+    <div
+        class="modal"
+        id="regionModal"
+    >
 
         <div class="modal-card">
 
-            <button class="close" id="closeModal">×</button>
 
-            <div class="modal-number" id="modalNumber">
+            <button
+                class="close"
+                id="closeModal"
+            >
+                ×
+            </button>
+
+
+            <div
+                class="modal-number"
+                id="modalNumber"
+            >
                 REGIÓN 1 DE 9
             </div>
+
 
             <h2 id="modalTitle">
                 Hipocondrio derecho
             </h2>
 
 
+
             <div class="modal-content">
 
-
-                <!-- ILUSTRACIÓN -->
 
                 <div class="anatomy-picture">
 
@@ -1176,13 +2034,15 @@ footer{
                 </div>
 
 
-                <!-- INFORMACIÓN -->
 
                 <div class="modal-info">
 
+
                     <div class="info-box">
 
-                        <h3>📍 Ubicación</h3>
+                        <h3>
+                            📍 Ubicación
+                        </h3>
 
                         <p id="modalLocation"></p>
 
@@ -1191,7 +2051,9 @@ footer{
 
                     <div class="info-box">
 
-                        <h3>🫀 Órganos y estructuras</h3>
+                        <h3>
+                            🫀 Órganos y estructuras
+                        </h3>
 
                         <p id="modalOrgans"></p>
 
@@ -1200,7 +2062,9 @@ footer{
 
                     <div class="info-box">
 
-                        <h3>⚙️ Función</h3>
+                        <h3>
+                            ⚙️ Función
+                        </h3>
 
                         <p id="modalFunction"></p>
 
@@ -1209,7 +2073,9 @@ footer{
 
                     <div class="info-box">
 
-                        <h3>📚 Importancia</h3>
+                        <h3>
+                            📚 Importancia
+                        </h3>
 
                         <p id="modalImportance"></p>
 
@@ -1218,48 +2084,67 @@ footer{
 
                     <div class="info-box">
 
-                        <h3>✨ Dato interesante</h3>
+                        <h3>
+                            ✨ Dato interesante
+                        </h3>
 
                         <p id="modalFact"></p>
 
                     </div>
+
 
                 </div>
 
             </div>
 
 
-            <!-- NAVEGACIÓN -->
 
             <div class="modal-nav">
 
-                <button class="nav-button" id="prevRegion">
+                <button
+                    class="nav-button"
+                    id="prevRegion"
+                >
                     ← Anterior
                 </button>
 
-                <span class="counter" id="regionCounter">
+
+                <span
+                    class="counter"
+                    id="regionCounter"
+                >
                     1 / 9
                 </span>
 
-                <button class="nav-button" id="nextRegion">
+
+                <button
+                    class="nav-button"
+                    id="nextRegion"
+                >
                     Siguiente →
                 </button>
 
             </div>
+
 
         </div>
 
     </div>
 
 
+
     <footer>
         ✨ Trabajo realizado por Hislaine Changoluisa · Praxis · Anatomía Interactiva ✨
     </footer>
 
+
 </div>
 
 
-<!-- ================= THREE.JS ================= -->
+
+<!-- =======================================================
+     THREE.JS
+======================================================== -->
 
 <script type="importmap">
 {
@@ -1275,130 +2160,177 @@ footer{
 
 import * as THREE from "three";
 
-import { GLTFLoader }
-from "three/addons/loaders/GLTFLoader.js";
+import {
+    GLTFLoader
+} from "three/addons/loaders/GLTFLoader.js";
 
-import { DRACOLoader }
-from "three/addons/loaders/DRACOLoader.js";
+import {
+    DRACOLoader
+} from "three/addons/loaders/DRACOLoader.js";
 
-import { OrbitControls }
-from "three/addons/controls/OrbitControls.js";
+import {
+    OrbitControls
+} from "three/addons/controls/OrbitControls.js";
+
+
+
+/* =========================================================
+   PORTADA
+========================================================= */
+
+const cover =
+    document.getElementById("cover");
+
+const enterButton =
+    document.getElementById("enterButton");
+
+const app =
+    document.getElementById("app");
+
+
+enterButton.addEventListener(
+    "click",
+    () => {
+
+        enterButton.classList.add("flash");
+
+        setTimeout(() => {
+
+            cover.classList.add("hidden");
+
+        },350);
+
+    }
+);
+
 
 
 /* =========================================================
    ELEMENTOS
 ========================================================= */
 
-const viewer = document.getElementById("viewer");
+const viewer =
+    document.getElementById("viewer");
 
-const loading = document.getElementById("loading");
+const loading =
+    document.getElementById("loading");
 
-const regionGrid = document.getElementById("regionGrid");
+const regionGrid =
+    document.getElementById("regionGrid");
 
-const regionsBtn = document.getElementById("regionsBtn");
+const regionsBtn =
+    document.getElementById("regionsBtn");
 
-const fullBodyBtn = document.getElementById("fullBodyBtn");
+const fullBodyBtn =
+    document.getElementById("fullBodyBtn");
 
-const muscleBtn = document.getElementById("muscleBtn");
+const muscleBtn =
+    document.getElementById("muscleBtn");
 
-const startExplore = document.getElementById("startExplore");
+const startExplore =
+    document.getElementById("startExplore");
 
-
-/* =========================================================
-   ESCENA
-========================================================= */
-
-const scene = new THREE.Scene();
-
-scene.background = null;
-
-
-/* =========================================================
-   CÁMARA
-========================================================= */
-
-const camera = new THREE.PerspectiveCamera(
-    32,
-    viewer.clientWidth / viewer.clientHeight,
-    0.01,
-    100
-);
-
-camera.position.set(0,0,5);
 
 
 /* =========================================================
-   RENDERER
+   THREE ESCENA
 ========================================================= */
 
-const renderer = new THREE.WebGLRenderer({
-    antialias:true,
-    alpha:true
-});
+const scene =
+    new THREE.Scene();
+
+
+const camera =
+    new THREE.PerspectiveCamera(
+        32,
+        viewer.clientWidth /
+        viewer.clientHeight,
+        .01,
+        100
+    );
+
+
+const renderer =
+    new THREE.WebGLRenderer({
+        antialias:true,
+        alpha:true
+    });
+
 
 renderer.setPixelRatio(
-    Math.min(window.devicePixelRatio,2)
+    Math.min(
+        window.devicePixelRatio,
+        2
+    )
 );
+
 
 renderer.setSize(
     viewer.clientWidth,
     viewer.clientHeight
 );
 
-renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-viewer.appendChild(renderer.domElement);
+renderer.outputColorSpace =
+    THREE.SRGBColorSpace;
+
+
+viewer.appendChild(
+    renderer.domElement
+);
+
 
 
 /* =========================================================
    LUCES
 ========================================================= */
 
-const hemiLight = new THREE.HemisphereLight(
-    0xffffff,
-    0xe7b5c8,
-    2.5
+scene.add(
+    new THREE.HemisphereLight(
+        0xffffff,
+        0xe5b7c8,
+        2.5
+    )
 );
 
-scene.add(hemiLight);
 
-
-const keyLight = new THREE.DirectionalLight(
-    0xffffff,
-    3
-);
+const keyLight =
+    new THREE.DirectionalLight(
+        0xffffff,
+        3
+    );
 
 keyLight.position.set(
-    4,
-    6,
-    8
+    4,6,8
 );
 
 scene.add(keyLight);
 
 
-const fillLight = new THREE.DirectionalLight(
-    0xffdce9,
-    2
-);
+const fillLight =
+    new THREE.DirectionalLight(
+        0xffdce9,
+        2
+    );
 
 fillLight.position.set(
-    -5,
-    2,
-    5
+    -5,2,5
 );
 
 scene.add(fillLight);
+
 
 
 /* =========================================================
    CONTROLES
 ========================================================= */
 
-const controls = new OrbitControls(
-    camera,
-    renderer.domElement
-);
+const controls =
+    new OrbitControls(
+        camera,
+        renderer.domElement
+    );
+
 
 controls.enableDamping = true;
 
@@ -1406,27 +2338,37 @@ controls.dampingFactor = .07;
 
 controls.enablePan = false;
 
-controls.minDistance = .6;
+controls.minDistance = .5;
 
 controls.maxDistance = 15;
+
 
 
 /* =========================================================
    MODELO
 ========================================================= */
 
-const loader = new GLTFLoader();
+const loader =
+    new GLTFLoader();
 
-const dracoLoader = new DRACOLoader();
+
+const dracoLoader =
+    new DRACOLoader();
+
 
 dracoLoader.setDecoderPath(
     "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/libs/draco/"
 );
 
-loader.setDRACOLoader(dracoLoader);
+
+loader.setDRACOLoader(
+    dracoLoader
+);
 
 
-const MODEL_URL = "./models/models/body.glb";
+const MODEL_URL =
+    "./models/models/body.glb";
+
 
 let model = null;
 
@@ -1436,37 +2378,188 @@ let modelSize = null;
 
 let bodyWidth = 1;
 
-let abdomenTarget = new THREE.Vector3();
+let abdomenTarget =
+    new THREE.Vector3();
 
 let fullBodyDistance = 5;
 
 let abdomenDistance = 2;
 
 
+
 /* =========================================================
-   GUARDAR MATERIALES
+   CARGAR MODELO
 ========================================================= */
 
-const originalMaterials = [];
+loader.load(
+
+    MODEL_URL,
+
+    gltf => {
+
+        model = gltf.scene;
+
+
+        /* ===============================================
+           PRIMERO CALCULAMOS EL CENTRO DEL MODELO
+        =============================================== */
+
+        const originalBox =
+            new THREE.Box3()
+            .setFromObject(model);
+
+
+        const originalCenter =
+            originalBox.getCenter(
+                new THREE.Vector3()
+            );
+
+
+        const originalSize =
+            originalBox.getSize(
+                new THREE.Vector3()
+            );
+
+
+        bodyWidth =
+            originalSize.x;
+
+
+        /*
+          Centramos físicamente el cuerpo.
+
+          Esto permite que la cámara tenga siempre
+          el mismo centro independientemente de
+          la pantalla.
+        */
+
+        model.position.sub(
+            originalCenter
+        );
+
+
+        scene.add(model);
+
+
+
+        /* ===============================================
+           NUEVO BOX DESPUÉS DE CENTRAR
+        =============================================== */
+
+        modelBox =
+            new THREE.Box3()
+            .setFromObject(model);
+
+
+        modelSize =
+            modelBox.getSize(
+                new THREE.Vector3()
+            );
+
+
+
+        /* ===============================================
+           PUNTO ABDOMINAL
+        =============================================== */
+
+        /*
+          Este es el punto clave.
+
+          La cuadrícula NO usa el centro de la pantalla.
+
+          Usa una posición calculada desde los pies
+          hasta la zona abdominal del cuerpo.
+
+          Lo bajamos deliberadamente para evitar
+          que quede sobre el pecho.
+        */
+
+        const ABDOMEN_CENTER =
+            0.485;
+
+
+        abdomenTarget.set(
+
+            0,
+
+            modelBox.min.y +
+            modelSize.y *
+            ABDOMEN_CENTER,
+
+            0
+
+        );
+
+
+
+        /* ===============================================
+           MATERIALES
+        =============================================== */
+
+        prepareMuscles();
+
+
+
+        /* ===============================================
+           CÁMARA
+        =============================================== */
+
+        fitFullBody();
+
+
+        loading.classList.add(
+            "hidden"
+        );
+
+
+        updateRegionGrid();
+
+    },
+
+
+    undefined,
+
+
+    error => {
+
+        console.error(
+            "Error cargando body.glb:",
+            error
+        );
+
+
+        loading.innerHTML = `
+            <strong>No se pudo cargar el modelo 3D</strong>
+            <span>Revisa que exista models/models/body.glb</span>
+        `;
+
+    }
+
+);
+
+
+
+/* =========================================================
+   MÚSCULOS
+========================================================= */
 
 let muscleMeshes = [];
 
-let muscleMode = true;
+let originalMuscleColors = new Map();
 
-
-/* =========================================================
-   DETECTAR MÚSCULOS
-========================================================= */
 
 function isMuscleMesh(mesh){
 
     const name = (
         mesh.name +
         " " +
-        (mesh.parent ? mesh.parent.name : "")
+        (mesh.parent
+            ? mesh.parent.name
+            : "")
     ).toLowerCase();
 
-    const keywords = [
+
+    const words = [
 
         "muscle",
         "musculo",
@@ -1486,6 +2579,7 @@ function isMuscleMesh(mesh){
 
         "deltoid",
         "trapezius",
+
         "latissimus",
 
         "biceps",
@@ -1495,216 +2589,112 @@ function isMuscleMesh(mesh){
         "gluteus",
 
         "quadriceps",
+
         "femoral",
 
         "sartorius",
 
         "gastrocnemius",
 
-        "soleus",
+        "soleus"
 
-        "muscul"
     ];
 
-    return keywords.some(
-        word => name.includes(word)
+
+    return words.some(
+        word =>
+            name.includes(word)
     );
 }
 
 
-/* =========================================================
-   COLOR ROJO DE LOS MÚSCULOS
-========================================================= */
-
-function makeMusclesRed(){
+function prepareMuscles(){
 
     if(!model) return;
 
+
     muscleMeshes = [];
 
-    model.traverse(object => {
+    originalMuscleColors =
+        new Map();
 
-        if(!object.isMesh) return;
 
-        if(!object.material) return;
+    model.traverse(
+        object => {
 
-        if(Array.isArray(object.material)){
+            if(!object.isMesh)
+                return;
 
-            object.material.forEach(mat => {
 
-                originalMaterials.push({
-                    mesh:object,
-                    material:mat,
-                    color:mat.color
-                        ? mat.color.clone()
-                        : null
-                });
+            if(!object.material)
+                return;
 
-            });
 
-        }else{
+            if(
+                isMuscleMesh(object)
+            ){
 
-            originalMaterials.push({
-                mesh:object,
-                material:object.material,
-                color:object.material.color
-                    ? object.material.color.clone()
-                    : null
-            });
+                muscleMeshes.push(
+                    object
+                );
+
+
+                const materials =
+                    Array.isArray(
+                        object.material
+                    )
+                    ? object.material
+                    : [object.material];
+
+
+                materials.forEach(
+                    material => {
+
+                        if(material.color){
+
+                            originalMuscleColors.set(
+                                material,
+                                material.color.clone()
+                            );
+
+
+                            /*
+                              ROJO MUSCULAR
+                            */
+
+                            material.color.set(
+                                "#c62828"
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
 
         }
-
-
-        if(isMuscleMesh(object)){
-
-            muscleMeshes.push(object);
-
-            const materials = Array.isArray(object.material)
-                ? object.material
-                : [object.material];
-
-            materials.forEach(material => {
-
-                if(material.color){
-
-                    material.color.set("#c62828");
-
-                }
-
-                if("roughness" in material){
-
-                    material.roughness = .72;
-
-                }
-
-            });
-
-        }
-
-    });
-
-
-    /*
-      Si el archivo no tiene nombres de músculos reconocibles,
-      dejamos el modelo original para no convertir huesos,
-      piel u otras estructuras accidentalmente en rojo.
-    */
+    );
 
 }
 
 
-/* =========================================================
-   CARGAR MODELO
-========================================================= */
-
-loader.load(
-
-    MODEL_URL,
-
-    gltf => {
-
-        model = gltf.scene;
-
-        scene.add(model);
-
-
-        /* Guardar dimensiones reales */
-
-        modelBox = new THREE.Box3()
-            .setFromObject(model);
-
-        modelSize =
-            modelBox.getSize(
-                new THREE.Vector3()
-            );
-
-        bodyWidth = modelSize.x;
-
-
-        /*
-          CENTRO DEL ABDOMEN
-
-          Este punto está calculado sobre la altura real
-          del cuerpo. Se coloca más abajo que el centro
-          del torso para evitar que la cuadrícula quede
-          sobre el pecho.
-        */
-
-        const ABDOMEN_HEIGHT_RATIO = 0.505;
-
-        abdomenTarget.set(
-
-            (modelBox.min.x + modelBox.max.x) / 2,
-
-            modelBox.min.y +
-            modelSize.y * ABDOMEN_HEIGHT_RATIO,
-
-            (modelBox.min.z + modelBox.max.z) / 2
-
-        );
-
-
-        /* Centrar modelo */
-
-        const center =
-            modelBox.getCenter(
-                new THREE.Vector3()
-            );
-
-        model.position.sub(center);
-
-
-        /*
-          Como movimos el modelo, actualizamos
-          nuevamente el punto abdominal.
-        */
-
-        abdomenTarget.sub(center);
-
-
-        /* Materiales musculares */
-
-        makeMusclesRed();
-
-
-        /* Ajustar cámara */
-
-        fitFullBody();
-
-
-        loading.classList.add("hidden");
-
-
-        updateRegionGrid();
-
-    },
-
-    undefined,
-
-    error => {
-
-        console.error(
-            "Error cargando body.glb:",
-            error
-        );
-
-        loading.innerHTML = `
-            <strong>No se pudo cargar el modelo 3D</strong>
-            <span>Revisa que exista: models/models/body.glb</span>
-        `;
-
-    }
-
-);
-
 
 /* =========================================================
-   AJUSTAR CUERPO COMPLETO
+   CUERPO COMPLETO
 ========================================================= */
 
 function fitFullBody(){
 
-    if(!model || !modelSize) return;
+    if(!model || !modelSize)
+        return;
+
+
+    controls.enableRotate = true;
+
+    controls.enableZoom = true;
+
+    controls.enablePan = false;
 
 
     const aspect =
@@ -1720,31 +2710,32 @@ function fitFullBody(){
 
     const verticalDistance =
         (modelSize.y * .52) /
-        Math.tan(fov / 2);
+        Math.tan(
+            fov / 2
+        );
 
 
     const horizontalFov =
-        2 * Math.atan(
-            Math.tan(fov / 2) * aspect
+        2 *
+        Math.atan(
+            Math.tan(fov / 2) *
+            aspect
         );
 
 
     const horizontalDistance =
         (modelSize.x * .52) /
-        Math.tan(horizontalFov / 2);
+        Math.tan(
+            horizontalFov / 2
+        );
 
 
     fullBodyDistance =
         Math.max(
             verticalDistance,
             horizontalDistance
-        ) * 1.18;
+        ) * 1.2;
 
-
-    /*
-      En teléfonos dejamos un poco más de espacio
-      para que no se corte la cabeza ni los pies.
-    */
 
     if(aspect < .75){
 
@@ -1766,9 +2757,11 @@ function fitFullBody(){
         0
     );
 
+
     controls.update();
 
 }
+
 
 
 /* =========================================================
@@ -1777,22 +2770,48 @@ function fitFullBody(){
 
 function zoomToAbdomen(){
 
-    if(!model || !modelSize) return;
-
-
-    controls.enableRotate = false;
+    if(!model || !modelSize)
+        return;
 
 
     /*
-      La distancia depende del ancho real del cuerpo,
-      así la cámara funciona también en celular.
+      IMPORTANTE:
+
+      Una vez que entramos a regiones:
+
+      - el cuerpo NO gira
+      - no se desplaza
+      - no hace zoom
+      - la cuadrícula queda inmóvil
+      - todo queda centrado en el abdomen
     */
 
+    controls.enableRotate = false;
+
+    controls.enableZoom = false;
+
+    controls.enablePan = false;
+
+
+    const aspect =
+        viewer.clientWidth /
+        viewer.clientHeight;
+
+
+    /*
+      Distancia calculada usando el ancho real
+      del abdomen/cuerpo.
+    */
+
+    const widthFactor =
+        aspect < .75
+        ? 1.48
+        : 1.35;
+
+
     abdomenDistance =
-        Math.max(
-            bodyWidth * 1.65,
-            modelSize.y * .28
-        );
+        bodyWidth *
+        widthFactor;
 
 
     const target =
@@ -1800,22 +2819,34 @@ function zoomToAbdomen(){
 
 
     camera.position.set(
+
         target.x,
+
         target.y,
-        target.z + abdomenDistance
+
+        target.z +
+        abdomenDistance
+
     );
 
 
-    controls.target.copy(target);
+    controls.target.copy(
+        target
+    );
+
 
     controls.update();
 
 
-    regionGrid.classList.add("visible");
+    regionGrid.classList.add(
+        "visible"
+    );
+
 
     updateRegionGrid();
 
 }
+
 
 
 /* =========================================================
@@ -1824,40 +2855,55 @@ function zoomToAbdomen(){
 
 function returnToFullBody(){
 
-    regionGrid.classList.remove("visible");
+    regionGrid.classList.remove(
+        "visible"
+    );
 
-    controls.enableRotate = true;
 
     fitFullBody();
 
 }
 
 
+
 /* =========================================================
-   POSICIÓN DE LA CUADRÍCULA
+   POSICIONAR CUADRÍCULA
 ========================================================= */
 
 function updateRegionGrid(){
 
-    if(!model || !modelSize) return;
+    if(
+        !model ||
+        !modelSize ||
+        !regionGrid.classList.contains(
+            "visible"
+        )
+    ){
 
-    if(!regionGrid.classList.contains("visible"))
         return;
+
+    }
 
 
     /*
-      RECTÁNGULO ANATÓMICO
+      La cuadrícula representa la zona
+      abdominal completa.
 
-      Se calcula proporcionalmente al cuerpo real.
-      De esta manera la cuadrícula crece y disminuye
-      con el modelo y queda centrada en el abdomen.
+      3 columnas:
+      derecha - centro - izquierda
+
+      3 filas:
+      superior - media - inferior
     */
 
     const halfWidth =
-        bodyWidth * .255;
+        bodyWidth *
+        .27;
+
 
     const halfHeight =
-        modelSize.y * .125;
+        modelSize.y *
+        .115;
 
 
     const center =
@@ -1888,105 +2934,128 @@ function updateRegionGrid(){
     bottom.y -= halfHeight;
 
 
-    const points = [
-        left,
-        right,
-        top,
-        bottom
-    ];
-
-
     const rect =
         viewer.getBoundingClientRect();
 
 
-    const projected =
-        points.map(point => {
-
-            const p =
-                point.clone().project(camera);
-
-            return {
-
-                x:(p.x * .5 + .5) * rect.width,
-
-                y:(-p.y * .5 + .5) * rect.height
-
-            };
-
-        });
+    const projectedLeft =
+        left.clone().project(camera);
 
 
-    const width =
+    const projectedRight =
+        right.clone().project(camera);
+
+
+    const projectedTop =
+        top.clone().project(camera);
+
+
+    const projectedBottom =
+        bottom.clone().project(camera);
+
+
+    const screenLeft =
+        (projectedLeft.x * .5 + .5)
+        * rect.width;
+
+
+    const screenRight =
+        (projectedRight.x * .5 + .5)
+        * rect.width;
+
+
+    const screenTop =
+        (-projectedTop.y * .5 + .5)
+        * rect.height;
+
+
+    const screenBottom =
+        (-projectedBottom.y * .5 + .5)
+        * rect.height;
+
+
+    /*
+      Tamaño real proyectado.
+    */
+
+    let gridWidth =
         Math.abs(
-            projected[1].x -
-            projected[0].x
+            screenRight -
+            screenLeft
+        ) * 1.04;
+
+
+    let gridHeight =
+        Math.abs(
+            screenBottom -
+            screenTop
+        ) * 1.04;
+
+
+    /*
+      Límites para pantallas pequeñas.
+    */
+
+    gridWidth =
+        Math.max(
+            175,
+            Math.min(
+                gridWidth,
+                rect.width * .78
+            )
         );
 
 
-    const height =
-        Math.abs(
-            projected[3].y -
-            projected[2].y
+    gridHeight =
+        Math.max(
+            205,
+            Math.min(
+                gridHeight,
+                rect.height * .65
+            )
         );
 
 
     /*
-      Limitamos únicamente para que en pantallas
-      extremas no desaparezca.
+      EL CENTRO ES EXACTAMENTE EL
+      PUNTO ABDOMINAL DEL CUERPO.
     */
 
-    const finalWidth =
-        Math.max(
-            175,
-            Math.min(
-                width * 1.04,
-                rect.width * .76
-            )
-        );
-
-
-    const finalHeight =
-        Math.max(
-            205,
-            Math.min(
-                height * 1.04,
-                rect.height * .62
-            )
-        );
-
-
-    const c =
+    const projectedCenter =
         center.clone().project(camera);
 
 
     const screenX =
-        (c.x * .5 + .5) *
-        rect.width;
+        (projectedCenter.x * .5 + .5)
+        * rect.width;
 
 
     const screenY =
-        (-c.y * .5 + .5) *
-        rect.height;
+        (-projectedCenter.y * .5 + .5)
+        * rect.height;
 
 
     regionGrid.style.left =
         screenX + "px";
 
+
     regionGrid.style.top =
         screenY + "px";
 
+
     regionGrid.style.width =
-        finalWidth + "px";
+        gridWidth + "px";
+
 
     regionGrid.style.height =
-        finalHeight + "px";
+        gridHeight + "px";
 
 }
 
 
+
 /* =========================================================
-   BOTÓN REGIONES
+   BOTONES DE EXPLORACIÓN
 ========================================================= */
 
 regionsBtn.addEventListener(
@@ -1995,27 +3064,16 @@ regionsBtn.addEventListener(
 
         zoomToAbdomen();
 
-        regionsBtn.classList.add("flash");
-
-        setTimeout(() => {
-
-            regionsBtn.classList.remove("flash");
-
-        },650);
-
     }
 );
 
-
-/* =========================================================
-   BOTÓN EXPLORAR DEL HERO
-========================================================= */
 
 startExplore.addEventListener(
     "click",
     () => {
 
         zoomToAbdomen();
+
 
         document
             .querySelector(".viewer-card")
@@ -2028,10 +3086,6 @@ startExplore.addEventListener(
 );
 
 
-/* =========================================================
-   CUERPO COMPLETO
-========================================================= */
-
 fullBodyBtn.addEventListener(
     "click",
     () => {
@@ -2042,69 +3096,79 @@ fullBodyBtn.addEventListener(
 );
 
 
+
 /* =========================================================
    MÚSCULOS
 ========================================================= */
+
+let musclesVisible = true;
+
 
 muscleBtn.addEventListener(
     "click",
     () => {
 
-        muscleMode = !muscleMode;
+        musclesVisible =
+            !musclesVisible;
 
-        if(muscleMode){
 
-            makeMusclesRed();
-
-            muscleBtn.textContent =
-                "🔴 MÚSCULOS";
-
-        }else{
-
-            /*
-              Restauramos solamente materiales que
-              hayan sido detectados como músculos.
-            */
-
-            muscleMeshes.forEach(mesh => {
+        muscleMeshes.forEach(
+            mesh => {
 
                 const materials =
-                    Array.isArray(mesh.material)
+                    Array.isArray(
+                        mesh.material
+                    )
                     ? mesh.material
                     : [mesh.material];
 
-                materials.forEach(material => {
 
-                    const original =
-                        originalMaterials.find(
-                            item =>
-                                item.mesh === mesh &&
-                                item.material === material
-                        );
+                materials.forEach(
+                    material => {
 
-                    if(
-                        original &&
-                        original.color &&
-                        material.color
-                    ){
+                        if(!material.color)
+                            return;
 
-                        material.color.copy(
-                            original.color
-                        );
+
+                        if(musclesVisible){
+
+                            material.color.set(
+                                "#c62828"
+                            );
+
+                        }else{
+
+                            const original =
+                                originalMuscleColors.get(
+                                    material
+                                );
+
+
+                            if(original){
+
+                                material.color.copy(
+                                    original
+                                );
+
+                            }
+
+                        }
 
                     }
+                );
 
-                });
+            }
+        );
 
-            });
 
-            muscleBtn.textContent =
-                "✨ MOSTRAR MÚSCULOS";
-
-        }
+        muscleBtn.textContent =
+            musclesVisible
+            ? "🔴 MÚSCULOS"
+            : "✨ MOSTRAR MÚSCULOS";
 
     }
 );
+
 
 
 /* =========================================================
@@ -2113,195 +3177,197 @@ muscleBtn.addEventListener(
 
 const regions = [
 
-    {
+{
 
-        name:"Hipocondrio derecho",
+name:"Hipocondrio derecho",
 
-        location:
-        "Se encuentra en la parte superior derecha del abdomen, justo debajo de las costillas.",
+location:
+"Está en la parte superior derecha del abdomen, debajo de las costillas.",
 
-        organs:
-        "Principalmente contiene el lóbulo derecho del hígado y la vesícula biliar. También pueden proyectarse hacia esta región el riñón derecho, el duodeno y una parte del colon.",
+organs:
+"Principalmente se encuentran el hígado, especialmente su lóbulo derecho, y la vesícula biliar. También pueden proyectarse el riñón derecho, el duodeno y parte del colon.",
 
-        function:
-        "Está relacionada con órganos que participan en la digestión, el procesamiento de nutrientes y la producción y almacenamiento de la bilis.",
+function:
+"Se relaciona con órganos que participan en la digestión, el procesamiento de nutrientes y la producción y almacenamiento de bilis.",
 
-        importance:
-        "Es una zona importante porque reúne estructuras del sistema digestivo y parte del sistema urinario.",
+importance:
+"Es una zona importante porque reúne estructuras del sistema digestivo y parte del sistema urinario.",
 
-        fact:
-        "El hígado ocupa una gran parte de la zona superior derecha del abdomen y se extiende hacia la región epigástrica."
-    },
+fact:
+"El hígado ocupa una gran parte de la zona superior derecha del abdomen y también se extiende hacia el centro."
 
+},
 
-    {
+{
 
-        name:"Epigastrio",
+name:"Epigastrio",
 
-        location:
-        "Es la región central superior del abdomen, situada entre los dos hipocondrios y debajo del esternón.",
+location:
+"Es la región central superior del abdomen, debajo del esternón y entre los dos hipocondrios.",
 
-        organs:
-        "Puede contener gran parte del estómago, el duodeno, parte del páncreas y una porción del hígado.",
+organs:
+"Puede contener parte del estómago, duodeno, páncreas y una porción del hígado.",
 
-        function:
-        "Está relacionada principalmente con la digestión y con procesos como la mezcla, descomposición y absorción inicial de los alimentos.",
+function:
+"Está relacionada principalmente con la digestión y con el procesamiento inicial de los alimentos.",
 
-        importance:
-        "Es una región central para el estudio del aparato digestivo porque varias estructuras importantes se proyectan sobre ella.",
+importance:
+"Es una región central para localizar varias estructuras importantes del aparato digestivo.",
 
-        fact:
-        "El nombre epigastrio significa literalmente una zona situada sobre el estómago."
-    },
+fact:
+"El término epigastrio hace referencia a la zona situada sobre el estómago."
 
+},
 
-    {
+{
 
-        name:"Hipocondrio izquierdo",
+name:"Hipocondrio izquierdo",
 
-        location:
-        "Se encuentra en la parte superior izquierda del abdomen, debajo de las costillas.",
+location:
+"Se encuentra en la parte superior izquierda del abdomen, debajo de las costillas.",
 
-        organs:
-        "Principalmente se encuentran el bazo y parte del estómago. También pueden proyectarse el extremo del páncreas, el riñón izquierdo y parte del colon.",
+organs:
+"Principalmente se encuentra el bazo y parte del estómago. También pueden proyectarse el extremo del páncreas, el riñón izquierdo y parte del colon.",
 
-        function:
-        "Participa indirectamente en funciones digestivas y también incluye estructuras relacionadas con la sangre y el sistema inmunitario.",
+function:
+"Está relacionado con funciones digestivas y con estructuras que participan en el sistema inmunitario y el manejo de células sanguíneas.",
 
-        importance:
-        "Es importante porque contiene el bazo, órgano que participa en la defensa del organismo y en el manejo de células sanguíneas.",
+importance:
+"Es importante porque contiene el bazo y parte de estructuras digestivas.",
 
-        fact:
-        "El bazo está protegido en gran parte por las costillas izquierdas."
-    },
+fact:
+"El bazo se encuentra protegido en gran parte por las costillas izquierdas."
 
+},
 
-    {
+{
 
-        name:"Región lumbar derecha",
+name:"Región lumbar derecha",
 
-        location:
-        "Está en la parte media derecha del abdomen, entre el hipocondrio derecho y la región ilíaca derecha.",
+location:
+"Está en la zona media derecha del abdomen, entre el hipocondrio derecho y la región ilíaca derecha.",
 
-        organs:
-        "Puede contener el riñón derecho, el colon ascendente y diferentes asas del intestino delgado.",
+organs:
+"Puede contener el riñón derecho, el colon ascendente y asas del intestino delgado.",
 
-        function:
-        "Se relaciona con funciones digestivas y con la función del sistema urinario por la presencia del riñón derecho.",
+function:
+"Se relaciona con funciones urinarias y digestivas.",
 
-        importance:
-        "Permite ubicar anatómicamente estructuras del intestino y del sistema urinario.",
+importance:
+"Permite localizar estructuras del sistema urinario y del intestino grueso.",
 
-        fact:
-        "El colon ascendente recorre esta zona mientras asciende desde el ciego hacia el colon transverso."
-    },
+fact:
+"El colon ascendente recorre esta región antes de continuar hacia el colon transverso."
 
+},
 
-    {
+{
 
-        name:"Región umbilical",
+name:"Región umbilical",
 
-        location:
-        "Es la región central del abdomen y se encuentra alrededor del ombligo.",
+location:
+"Es la región central del abdomen y se encuentra alrededor del ombligo.",
 
-        organs:
-        "Contiene principalmente asas del intestino delgado y puede incluir parte del colon transverso y otras estructuras digestivas.",
+organs:
+"Contiene principalmente asas del intestino delgado y puede incluir parte del colon transverso y otras estructuras digestivas.",
 
-        function:
-        "Está muy relacionada con la digestión y el tránsito del contenido intestinal.",
+function:
+"Está relacionada principalmente con la digestión y el tránsito del contenido intestinal.",
 
-        importance:
-        "Es una referencia anatómica central que ayuda a dividir y localizar las demás regiones abdominales.",
+importance:
+"Es una referencia anatómica central para ubicar las demás regiones del abdomen.",
 
-        fact:
-        "El ombligo se utiliza como punto de referencia para muchas descripciones anatómicas del abdomen."
-    },
+fact:
+"El ombligo es uno de los principales puntos de referencia utilizados para dividir anatómicamente el abdomen."
 
+},
 
-    {
+{
 
-        name:"Región lumbar izquierda",
+name:"Región lumbar izquierda",
 
-        location:
-        "Se encuentra en la parte media izquierda del abdomen, entre el hipocondrio izquierdo y la región ilíaca izquierda.",
+location:
+"Se encuentra en la zona media izquierda del abdomen, entre el hipocondrio izquierdo y la región ilíaca izquierda.",
 
-        organs:
-        "Puede contener el riñón izquierdo, el colon descendente y asas del intestino delgado.",
+organs:
+"Puede contener el riñón izquierdo, el colon descendente y asas del intestino delgado.",
 
-        function:
-        "Está relacionada con la función urinaria y con el movimiento del contenido intestinal hacia las regiones inferiores del colon.",
+function:
+"Se relaciona con la función urinaria y con el tránsito del contenido intestinal.",
 
-        importance:
-        "Ayuda a localizar estructuras del sistema digestivo y urinario del lado izquierdo.",
+importance:
+"Permite localizar estructuras importantes del sistema digestivo y urinario del lado izquierdo.",
 
-        fact:
-        "El colon descendente atraviesa esta zona antes de continuar hacia el colon sigmoide."
-    },
+fact:
+"El colon descendente pasa por esta región antes de continuar hacia el colon sigmoide."
 
+},
 
-    {
+{
 
-        name:"Región ilíaca derecha",
+name:"Región ilíaca derecha",
 
-        location:
-        "Se encuentra en la parte inferior derecha del abdomen, cerca de la pelvis.",
+location:
+"Se encuentra en la parte inferior derecha del abdomen, cerca de la pelvis.",
 
-        organs:
-        "Principalmente contiene el ciego y el apéndice, además de parte del íleon y otras asas intestinales.",
+organs:
+"Principalmente contiene el ciego y el apéndice, además de parte del íleon y asas intestinales.",
 
-        function:
-        "Está relacionada con la llegada del contenido del intestino delgado al intestino grueso.",
+function:
+"Está relacionada con la llegada del contenido del intestino delgado al intestino grueso.",
 
-        importance:
-        "Es una zona anatómica importante para ubicar el inicio del intestino grueso y el apéndice.",
+importance:
+"Es una zona importante para localizar el inicio del intestino grueso y el apéndice.",
 
-        fact:
-        "El apéndice está unido al ciego, que es la primera porción del intestino grueso."
-    },
+fact:
+"El apéndice está unido al ciego, que es la primera porción del intestino grueso."
 
+},
 
-    {
+{
 
-        name:"Hipogastrio",
+name:"Hipogastrio",
 
-        location:
-        "Es la región central inferior del abdomen, situada por encima de la pelvis.",
+location:
+"Es la región central inferior del abdomen, situada por encima de la pelvis.",
 
-        organs:
-        "Puede contener asas del intestino delgado y, dependiendo de su llenado, la vejiga urinaria. También pueden proyectarse por esta zona partes del intestino grueso y órganos reproductores pélvicos.",
+organs:
+"Puede contener asas del intestino delgado y, cuando está llena, la vejiga urinaria. También pueden proyectarse partes del intestino grueso y órganos reproductores pélvicos.",
 
-        function:
-        "Está relacionada principalmente con funciones intestinales y urinarias, además de estructuras reproductoras situadas en la pelvis.",
+function:
+"Está relacionada con funciones intestinales y urinarias y con estructuras reproductoras situadas en la pelvis.",
 
-        importance:
-        "Es una región de transición entre el abdomen y la pelvis y permite localizar estructuras que se encuentran en la parte inferior del tronco.",
+importance:
+"Es una región de transición entre el abdomen y la pelvis.",
 
-        fact:
-        "Cuando la vejiga está llena puede ascender desde la pelvis y proyectarse hacia el hipogastrio."
-    },
+fact:
+"Cuando la vejiga se llena puede ascender desde la pelvis y proyectarse hacia el hipogastrio."
 
+},
 
-    {
+{
 
-        name:"Región ilíaca izquierda",
+name:"Región ilíaca izquierda",
 
-        location:
-        "Se encuentra en la parte inferior izquierda del abdomen, cerca de la pelvis.",
+location:
+"Se encuentra en la parte inferior izquierda del abdomen, cerca de la pelvis.",
 
-        organs:
-        "Contiene principalmente el colon sigmoide y puede incluir asas del intestino delgado y estructuras relacionadas con el colon descendente.",
+organs:
+"Principalmente contiene el colon sigmoide y puede incluir asas del intestino delgado y parte del colon descendente.",
 
-        function:
-        "Está relacionada con el desplazamiento y almacenamiento temporal del contenido intestinal antes de llegar al recto.",
+function:
+"Está relacionada con el desplazamiento y almacenamiento temporal del contenido intestinal antes de llegar al recto.",
 
-        importance:
-        "Es importante para ubicar la porción final del colon antes del recto.",
+importance:
+"Es importante para ubicar la porción final del colon antes del recto.",
 
-        fact:
-        "El colon sigmoide tiene una forma curva y conecta el colon descendente con el recto."
-    }
+fact:
+"El colon sigmoide tiene una forma curva y conecta el colon descendente con el recto."
+
+}
 
 ];
+
 
 
 /* =========================================================
@@ -2309,43 +3375,79 @@ const regions = [
 ========================================================= */
 
 const modal =
-    document.getElementById("regionModal");
+    document.getElementById(
+        "regionModal"
+    );
+
 
 const modalTitle =
-    document.getElementById("modalTitle");
+    document.getElementById(
+        "modalTitle"
+    );
+
 
 const modalNumber =
-    document.getElementById("modalNumber");
+    document.getElementById(
+        "modalNumber"
+    );
+
 
 const modalLocation =
-    document.getElementById("modalLocation");
+    document.getElementById(
+        "modalLocation"
+    );
+
 
 const modalOrgans =
-    document.getElementById("modalOrgans");
+    document.getElementById(
+        "modalOrgans"
+    );
+
 
 const modalFunction =
-    document.getElementById("modalFunction");
+    document.getElementById(
+        "modalFunction"
+    );
+
 
 const modalImportance =
-    document.getElementById("modalImportance");
+    document.getElementById(
+        "modalImportance"
+    );
+
 
 const modalFact =
-    document.getElementById("modalFact");
+    document.getElementById(
+        "modalFact"
+    );
+
 
 const regionCounter =
-    document.getElementById("regionCounter");
+    document.getElementById(
+        "regionCounter"
+    );
+
 
 const closeModal =
-    document.getElementById("closeModal");
+    document.getElementById(
+        "closeModal"
+    );
+
 
 const prevRegion =
-    document.getElementById("prevRegion");
+    document.getElementById(
+        "prevRegion"
+    );
+
 
 const nextRegion =
-    document.getElementById("nextRegion");
+    document.getElementById(
+        "nextRegion"
+    );
 
 
 let currentRegion = 0;
+
 
 
 /* =========================================================
@@ -2355,8 +3457,8 @@ let currentRegion = 0;
 function showRegion(index){
 
     currentRegion =
-        (index + regions.length) %
-        regions.length;
+        (index + regions.length)
+        % regions.length;
 
 
     const region =
@@ -2396,74 +3498,89 @@ function showRegion(index){
 
 
     document
-        .querySelectorAll(".region-cell")
-        .forEach((cell,i)=>{
+        .querySelectorAll(
+            ".region-cell"
+        )
+        .forEach(
+            (cell,i) => {
 
-            cell.classList.toggle(
-                "selected",
-                i === currentRegion
-            );
+                cell.classList.toggle(
+                    "selected",
+                    i === currentRegion
+                );
 
-        });
+            }
+        );
 
 
-    modal.classList.add("open");
+    modal.classList.add(
+        "open"
+    );
 
 }
 
 
+
 /* =========================================================
-   ABRIR DESDE CUADRÍCULA
+   GRID
 ========================================================= */
 
 document
-    .querySelectorAll(".region-cell")
-    .forEach(cell => {
+    .querySelectorAll(
+        ".region-cell"
+    )
+    .forEach(
+        cell => {
 
-        cell.addEventListener(
-            "click",
-            () => {
+            cell.addEventListener(
+                "click",
+                () => {
 
-                const index =
-                    Number(
-                        cell.dataset.region
+                    showRegion(
+                        Number(
+                            cell.dataset.region
+                        )
                     );
 
-                showRegion(index);
+                }
+            );
 
-            }
-        );
+        }
+    );
 
-    });
 
 
 /* =========================================================
-   ABRIR DESDE LISTA
+   LISTA
 ========================================================= */
 
 document
-    .querySelectorAll("[data-list-region]")
-    .forEach(button => {
+    .querySelectorAll(
+        "[data-list-region]"
+    )
+    .forEach(
+        button => {
 
-        button.addEventListener(
-            "click",
-            () => {
+            button.addEventListener(
+                "click",
+                () => {
 
-                const index =
-                    Number(
-                        button.dataset.listRegion
+                    showRegion(
+                        Number(
+                            button.dataset.listRegion
+                        )
                     );
 
-                showRegion(index);
+                }
+            );
 
-            }
-        );
+        }
+    );
 
-    });
 
 
 /* =========================================================
-   NAVEGACIÓN
+   ANTERIOR / SIGUIENTE
 ========================================================= */
 
 prevRegion.addEventListener(
@@ -2490,6 +3607,7 @@ nextRegion.addEventListener(
 );
 
 
+
 /* =========================================================
    CERRAR
 ========================================================= */
@@ -2498,7 +3616,9 @@ closeModal.addEventListener(
     "click",
     () => {
 
-        modal.classList.remove("open");
+        modal.classList.remove(
+            "open"
+        );
 
     }
 );
@@ -2508,27 +3628,31 @@ modal.addEventListener(
     "click",
     event => {
 
-        if(event.target === modal){
+        if(
+            event.target === modal
+        ){
 
-            modal.classList.remove("open");
+            modal.classList.remove(
+                "open"
+            );
 
         }
 
     }
 );
 
-
-/* =========================================================
-   ESC
-========================================================= */
 
 document.addEventListener(
     "keydown",
     event => {
 
-        if(event.key === "Escape"){
+        if(
+            event.key === "Escape"
+        ){
 
-            modal.classList.remove("open");
+            modal.classList.remove(
+                "open"
+            );
 
         }
 
@@ -2536,8 +3660,9 @@ document.addEventListener(
 );
 
 
+
 /* =========================================================
-   DESTELLO EN TODOS LOS BOTONES
+   DESTELLO GENERAL
 ========================================================= */
 
 document.addEventListener(
@@ -2545,20 +3670,36 @@ document.addEventListener(
     event => {
 
         const button =
-            event.target.closest("button");
+            event.target.closest(
+                "button"
+            );
 
-        if(!button) return;
+
+        if(!button)
+            return;
 
 
-        button.classList.remove("flash");
+        button.classList.remove(
+            "flash"
+        );
+
 
         void button.offsetWidth;
 
-        button.classList.add("flash");
+
+        button.classList.add(
+            "flash"
+        );
 
 
         setTimeout(
-            () => button.classList.remove("flash"),
+            () => {
+
+                button.classList.remove(
+                    "flash"
+                );
+
+            },
             650
         );
 
@@ -2566,57 +3707,79 @@ document.addEventListener(
 );
 
 
+
 /* =========================================================
-   RESPONSIVE
+   RESIZE
 ========================================================= */
 
 const resizeObserver =
-    new ResizeObserver(() => {
+    new ResizeObserver(
+        () => {
 
-        if(!viewer) return;
-
-        const width =
-            viewer.clientWidth;
-
-        const height =
-            viewer.clientHeight;
+            if(!viewer)
+                return;
 
 
-        if(width === 0 || height === 0)
-            return;
+            const width =
+                viewer.clientWidth;
 
 
-        camera.aspect =
-            width / height;
-
-        camera.updateProjectionMatrix();
+            const height =
+                viewer.clientHeight;
 
 
-        renderer.setSize(
-            width,
-            height,
-            false
-        );
-
-
-        if(
-            !regionGrid.classList.contains(
-                "visible"
+            if(
+                width === 0 ||
+                height === 0
             )
-        ){
+                return;
 
-            fitFullBody();
 
-        }else{
+            camera.aspect =
+                width / height;
 
-            updateRegionGrid();
+
+            camera.updateProjectionMatrix();
+
+
+            renderer.setSize(
+                width,
+                height,
+                false
+            );
+
+
+            if(
+                regionGrid.classList
+                    .contains("visible")
+            ){
+
+                /*
+                  En regiones NO modificamos
+                  cámara ni zoom.
+
+                  Solo recalculamos la posición
+                  visual de la cuadrícula para
+                  mantenerla exactamente sobre
+                  el mismo punto del abdomen.
+                */
+
+                updateRegionGrid();
+
+            }else{
+
+                fitFullBody();
+
+            }
 
         }
+    );
 
-    });
 
+resizeObserver.observe(
+    viewer
+);
 
-resizeObserver.observe(viewer);
 
 
 /* =========================================================
@@ -2625,15 +3788,23 @@ resizeObserver.observe(viewer);
 
 function animate(){
 
-    requestAnimationFrame(animate);
+    requestAnimationFrame(
+        animate
+    );
+
 
     controls.update();
 
-    if(regionGrid.classList.contains("visible")){
+
+    if(
+        regionGrid.classList
+            .contains("visible")
+    ){
 
         updateRegionGrid();
 
     }
+
 
     renderer.render(
         scene,
@@ -2641,6 +3812,7 @@ function animate(){
     );
 
 }
+
 
 animate();
 
