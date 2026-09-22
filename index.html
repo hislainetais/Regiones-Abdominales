@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,14 +11,30 @@
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Montserrat:wght@400;500;600;700;800&display=swap');
 
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
 :root{
-  --rosa:#b74370;
-  --rosa-claro:#f7d9e7;
-  --rosa-suave:#fff3f8;
-  --vino:#762c4e;
-  --dorado:#e9c875;
+
+  --rosa:#b83f6d;
+  --rosa2:#d96f99;
+  --rosa-claro:#f8dce9;
+  --rosa-suave:#fff5fa;
+
+  --vino:#752d4d;
+
+  --dorado:#e9c978;
+
   --blanco:#ffffff;
+
 }
+
+
+/* =====================================================
+   GENERAL
+===================================================== */
 
 *{
   box-sizing:border-box;
@@ -28,68 +45,136 @@ html{
 }
 
 body{
+
   margin:0;
+
   min-height:100vh;
+
   overflow-x:hidden;
+
   font-family:'Montserrat',sans-serif;
+
   color:var(--vino);
 
   background:
+
     radial-gradient(
-      circle at 10% 10%,
-      rgba(255,255,255,.98),
-      transparent 25%
+      circle at 15% 15%,
+      rgba(255,255,255,.95),
+      transparent 28%
     ),
+
     radial-gradient(
-      circle at 90% 15%,
-      rgba(245,190,216,.65),
-      transparent 30%
+      circle at 85% 20%,
+      rgba(232,180,213,.7),
+      transparent 32%
     ),
+
     radial-gradient(
-      circle at 50% 90%,
-      rgba(218,165,199,.45),
-      transparent 35%
+      circle at 50% 100%,
+      rgba(214,158,193,.55),
+      transparent 40%
     ),
+
     linear-gradient(
       135deg,
       #fffaff,
-      #f9e5ef,
-      #efd0e2
+      #f8e2ed,
+      #e9cde0
     );
+
 }
 
+
 /* =====================================================
-   ESTRELLAS
+   ESTRELLITAS
 ===================================================== */
 
 .stars{
+
   position:fixed;
+
   inset:0;
+
   pointer-events:none;
+
   overflow:hidden;
-  z-index:0;
+
+  z-index:1;
+
 }
 
 .stars span{
+
   position:absolute;
+
   color:white;
-  font-size:14px;
-  opacity:.7;
-  animation:brillar 3s infinite ease-in-out;
+
+  text-shadow:
+    0 0 10px white,
+    0 0 22px #e7b5d2;
+
+  animation:
+    sparkle 3.5s infinite ease-in-out;
+
 }
 
-.stars span:nth-child(1){left:8%;top:14%}
-.stars span:nth-child(2){left:20%;top:73%;animation-delay:.7s}
-.stars span:nth-child(3){left:32%;top:10%;animation-delay:1.5s}
-.stars span:nth-child(4){left:48%;top:85%;animation-delay:2s}
-.stars span:nth-child(5){left:63%;top:17%;animation-delay:.4s}
-.stars span:nth-child(6){left:77%;top:67%;animation-delay:1.3s}
-.stars span:nth-child(7){left:91%;top:25%;animation-delay:2.2s}
-.stars span:nth-child(8){left:86%;top:87%;animation-delay:.9s}
-.stars span:nth-child(9){left:13%;top:45%;animation-delay:1.8s}
-.stars span:nth-child(10){left:57%;top:32%;animation-delay:.3s}
+.stars span:nth-child(1){
+  top:12%;
+  left:8%;
+  font-size:18px;
+}
 
-@keyframes brillar{
+.stars span:nth-child(2){
+  top:25%;
+  left:22%;
+  font-size:12px;
+  animation-delay:.7s;
+}
+
+.stars span:nth-child(3){
+  top:9%;
+  right:20%;
+  font-size:24px;
+  animation-delay:1.2s;
+}
+
+.stars span:nth-child(4){
+  top:42%;
+  right:8%;
+  font-size:13px;
+  animation-delay:1.8s;
+}
+
+.stars span:nth-child(5){
+  bottom:20%;
+  left:12%;
+  font-size:25px;
+  animation-delay:.5s;
+}
+
+.stars span:nth-child(6){
+  bottom:10%;
+  right:18%;
+  font-size:16px;
+  animation-delay:1.5s;
+}
+
+.stars span:nth-child(7){
+  top:62%;
+  left:30%;
+  font-size:11px;
+  animation-delay:2s;
+}
+
+.stars span:nth-child(8){
+  top:75%;
+  right:35%;
+  font-size:22px;
+  animation-delay:.8s;
+}
+
+@keyframes sparkle{
 
   0%,100%{
     opacity:.25;
@@ -98,127 +183,113 @@ body{
 
   50%{
     opacity:1;
-    transform:scale(1.35);
+    transform:scale(1.3);
   }
 
 }
 
 
 /* =====================================================
-   CONTENEDOR
+   PORTADA
 ===================================================== */
 
-.app{
-  position:relative;
-  z-index:1;
+#cover{
 
-  width:min(1180px,94%);
-  margin:auto;
+  position:fixed;
 
-  padding:24px 0 40px;
-}
+  inset:0;
 
+  z-index:200;
 
-/* =====================================================
-   CABECERA
-===================================================== */
-
-.topbar{
   display:flex;
+
   align-items:center;
-  gap:14px;
 
-  margin-bottom:18px;
-}
+  justify-content:center;
 
-.logo{
-  width:52px;
-  height:52px;
+  padding:25px;
 
-  display:grid;
-  place-items:center;
+  transition:
+    opacity .8s ease,
+    visibility .8s ease;
 
-  border-radius:18px;
-
-  background:rgba(255,255,255,.8);
-
-  box-shadow:
-    0 10px 25px rgba(100,35,65,.12);
-
-  font-size:25px;
-}
-
-.brand-small{
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:2px;
-  color:var(--rosa);
-}
-
-.brand-title{
-  font-family:'DM Serif Display',serif;
-  font-size:25px;
 }
 
 
-/* =====================================================
-   PORTADA AURORA
-===================================================== */
+/* cuando entra a la página */
 
-.cover{
+#cover.hidden{
+
+  opacity:0;
+
+  visibility:hidden;
+
+  pointer-events:none;
+
+}
+
+
+.cover-box{
+
   position:relative;
 
-  min-height:570px;
+  width:min(850px,94vw);
+
+  min-height:620px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
 
   overflow:hidden;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
   text-align:center;
 
-  border-radius:34px;
-
-  margin-bottom:22px;
+  border-radius:42px;
 
   background:
 
     radial-gradient(
-      ellipse at 20% 25%,
+      ellipse at 20% 20%,
       rgba(255,255,255,.98),
-      transparent 32%
+      transparent 35%
     ),
 
     radial-gradient(
       ellipse at 80% 20%,
-      rgba(229,179,215,.75),
+      rgba(235,190,220,.85),
       transparent 35%
     ),
 
     radial-gradient(
       ellipse at 50% 100%,
-      rgba(203,143,182,.45),
-      transparent 48%
+      rgba(202,142,181,.45),
+      transparent 45%
     ),
 
     linear-gradient(
       135deg,
       #fffaff,
-      #f8e0ee 50%,
-      #e9c7df
+      #f9e2ef,
+      #e9c7dd
     );
 
-  border:1px solid rgba(255,255,255,.95);
+  border:
+    1px solid rgba(255,255,255,.95);
 
   box-shadow:
-    0 30px 80px rgba(113,40,76,.18);
+    0 35px 100px
+    rgba(105,35,70,.22);
+
 }
 
 
-/* brillo tipo cuento */
+/* brillo */
 
-.cover::before{
+.cover-box::before{
+
   content:"";
 
   position:absolute;
@@ -226,20 +297,22 @@ body{
   width:600px;
   height:600px;
 
-  left:-220px;
-  bottom:-300px;
+  left:-300px;
+  bottom:-350px;
 
   border-radius:50%;
 
   background:
     radial-gradient(
       circle,
-      rgba(255,255,255,.8),
-      transparent 65%
+      rgba(255,255,255,.9),
+      transparent 68%
     );
+
 }
 
-.cover::after{
+.cover-box::after{
+
   content:"";
 
   position:absolute;
@@ -247,104 +320,152 @@ body{
   width:500px;
   height:500px;
 
-  right:-200px;
-  top:-250px;
+  right:-250px;
+  top:-300px;
 
   border-radius:50%;
 
   background:
     radial-gradient(
       circle,
-      rgba(255,255,255,.7),
-      transparent 65%
+      rgba(255,255,255,.75),
+      transparent 68%
     );
+
 }
 
 
-/* decoración */
+/* decoración Aurora */
 
-.aurora-stars{
+.aurora{
+
   position:absolute;
+
   inset:0;
+
   pointer-events:none;
+
 }
 
-.aurora-stars span{
+.aurora span{
+
   position:absolute;
+
   color:white;
+
   text-shadow:
     0 0 12px white,
-    0 0 25px #e6b9d5;
+    0 0 30px #e6b5d2;
 
-  animation:flotar 4s infinite ease-in-out;
+  animation:
+    floatStar 4s infinite ease-in-out;
+
 }
 
-.aurora-stars span:nth-child(1){
+.aurora span:nth-child(1){
   top:15%;
-  left:18%;
-  font-size:27px;
+  left:15%;
+  font-size:31px;
 }
 
-.aurora-stars span:nth-child(2){
-  top:28%;
+.aurora span:nth-child(2){
+  top:22%;
   right:18%;
   font-size:18px;
   animation-delay:1s;
 }
 
-.aurora-stars span:nth-child(3){
-  bottom:20%;
-  left:25%;
-  font-size:16px;
-  animation-delay:1.8s;
+.aurora span:nth-child(3){
+  bottom:22%;
+  left:20%;
+  font-size:20px;
+  animation-delay:1.5s;
 }
 
-.aurora-stars span:nth-child(4){
-  bottom:25%;
-  right:23%;
-  font-size:28px;
+.aurora span:nth-child(4){
+  bottom:17%;
+  right:17%;
+  font-size:31px;
   animation-delay:.5s;
 }
 
-.aurora-stars span:nth-child(5){
+.aurora span:nth-child(5){
   top:12%;
   left:50%;
   font-size:12px;
   animation-delay:2s;
 }
 
-@keyframes flotar{
+@keyframes floatStar{
 
   0%,100%{
-    transform:translateY(0) scale(.9);
+    transform:
+      translateY(0)
+      scale(.85);
+
     opacity:.45;
   }
 
   50%{
-    transform:translateY(-12px) scale(1.2);
+    transform:
+      translateY(-13px)
+      scale(1.2);
+
     opacity:1;
   }
 
 }
 
 
-/* contenido portada */
+/* contenido */
 
 .cover-content{
-  position:relative;
-  z-index:3;
 
-  width:min(750px,90%);
+  position:relative;
+
+  z-index:5;
+
+  width:min(650px,88%);
+
 }
 
-.cover-badge{
+
+.cover-icon{
+
+  width:75px;
+
+  height:75px;
+
+  margin:0 auto 18px;
+
+  display:grid;
+
+  place-items:center;
+
+  border-radius:25px;
+
+  background:
+    rgba(255,255,255,.7);
+
+  box-shadow:
+    0 10px 30px
+    rgba(120,45,80,.12);
+
+  font-size:35px;
+
+}
+
+
+.cover-small{
+
   display:inline-block;
 
-  padding:10px 19px;
+  padding:9px 18px;
 
   border-radius:999px;
 
-  background:rgba(255,255,255,.75);
+  background:
+    rgba(255,255,255,.72);
 
   color:var(--rosa);
 
@@ -352,82 +473,87 @@ body{
 
   font-weight:800;
 
-  letter-spacing:1.7px;
+  letter-spacing:2px;
 
-  box-shadow:
-    0 8px 20px rgba(100,40,70,.08);
 }
 
-.cover h1{
+
+.cover-title{
+
   margin:25px 0 12px;
 
-  font-family:'DM Serif Display',serif;
+  font-family:
+    'DM Serif Display',
+    serif;
 
   font-size:
-    clamp(55px,8vw,92px);
+    clamp(58px,9vw,94px);
 
-  line-height:.95;
+  line-height:.92;
 
-  color:#7d2e51;
+  color:#7c2c4f;
 
   text-shadow:
-    0 3px 15px rgba(255,255,255,.8);
+    0 4px 18px
+    rgba(255,255,255,.9);
+
 }
 
-.cover-description{
-  max-width:620px;
 
-  margin:0 auto 26px;
+.cover-text{
 
-  color:#8d687b;
+  max-width:580px;
 
-  font-size:14px;
+  margin:0 auto 27px;
+
+  color:#906c7e;
+
+  font-size:13px;
 
   line-height:1.8;
+
 }
 
 
-/*
-  IMPORTANTE:
-  El nombre y el área NO están gigantes.
-*/
-
 .cover-name{
-  font-family:'DM Serif Display',serif;
+
+  margin-top:20px;
+
+  font-family:
+    'DM Serif Display',
+    serif;
 
   font-size:23px;
 
-  color:#843254;
+  color:#843354;
 
-  margin-top:20px;
 }
 
+
 .cover-area{
-  margin-top:5px;
 
-  color:#9b7085;
+  margin-top:6px;
 
-  font-size:11px;
+  color:#9c7286;
+
+  font-size:10px;
 
   font-weight:700;
 
-  letter-spacing:1.2px;
+  letter-spacing:1.4px;
+
 }
 
 
 /* =====================================================
-   BOTONES
+   BOTÓN PRINCIPAL
 ===================================================== */
 
-button{
-  font-family:'Montserrat',sans-serif;
-  cursor:pointer;
-}
-
 .main-button{
+
   border:none;
 
-  padding:15px 28px;
+  padding:15px 30px;
 
   border-radius:999px;
 
@@ -437,55 +563,249 @@ button{
     linear-gradient(
       135deg,
       #a83b67,
-      #ca6088
+      #ca628b
     );
 
-  font-size:12px;
+  font-family:
+    'Montserrat',
+    sans-serif;
+
+  font-size:11px;
 
   font-weight:800;
 
-  box-shadow:
-    0 12px 30px rgba(139,45,83,.25);
+  letter-spacing:.3px;
 
-  transition:.25s;
+  cursor:pointer;
+
+  box-shadow:
+    0 12px 30px
+    rgba(135,42,79,.25);
+
+  transition:
+    transform .25s ease;
+
 }
+
 
 .main-button:hover{
-  transform:translateY(-2px);
+
+  transform:
+    translateY(-3px);
+
 }
 
 
-/* DESTELLO */
+/* =====================================================
+   DESTELLO BLANCO / DORADO
+===================================================== */
 
 .flash{
+
   animation:
-    destello .65s ease;
+    buttonFlash .65s ease;
+
 }
 
-@keyframes destello{
+@keyframes buttonFlash{
 
   0%{
+
     box-shadow:
-      0 0 0 0 rgba(255,255,255,0);
+      0 12px 30px
+      rgba(135,42,79,.25);
+
   }
 
   35%{
+
     box-shadow:
+
       0 0 0 4px white,
-      0 0 20px 7px rgba(255,224,146,.95),
-      0 0 45px 12px rgba(255,255,255,.7);
+
+      0 0 18px 7px
+      rgba(255,222,143,.95),
+
+      0 0 45px 12px
+      rgba(255,255,255,.85);
+
   }
 
   70%{
+
     box-shadow:
+
       0 0 0 2px white,
-      0 0 25px rgba(255,220,140,.75);
+
+      0 0 25px
+      rgba(255,220,140,.75);
+
   }
 
   100%{
+
     box-shadow:
-      0 12px 30px rgba(139,45,83,.25);
+      0 12px 30px
+      rgba(135,42,79,.25);
+
   }
+
+}
+
+
+/* =====================================================
+   PÁGINA PRINCIPAL
+===================================================== */
+
+#mainPage{
+
+  position:relative;
+
+  z-index:10;
+
+  width:min(1180px,94%);
+
+  margin:auto;
+
+  padding:25px 0 35px;
+
+  opacity:0;
+
+  visibility:hidden;
+
+  transition:
+    opacity .8s ease;
+
+}
+
+
+#mainPage.show{
+
+  opacity:1;
+
+  visibility:visible;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.topbar{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:13px;
+
+  margin-bottom:20px;
+
+}
+
+
+.logo{
+
+  width:52px;
+
+  height:52px;
+
+  display:grid;
+
+  place-items:center;
+
+  border-radius:18px;
+
+  background:
+    rgba(255,255,255,.78);
+
+  box-shadow:
+    0 10px 25px
+    rgba(100,35,65,.12);
+
+  font-size:25px;
+
+}
+
+
+.brand-small{
+
+  color:var(--rosa);
+
+  font-size:9px;
+
+  font-weight:800;
+
+  letter-spacing:2px;
+
+}
+
+
+.brand-title{
+
+  font-family:
+    'DM Serif Display',
+    serif;
+
+  font-size:25px;
+
+}
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+.intro{
+
+  padding:30px 20px;
+
+  margin-bottom:20px;
+
+  border-radius:30px;
+
+  text-align:center;
+
+  background:
+    rgba(255,250,253,.82);
+
+  border:1px solid white;
+
+  box-shadow:
+    0 20px 60px
+    rgba(100,35,65,.12);
+
+}
+
+
+.intro h1{
+
+  margin:0;
+
+  font-family:
+    'DM Serif Display',
+    serif;
+
+  font-size:
+    clamp(40px,6vw,65px);
+
+  color:#7b2c4f;
+
+}
+
+
+.intro p{
+
+  margin:10px auto 20px;
+
+  max-width:650px;
+
+  color:#927184;
+
+  font-size:12px;
+
+  line-height:1.7;
 
 }
 
@@ -502,7 +822,7 @@ button{
 
   overflow:hidden;
 
-  border-radius:32px;
+  border-radius:34px;
 
   margin-bottom:22px;
 
@@ -511,35 +831,46 @@ button{
     radial-gradient(
       circle at 50% 35%,
       rgba(255,255,255,.98),
-      transparent 48%
+      transparent 50%
     ),
 
     linear-gradient(
       145deg,
       #fffafd,
-      #f7dce9
+      #f5d9e7
     );
 
   border:1px solid white;
 
   box-shadow:
-    0 25px 70px rgba(110,38,70,.17);
+    0 25px 70px
+    rgba(110,38,70,.17);
+
 }
+
 
 #viewer{
+
   position:absolute;
+
   inset:0;
+
 }
 
+
 #viewer canvas{
-  width:100%;
-  height:100%;
+
   display:block;
+
+  width:100%;
+
+  height:100%;
+
 }
 
 
 /* =====================================================
-   ETIQUETA
+   LABEL
 ===================================================== */
 
 .viewer-label{
@@ -549,26 +880,35 @@ button{
   z-index:15;
 
   top:20px;
+
   left:20px;
 
   padding:13px 17px;
 
   border-radius:18px;
 
-  background:rgba(255,255,255,.75);
+  background:
+    rgba(255,255,255,.78);
 
-  backdrop-filter:blur(12px);
+  backdrop-filter:
+    blur(12px);
+
 }
 
+
 .viewer-label strong{
+
   display:block;
 
   color:var(--rosa);
 
-  font-size:12px;
+  font-size:11px;
+
 }
 
+
 .viewer-label span{
+
   display:block;
 
   margin-top:5px;
@@ -576,6 +916,7 @@ button{
   color:#a3788c;
 
   font-size:9px;
+
 }
 
 
@@ -590,12 +931,15 @@ button{
   z-index:15;
 
   top:20px;
+
   right:20px;
 
   display:flex;
 
   gap:7px;
+
 }
+
 
 .layer-button{
 
@@ -605,25 +949,35 @@ button{
 
   border-radius:999px;
 
-  background:rgba(255,255,255,.82);
+  background:
+    rgba(255,255,255,.85);
 
   color:#7d3654;
+
+  font-family:
+    'Montserrat',
+    sans-serif;
 
   font-size:9px;
 
   font-weight:800;
+
+  cursor:pointer;
+
 }
+
 
 .layer-button.active{
 
   background:#a83d67;
 
   color:white;
+
 }
 
 
 /* =====================================================
-   LOADING
+   CARGANDO
 ===================================================== */
 
 .loading{
@@ -632,88 +986,100 @@ button{
 
   inset:0;
 
-  z-index:40;
+  z-index:50;
 
   display:flex;
 
   align-items:center;
+
   justify-content:center;
 
   flex-direction:column;
 
-  background:rgba(255,244,249,.85);
+  background:
+    rgba(255,245,250,.88);
 
-  backdrop-filter:blur(10px);
+  backdrop-filter:
+    blur(10px);
+
 }
+
 
 .loading.hidden{
+
   display:none;
+
 }
+
 
 .loading-icon{
+
   font-size:38px;
 
-  animation:pulso 1.3s infinite;
+  animation:
+    pulse 1.2s infinite;
+
 }
 
-@keyframes pulso{
+
+.loading p{
+
+  color:var(--rosa);
+
+  font-size:11px;
+
+  font-weight:700;
+
+}
+
+
+@keyframes pulse{
 
   0%,100%{
     transform:scale(.9);
   }
 
   50%{
-    transform:scale(1.1);
+    transform:scale(1.12);
   }
 
 }
 
-.loading p{
-  color:var(--rosa);
-
-  font-size:12px;
-
-  font-weight:700;
-}
-
 
 /* =====================================================
-   ⭐ CUADRÍCULA
+   CUADRÍCULA ABDOMINAL
 ===================================================== */
-
-/*
-   MUY IMPORTANTE:
-
-   La cuadrícula YA NO se coloca usando
-   una coordenada Y calculada.
-
-   Cuando entramos a regiones:
-   1. El cuerpo hace zoom.
-   2. El abdomen queda como centro de la cámara.
-   3. La cuadrícula se queda FIJA exactamente
-      en el centro de la pantalla.
-
-   Así no vuelve a terminar en pecho,
-   piernas o cintura.
-*/
 
 .region-grid{
 
   position:absolute;
 
-  z-index:25;
+  z-index:30;
 
   left:50%;
-  top:47%;
+
+  /*
+     ESTE ES EL PUNTO CENTRAL
+     DE LA CUADRÍCULA.
+
+     Se coloca un poquito por encima
+     del centro porque el abdomen está
+     ligeramente por encima del centro
+     visual del visor.
+  */
+
+  top:44%;
 
   transform:
     translate(-50%,-50%);
 
-  width:min(430px,39vw);
-  height:min(390px,55vh);
+  width:min(410px,39vw);
 
-  min-width:300px;
-  min-height:300px;
+  height:min(410px,56vh);
+
+  min-width:290px;
+
+  min-height:290px;
 
   display:grid;
 
@@ -728,18 +1094,19 @@ button{
   pointer-events:none;
 
   transition:
-    opacity .4s ease;
+    opacity .45s ease;
+
 }
+
 
 .region-grid.visible{
 
   opacity:1;
 
   pointer-events:auto;
+
 }
 
-
-/* celdas */
 
 .region-cell{
 
@@ -748,55 +1115,76 @@ button{
   display:flex;
 
   align-items:center;
+
   justify-content:center;
 
   text-align:center;
 
   padding:8px;
 
-  border:1px solid
-    rgba(255,255,255,.9);
+  border:
+    1px solid
+    rgba(255,255,255,.95);
 
   background:
-    rgba(179,43,67,.28);
+    rgba(184,42,61,.30);
 
   color:white;
 
-  font-size:11px;
+  font-family:
+    'Montserrat',
+    sans-serif;
+
+  font-size:10px;
 
   font-weight:900;
 
   text-shadow:
-    0 2px 5px rgba(60,5,20,.95);
+    0 2px 5px
+    rgba(50,0,10,.95);
 
-  transition:.2s;
+  cursor:pointer;
+
+  transition:
+    background .2s,
+    box-shadow .2s;
+
 }
+
 
 .region-cell:hover{
 
   background:
-    rgba(180,39,63,.5);
+    rgba(184,42,61,.5);
+
 }
+
 
 .region-cell.selected{
 
   background:
-    rgba(179,40,62,.6);
+    rgba(184,42,61,.62);
 
   box-shadow:
-    0 0 0 3px white,
-    0 0 28px
-    rgba(255,222,145,.95);
+
+    inset 0 0 0 2px white,
+
+    0 0 25px
+    rgba(255,220,140,.95);
+
 }
+
 
 .region-number{
 
   position:absolute;
 
-  top:7px;
-  left:9px;
+  top:6px;
+
+  left:8px;
 
   font-size:9px;
+
 }
 
 
@@ -808,20 +1196,23 @@ button{
 
   position:absolute;
 
-  z-index:30;
+  z-index:35;
 
   left:50%;
 
-  bottom:27px;
+  bottom:25px;
 
   transform:
     translateX(-50%);
 
   white-space:nowrap;
+
 }
 
 
-/* instrucciones */
+/* =====================================================
+   INSTRUCCIONES
+===================================================== */
 
 .instructions{
 
@@ -829,44 +1220,48 @@ button{
 
   z-index:15;
 
-  bottom:10px;
+  bottom:9px;
 
   left:50%;
 
   transform:
     translateX(-50%);
 
-  padding:7px 14px;
+  padding:6px 13px;
 
   border-radius:999px;
 
-  background:rgba(255,255,255,.7);
+  background:
+    rgba(255,255,255,.72);
 
   color:#9d7588;
 
   font-size:8px;
+
 }
 
 
 /* =====================================================
-   SECCIÓN 9 REGIONES
+   LISTA DE REGIONES
 ===================================================== */
 
 .regions-section{
 
-  padding:34px 22px;
+  padding:35px 22px;
 
   border-radius:32px;
 
   background:
-    rgba(255,249,252,.82);
+    rgba(255,249,252,.84);
 
   border:1px solid white;
 
   box-shadow:
     0 25px 70px
     rgba(110,38,70,.14);
+
 }
+
 
 .section-title{
 
@@ -874,12 +1269,16 @@ button{
 
   text-align:center;
 
-  font-family:'DM Serif Display',serif;
+  font-family:
+    'DM Serif Display',
+    serif;
 
   font-size:36px;
 
   color:#7d2d50;
+
 }
+
 
 .section-subtitle{
 
@@ -890,7 +1289,9 @@ button{
   color:#a17689;
 
   font-size:11px;
+
 }
+
 
 .regions-list{
 
@@ -900,11 +1301,14 @@ button{
     repeat(3,1fr);
 
   gap:10px;
+
 }
+
 
 .region-button{
 
-  border:1px solid
+  border:
+    1px solid
     rgba(219,159,186,.45);
 
   padding:13px 10px;
@@ -916,18 +1320,28 @@ button{
 
   color:#793653;
 
+  font-family:
+    'Montserrat',
+    sans-serif;
+
   font-size:11px;
 
   font-weight:700;
 
+  cursor:pointer;
+
   transition:.2s;
+
 }
+
 
 .region-button:hover{
 
-  transform:translateY(-2px);
+  transform:
+    translateY(-2px);
 
   background:white;
+
 }
 
 
@@ -941,24 +1355,31 @@ button{
 
   inset:0;
 
-  z-index:100;
+  z-index:300;
 
   display:none;
 
   align-items:center;
+
   justify-content:center;
 
   padding:20px;
 
   background:
-    rgba(69,23,43,.4);
+    rgba(69,23,43,.42);
 
-  backdrop-filter:blur(12px);
+  backdrop-filter:
+    blur(12px);
+
 }
+
 
 .modal.open{
+
   display:flex;
+
 }
+
 
 .modal-card{
 
@@ -980,21 +1401,26 @@ button{
       rgba(255,220,235,.85),
       transparent 35%
     ),
+
     #fffafd;
 
   box-shadow:
     0 30px 100px
     rgba(65,20,42,.3);
+
 }
+
 
 .close-modal{
 
   position:absolute;
 
   right:18px;
+
   top:18px;
 
   width:38px;
+
   height:38px;
 
   border:none;
@@ -1006,7 +1432,11 @@ button{
   color:var(--rosa);
 
   font-size:21px;
+
+  cursor:pointer;
+
 }
+
 
 .modal-number{
 
@@ -1017,18 +1447,24 @@ button{
   font-weight:800;
 
   letter-spacing:2px;
+
 }
+
 
 .modal-title{
 
   margin:5px 0 20px;
 
-  font-family:'DM Serif Display',serif;
+  font-family:
+    'DM Serif Display',
+    serif;
 
   font-size:38px;
 
   color:#7d2d50;
+
 }
+
 
 .modal-content{
 
@@ -1038,6 +1474,7 @@ button{
     280px 1fr;
 
   gap:25px;
+
 }
 
 
@@ -1050,6 +1487,7 @@ button{
   display:flex;
 
   align-items:center;
+
   justify-content:center;
 
   border-radius:24px;
@@ -1062,12 +1500,16 @@ button{
     );
 
   border:1px solid #efccdc;
+
 }
+
 
 .anatomy-picture svg{
 
   width:90%;
+
   height:90%;
+
 }
 
 
@@ -1078,7 +1520,9 @@ button{
   display:grid;
 
   gap:11px;
+
 }
+
 
 .info-item{
 
@@ -1089,9 +1533,12 @@ button{
   background:
     rgba(255,244,249,.82);
 
-  border:1px solid
+  border:
+    1px solid
     rgba(228,182,201,.4);
+
 }
+
 
 .info-item strong{
 
@@ -1104,7 +1551,9 @@ button{
   font-size:10px;
 
   letter-spacing:1px;
+
 }
+
 
 .info-item p{
 
@@ -1115,6 +1564,7 @@ button{
   font-size:12px;
 
   line-height:1.65;
+
 }
 
 
@@ -1129,11 +1579,14 @@ button{
   gap:10px;
 
   margin-top:25px;
+
 }
+
 
 .nav-button{
 
-  border:1px solid #e6bfd0;
+  border:
+    1px solid #e6bfd0;
 
   padding:12px 20px;
 
@@ -1143,8 +1596,16 @@ button{
 
   color:var(--rosa);
 
+  font-family:
+    'Montserrat',
+    sans-serif;
+
   font-weight:800;
+
+  cursor:pointer;
+
 }
+
 
 .nav-button.primary{
 
@@ -1156,6 +1617,7 @@ button{
       #a83d67,
       #c75c84
     );
+
 }
 
 
@@ -1172,34 +1634,40 @@ footer{
   color:#a4778b;
 
   font-size:10px;
+
 }
 
 
 /* =====================================================
-   CELULAR
+   TABLET
 ===================================================== */
 
 @media(max-width:800px){
 
-  .app{
+  #mainPage{
     width:95%;
   }
 
-  .cover{
-    min-height:530px;
+
+  .cover-box{
+    min-height:580px;
   }
+
 
   .viewer-card{
     height:630px;
   }
 
+
   .regions-list{
     grid-template-columns:1fr;
   }
 
+
   .modal-content{
     grid-template-columns:1fr;
   }
+
 
   .anatomy-picture{
     min-height:210px;
@@ -1209,186 +1677,340 @@ footer{
 
 
 /* =====================================================
-   CELULAR PEQUEÑO
+   CELULAR
 ===================================================== */
 
 @media(max-width:500px){
 
-  .cover{
-    min-height:500px;
-
-    border-radius:27px;
+  #cover{
+    padding:12px;
   }
 
-  .cover h1{
+
+  .cover-box{
+
+    min-height:560px;
+
+    border-radius:30px;
+
+  }
+
+
+  .cover-icon{
+
+    width:62px;
+
+    height:62px;
+
+    font-size:29px;
+
+  }
+
+
+  .cover-small{
+
+    font-size:8px;
+
+    letter-spacing:1.4px;
+
+  }
+
+
+  .cover-title{
+
     font-size:48px;
+
   }
 
-  .cover-description{
-    font-size:12px;
+
+  .cover-text{
+
+    font-size:11px;
+
   }
+
 
   .cover-name{
+
     font-size:20px;
+
   }
+
+
+  .cover-area{
+
+    font-size:8px;
+
+  }
+
 
   .viewer-card{
-    height:570px;
+
+    height:580px;
 
     border-radius:27px;
+
   }
 
+
   .viewer-label{
+
     top:13px;
+
     left:13px;
 
     padding:9px 11px;
+
   }
+
 
   .viewer-label span{
+
     display:none;
+
   }
+
 
   .layer-controls{
+
     top:13px;
+
     right:13px;
+
   }
 
+
   .layer-button{
+
     padding:8px 9px;
+
     font-size:8px;
+
   }
 
 
   /*
-    En celular la cuadrícula
-    se hace más pequeña pero
-    permanece en el mismo centro.
+     CUADRÍCULA EN CELULAR
   */
 
   .region-grid{
 
     left:50%;
-    top:47%;
+
+    top:44%;
 
     width:76vw;
+
     height:66vw;
 
     min-width:255px;
+
     min-height:255px;
 
     max-width:350px;
+
     max-height:330px;
+
   }
+
 
   .region-cell{
+
     font-size:8px;
+
     padding:5px;
+
   }
+
 
   .instructions{
+
     display:none;
+
   }
+
+
+  .explore-regions{
+
+    bottom:20px;
+
+  }
+
 
   .modal{
+
     padding:10px;
+
   }
+
 
   .modal-card{
+
     padding:22px 16px;
+
   }
 
+
   .modal-title{
+
     font-size:29px;
+
   }
 
 }
 
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
 </style>
+
 </head>
 
 
 <body>
 
 
-<!-- ESTRELLAS -->
+<!-- =====================================================
+     ESTRELLAS
+===================================================== -->
 
 <div class="stars">
 
   <span>✦</span>
   <span>✧</span>
-  <span>✦</span>
   <span>⋆</span>
+  <span>✦</span>
   <span>✧</span>
   <span>✦</span>
   <span>⋆</span>
   <span>✧</span>
-  <span>✦</span>
-  <span>⋆</span>
 
 </div>
-
-
-<div class="app">
-
-
-<!-- =====================================================
-     CABECERA
-===================================================== -->
-
-<header class="topbar">
-
-  <div class="logo">
-    🫀
-  </div>
-
-  <div>
-
-    <div class="brand-small">
-      ANATOMÍA INTERACTIVA · PRAXIS
-    </div>
-
-    <div class="brand-title">
-      Abdomen 360°
-    </div>
-
-  </div>
-
-</header>
 
 
 <!-- =====================================================
      PORTADA
 ===================================================== -->
 
-<section class="cover">
+<section id="cover">
 
 
-  <div class="aurora-stars">
-
-    <span>✦</span>
-    <span>✧</span>
-    <span>⋆</span>
-    <span>✦</span>
-    <span>✧</span>
-
-  </div>
+  <div class="cover-box">
 
 
-  <div class="cover-content">
+    <div class="aurora">
 
-
-    <div class="cover-badge">
-
-      ✨ ANATOMÍA INTERACTIVA · PRAXIS
+      <span>✦</span>
+      <span>✧</span>
+      <span>⋆</span>
+      <span>✦</span>
+      <span>✧</span>
 
     </div>
 
+
+    <div class="cover-content">
+
+
+      <div class="cover-icon">
+
+        🫀
+
+      </div>
+
+
+      <div class="cover-small">
+
+        ANATOMÍA INTERACTIVA
+
+      </div>
+
+
+      <h1 class="cover-title">
+
+        Abdomen 360°
+
+      </h1>
+
+
+      <p class="cover-text">
+
+        Explora el cuerpo humano en 3D y descubre
+        las nueve regiones abdominales de una forma
+        interactiva, visual y diferente. ✨
+
+      </p>
+
+
+      <button
+        id="enterButton"
+        class="main-button"
+      >
+
+        ✨ INGRESAR A LA EXPLORACIÓN ✨
+
+      </button>
+
+
+      <div class="cover-name">
+
+        Hislaine Changoluisa
+
+      </div>
+
+
+      <div class="cover-area">
+
+        ÁREA DE TANATOPRAXIA · PRAXIS
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     PÁGINA PRINCIPAL
+===================================================== -->
+
+<main id="mainPage">
+
+
+  <!-- HEADER -->
+
+  <header class="topbar">
+
+    <div class="logo">
+
+      🫀
+
+    </div>
+
+
+    <div>
+
+      <div class="brand-small">
+
+        ANATOMÍA INTERACTIVA · PRAXIS
+
+      </div>
+
+
+      <div class="brand-title">
+
+        Abdomen 360°
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- INTRO -->
+
+  <section class="intro">
 
     <h1>
 
@@ -1397,420 +2019,390 @@ footer{
     </h1>
 
 
-    <p class="cover-description">
+    <p>
 
-      Una exploración interactiva del cuerpo humano
-      y de sus nueve regiones abdominales mediante
-      una experiencia anatómica en 3D.
+      Explora el cuerpo humano en 3D, observa
+      su anatomía muscular y descubre las nueve
+      regiones abdominales.
 
     </p>
 
 
     <button
+      id="exploreRegions"
       class="main-button"
-      id="startButton"
     >
 
-      ✨ COMENZAR EXPLORACIÓN
+      ✨ EXPLORAR LAS 9 REGIONES
 
     </button>
 
-
-    <div class="cover-name">
-
-      Hislaine Changoluisa
-
-    </div>
-
-
-    <div class="cover-area">
-
-      ÁREA DE TANATOPRAXIA · PRAXIS
-
-    </div>
-
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     VISOR
-===================================================== -->
-
-<section
-  class="viewer-card"
-  id="viewerCard"
->
-
-
-  <div class="viewer-label">
-
-    <strong>
-      🧍 Vista anatómica 3D
-    </strong>
-
-    <span>
-      Mueve, gira y acerca el cuerpo
-    </span>
-
-  </div>
-
-
-  <div class="layer-controls">
-
-    <button
-      class="layer-button active"
-      id="bodyButton"
-    >
-
-      🧍 CUERPO COMPLETO
-
-    </button>
-
-
-    <button
-      class="layer-button active"
-      id="muscleButton"
-    >
-
-      🔴 MÚSCULOS
-
-    </button>
-
-  </div>
-
-
-  <div id="viewer"></div>
+  </section>
 
 
   <!-- =================================================
-       CUADRÍCULA
+       VISOR 3D
   ================================================= -->
 
-  <div
-    class="region-grid"
-    id="regionGrid"
+  <section
+    class="viewer-card"
+    id="viewerCard"
   >
 
 
-    <button
-      class="region-cell"
-      data-region="0"
-    >
+    <div class="viewer-label">
 
-      <span class="region-number">
-        1
+      <strong>
+
+        🧍 Vista anatómica 3D
+
+      </strong>
+
+
+      <span>
+
+        Arrastra para girar · usa la rueda
+        para acercar o alejar
+
       </span>
 
-      HIPOCONDRIO
-      <br>
-      DERECHO
-
-    </button>
-
-
-    <button
-      class="region-cell"
-      data-region="1"
-    >
-
-      <span class="region-number">
-        2
-      </span>
-
-      EPIGASTRIO
-
-    </button>
-
-
-    <button
-      class="region-cell"
-      data-region="2"
-    >
-
-      <span class="region-number">
-        3
-      </span>
-
-      HIPOCONDRIO
-      <br>
-      IZQUIERDO
-
-    </button>
-
-
-    <button
-      class="region-cell"
-      data-region="3"
-    >
-
-      <span class="region-number">
-        4
-      </span>
-
-      LUMBAR
-      <br>
-      DERECHA
-
-    </button>
-
-
-    <button
-      class="region-cell"
-      data-region="4"
-    >
-
-      <span class="region-number">
-        5
-      </span>
-
-      REGIÓN
-      <br>
-      UMBILICAL
-
-    </button>
-
-
-    <button
-      class="region-cell"
-      data-region="5"
-    >
-
-      <span class="region-number">
-        6
-      </span>
-
-      LUMBAR
-      <br>
-      IZQUIERDA
-
-    </button>
-
-
-    <button
-      class="region-cell"
-      data-region="6"
-    >
-
-      <span class="region-number">
-        7
-      </span>
-
-      ILÍACA
-      <br>
-      DERECHA
-
-    </button>
-
-
-    <button
-      class="region-cell"
-      data-region="7"
-    >
-
-      <span class="region-number">
-        8
-      </span>
-
-      HIPOGASTRIO
-
-    </button>
-
-
-    <button
-      class="region-cell"
-      data-region="8"
-    >
-
-      <span class="region-number">
-        9
-      </span>
-
-      ILÍACA
-      <br>
-      IZQUIERDA
-
-    </button>
-
-
-  </div>
-
-
-  <button
-    class="main-button explore-regions"
-    id="exploreRegions"
-  >
-
-    ✨ EXPLORAR LAS 9 REGIONES
-
-  </button>
-
-
-  <div class="instructions">
-
-    🖱️ Arrastra para girar · Rueda para acercar/alejar
-
-  </div>
-
-
-  <div
-    class="loading"
-    id="loading"
-  >
-
-    <div class="loading-icon">
-      🫀
     </div>
 
-    <p>
-      Preparando el cuerpo 3D...
+
+    <div class="layer-controls">
+
+
+      <button
+        id="bodyButton"
+        class="layer-button active"
+      >
+
+        🧍 CUERPO COMPLETO
+
+      </button>
+
+
+      <button
+        id="muscleButton"
+        class="layer-button active"
+      >
+
+        🔴 MÚSCULOS
+
+      </button>
+
+
+    </div>
+
+
+    <div id="viewer"></div>
+
+
+    <!-- =================================================
+         CUADRÍCULA
+    ================================================= -->
+
+    <div
+      id="regionGrid"
+      class="region-grid"
+    >
+
+
+      <button
+        class="region-cell"
+        data-region="0"
+      >
+
+        <span class="region-number">
+          1
+        </span>
+
+        HIPOCONDRIO
+        <br>
+        DERECHO
+
+      </button>
+
+
+      <button
+        class="region-cell"
+        data-region="1"
+      >
+
+        <span class="region-number">
+          2
+        </span>
+
+        EPIGASTRIO
+
+      </button>
+
+
+      <button
+        class="region-cell"
+        data-region="2"
+      >
+
+        <span class="region-number">
+          3
+        </span>
+
+        HIPOCONDRIO
+        <br>
+        IZQUIERDO
+
+      </button>
+
+
+      <button
+        class="region-cell"
+        data-region="3"
+      >
+
+        <span class="region-number">
+          4
+        </span>
+
+        LUMBAR
+        <br>
+        DERECHA
+
+      </button>
+
+
+      <button
+        class="region-cell"
+        data-region="4"
+      >
+
+        <span class="region-number">
+          5
+        </span>
+
+        REGIÓN
+        <br>
+        UMBILICAL
+
+      </button>
+
+
+      <button
+        class="region-cell"
+        data-region="5"
+      >
+
+        <span class="region-number">
+          6
+        </span>
+
+        LUMBAR
+        <br>
+        IZQUIERDA
+
+      </button>
+
+
+      <button
+        class="region-cell"
+        data-region="6"
+      >
+
+        <span class="region-number">
+          7
+        </span>
+
+        ILÍACA
+        <br>
+        DERECHA
+
+      </button>
+
+
+      <button
+        class="region-cell"
+        data-region="7"
+      >
+
+        <span class="region-number">
+          8
+        </span>
+
+        HIPOGASTRIO
+
+      </button>
+
+
+      <button
+        class="region-cell"
+        data-region="8"
+      >
+
+        <span class="region-number">
+          9
+        </span>
+
+        ILÍACA
+        <br>
+        IZQUIERDA
+
+      </button>
+
+
+    </div>
+
+
+    <div class="instructions">
+
+      🖱️ Arrastra para girar · Rueda para acercar/alejar
+
+    </div>
+
+
+    <!-- CARGANDO -->
+
+    <div
+      id="loading"
+      class="loading"
+    >
+
+      <div class="loading-icon">
+
+        🫀
+
+      </div>
+
+
+      <p>
+
+        Preparando el cuerpo 3D...
+
+      </p>
+
+    </div>
+
+
+  </section>
+
+
+  <!-- =================================================
+       LISTA DE REGIONES
+  ================================================= -->
+
+  <section class="regions-section">
+
+
+    <h2 class="section-title">
+
+      Las 9 regiones abdominales
+
+    </h2>
+
+
+    <p class="section-subtitle">
+
+      Selecciona una región para conocerla.
+
     </p>
 
-  </div>
+
+    <div class="regions-list">
 
 
-</section>
+      <button
+        class="region-button"
+        data-region="0"
+      >
+        1 · Hipocondrio derecho
+      </button>
 
 
-<!-- =====================================================
-     REGIONES
-===================================================== -->
-
-<section class="regions-section">
-
-
-  <h2 class="section-title">
-
-    Las 9 regiones abdominales
-
-  </h2>
+      <button
+        class="region-button"
+        data-region="1"
+      >
+        2 · Epigastrio
+      </button>
 
 
-  <p class="section-subtitle">
-
-    Selecciona una región para conocerla.
-
-  </p>
-
-
-  <div class="regions-list">
+      <button
+        class="region-button"
+        data-region="2"
+      >
+        3 · Hipocondrio izquierdo
+      </button>
 
 
-    <button
-      class="region-button"
-      data-region="0"
-    >
-
-      1 · Hipocondrio derecho
-
-    </button>
+      <button
+        class="region-button"
+        data-region="3"
+      >
+        4 · Región lumbar derecha
+      </button>
 
 
-    <button
-      class="region-button"
-      data-region="1"
-    >
-
-      2 · Epigastrio
-
-    </button>
+      <button
+        class="region-button"
+        data-region="4"
+      >
+        5 · Región umbilical
+      </button>
 
 
-    <button
-      class="region-button"
-      data-region="2"
-    >
-
-      3 · Hipocondrio izquierdo
-
-    </button>
+      <button
+        class="region-button"
+        data-region="5"
+      >
+        6 · Región lumbar izquierda
+      </button>
 
 
-    <button
-      class="region-button"
-      data-region="3"
-    >
-
-      4 · Región lumbar derecha
-
-    </button>
+      <button
+        class="region-button"
+        data-region="6"
+      >
+        7 · Región ilíaca derecha
+      </button>
 
 
-    <button
-      class="region-button"
-      data-region="4"
-    >
-
-      5 · Región umbilical
-
-    </button>
+      <button
+        class="region-button"
+        data-region="7"
+      >
+        8 · Hipogastrio
+      </button>
 
 
-    <button
-      class="region-button"
-      data-region="5"
-    >
-
-      6 · Región lumbar izquierda
-
-    </button>
+      <button
+        class="region-button"
+        data-region="8"
+      >
+        9 · Región ilíaca izquierda
+      </button>
 
 
-    <button
-      class="region-button"
-      data-region="6"
-    >
+    </div>
 
-      7 · Región ilíaca derecha
-
-    </button>
+  </section>
 
 
-    <button
-      class="region-button"
-      data-region="7"
-    >
+  <footer>
 
-      8 · Hipogastrio
+    ✨ Trabajo realizado por Hislaine Changoluisa
+    · Praxis · Anatomía Interactiva ✨
 
-    </button>
+  </footer>
 
 
-    <button
-      class="region-button"
-      data-region="8"
-    >
-
-      9 · Región ilíaca izquierda
-
-    </button>
-
-
-  </div>
-
-</section>
-
-
-<footer>
-
-  ✨ Trabajo realizado por Hislaine Changoluisa ·
-  Praxis · Anatomía Interactiva ✨
-
-</footer>
-
-
-</div>
+</main>
 
 
 <!-- =====================================================
-     MODAL
+     MODAL DE INFORMACIÓN
 ===================================================== -->
 
 <div
-  class="modal"
   id="regionModal"
+  class="modal"
 >
 
 
@@ -1818,8 +2410,8 @@ footer{
 
 
     <button
-      class="close-modal"
       id="closeModal"
+      class="close-modal"
     >
 
       ×
@@ -1828,8 +2420,8 @@ footer{
 
 
     <div
-      class="modal-number"
       id="modalNumber"
+      class="modal-number"
     >
 
       REGIÓN 1
@@ -1838,8 +2430,8 @@ footer{
 
 
     <h2
-      class="modal-title"
       id="modalTitle"
+      class="modal-title"
     >
 
       Hipocondrio derecho
@@ -1850,7 +2442,10 @@ footer{
     <div class="modal-content">
 
 
+      <!-- dibujo anatómico -->
+
       <div class="anatomy-picture">
+
 
         <svg
           viewBox="0 0 260 320"
@@ -1861,86 +2456,101 @@ footer{
             cy="45"
             rx="30"
             ry="38"
-            fill="#f0b6b9"
+            fill="#efb5b8"
           />
+
 
           <path
             d="
-              M93 85
-              Q72 100 77 140
-              L91 245
-              Q94 276 109 292
-              L151 292
-              Q166 276 169 245
-              L183 140
-              Q188 100 167 85
-              Q145 76 130 76
-              Q115 76 93 85Z
+            M93 85
+            Q72 100 77 140
+            L91 245
+            Q94 276 109 292
+            L151 292
+            Q166 276 169 245
+            L183 140
+            Q188 100 167 85
+            Q145 76 130 76
+            Q115 76 93 85Z
             "
-            fill="#e9787c"
+            fill="#e8787c"
           />
+
+
+          <!-- músculos rojos -->
 
           <path
             d="
-              M101 115
-              Q130 96 159 115
-              L153 178
-              Q130 191 107 178Z
+            M101 115
+            Q130 96 159 115
+            L153 178
+            Q130 191 107 178Z
             "
-            fill="#c92732"
+            fill="#cf2632"
           />
+
 
           <path
             d="
-              M107 124
-              Q116 111 128 122
-              L125 170
-              Q111 169 105 157Z
+            M107 124
+            Q116 111 128 122
+            L125 170
+            Q111 169 105 157Z
             "
-            fill="#a92732"
+            fill="#a82430"
           />
+
 
           <path
             d="
-              M153 124
-              Q144 111 132 122
-              L135 170
-              Q149 169 155 157Z
+            M153 124
+            Q144 111 132 122
+            L135 170
+            Q149 169 155 157Z
             "
-            fill="#a92732"
+            fill="#a82430"
           />
+
+
+          <!-- líneas -->
 
           <line
             x1="130"
             y1="102"
             x2="130"
             y2="240"
-            stroke="#fff4f7"
+            stroke="white"
             stroke-width="3"
           />
+
 
           <line
             x1="88"
             y1="150"
             x2="172"
             y2="150"
-            stroke="#fff4f7"
+            stroke="white"
             stroke-width="3"
           />
+
 
           <line
             x1="88"
             y1="195"
             x2="172"
             y2="195"
-            stroke="#fff4f7"
+            stroke="white"
             stroke-width="3"
           />
 
+
         </svg>
+
 
       </div>
 
+
+      <!-- información -->
 
       <div class="info-box">
 
@@ -2002,6 +2612,7 @@ footer{
 
       </div>
 
+
     </div>
 
 
@@ -2009,8 +2620,8 @@ footer{
 
 
       <button
-        class="nav-button"
         id="previousRegion"
+        class="nav-button"
       >
 
         ← Anterior
@@ -2019,8 +2630,8 @@ footer{
 
 
       <button
-        class="nav-button primary"
         id="nextRegion"
+        class="nav-button primary"
       >
 
         Siguiente →
@@ -2072,27 +2683,33 @@ import { OrbitControls } from
    ELEMENTOS
 ===================================================== */
 
+const cover =
+document.getElementById("cover");
+
+const enterButton =
+document.getElementById("enterButton");
+
+const mainPage =
+document.getElementById("mainPage");
+
 const viewer =
 document.getElementById("viewer");
-
-const loading =
-document.getElementById("loading");
 
 const viewerCard =
 document.getElementById("viewerCard");
 
+const loading =
+document.getElementById("loading");
+
 const regionGrid =
 document.getElementById("regionGrid");
-
-const startButton =
-document.getElementById("startButton");
 
 const exploreRegions =
 document.getElementById("exploreRegions");
 
 
 /* =====================================================
-   ESCENA
+   ESCENA 3D
 ===================================================== */
 
 const scene =
@@ -2110,8 +2727,11 @@ new THREE.PerspectiveCamera(
 
 const renderer =
 new THREE.WebGLRenderer({
+
   antialias:true,
+
   alpha:true
+
 });
 
 
@@ -2122,10 +2742,12 @@ renderer.setPixelRatio(
   )
 );
 
+
 renderer.setClearColor(
   0x000000,
   0
 );
+
 
 viewer.appendChild(
   renderer.domElement
@@ -2139,8 +2761,8 @@ viewer.appendChild(
 scene.add(
   new THREE.HemisphereLight(
     0xffffff,
-    0x5d2037,
-    2.6
+    0x5b2036,
+    2.7
   )
 );
 
@@ -2152,7 +2774,7 @@ new THREE.DirectionalLight(
 );
 
 light1.position.set(
-  3,
+  4,
   5,
   7
 );
@@ -2162,14 +2784,14 @@ scene.add(light1);
 
 const light2 =
 new THREE.DirectionalLight(
-  0xffdce8,
-  1.4
+  0xffdbe7,
+  1.5
 );
 
 light2.position.set(
   -4,
   2,
-  4
+  5
 );
 
 scene.add(light2);
@@ -2191,7 +2813,7 @@ controls.dampingFactor = .06;
 
 controls.enablePan = false;
 
-controls.minDistance = .7;
+controls.minDistance = .6;
 
 controls.maxDistance = 12;
 
@@ -2223,6 +2845,7 @@ loader.setDRACOLoader(
 const MODEL_URL =
 "./models/models/body.glb";
 
+
 let model = null;
 
 let modelBox =
@@ -2241,20 +2864,18 @@ let regionMode = false;
 
 
 /*
-   Este valor determina dónde está
-   el centro anatómico del abdomen
-   dentro de la altura total.
+  Punto del abdomen.
 
-   Lo dejamos un poco MÁS ARRIBA
-   para corregir lo que veíamos
-   anteriormente.
+  Está calculado sobre la altura real
+  del cuerpo para que funcione tanto
+  en computadora como en celular.
 */
 
 const ABDOMEN_RATIO = .575;
 
 
 /* =====================================================
-   CARGAR MODELO
+   CARGAR CUERPO
 ===================================================== */
 
 loader.load(
@@ -2287,11 +2908,7 @@ loader.load(
 
 
     /*
-      CENTRO DEL ABDOMEN
-
-      Se calcula desde la altura real
-      del cuerpo, no desde el tamaño
-      de la pantalla.
+       CENTRO DEL ABDOMEN
     */
 
     abdomenTarget.set(
@@ -2308,7 +2925,11 @@ loader.load(
 
 
     /*
-      FORZAR ROJO A LOS MÚSCULOS
+       MÚSCULOS ROJOS
+
+       Si el GLB tiene objetos cuyo
+       nombre contiene muscle/musculo,
+       se les aplica rojo.
     */
 
     model.traverse(
@@ -2316,10 +2937,6 @@ loader.load(
 
         if(!object.isMesh)
           return;
-
-        object.castShadow = true;
-
-        object.receiveShadow = true;
 
 
         const materials =
@@ -2344,9 +2961,13 @@ loader.load(
 
 
             if(
+
               text.includes("muscle") ||
+
               text.includes("musculo") ||
+
               text.includes("muscular")
+
             ){
 
               if(material.color){
@@ -2373,11 +2994,14 @@ loader.load(
       "hidden"
     );
 
+
     resize();
 
   },
 
+
   undefined,
+
 
   error => {
 
@@ -2401,7 +3025,7 @@ loader.load(
 
 
 /* =====================================================
-   AJUSTAR CUERPO COMPLETO
+   CUERPO COMPLETO
 ===================================================== */
 
 function fitBody(){
@@ -2411,6 +3035,7 @@ function fitBody(){
 
 
   regionMode = false;
+
 
   regionGrid.classList.remove(
     "visible"
@@ -2443,7 +3068,7 @@ function fitBody(){
   );
 
 
-  const vertical =
+  const verticalDistance =
   (modelSize.y * .50) /
   Math.tan(fov / 2);
 
@@ -2456,7 +3081,7 @@ function fitBody(){
   );
 
 
-  const horizontal =
+  const horizontalDistance =
   (modelSize.x * .50) /
   Math.tan(
     horizontalFov / 2
@@ -2465,8 +3090,8 @@ function fitBody(){
 
   const distance =
   Math.max(
-    vertical,
-    horizontal
+    verticalDistance,
+    horizontalDistance
   ) * 1.18;
 
 
@@ -2486,13 +3111,14 @@ function fitBody(){
     bodyCenter
   );
 
+
   controls.update();
 
 }
 
 
 /* =====================================================
-   ⭐ ZOOM EXACTO AL ABDOMEN
+   ZOOM AL ABDOMEN
 ===================================================== */
 
 function zoomToAbdomen(){
@@ -2507,29 +3133,29 @@ function zoomToAbdomen(){
   /*
      BLOQUEAMOS LA ROTACIÓN.
 
-     Así la cuadrícula no se mueve
-     ni se descuadra del cuerpo.
+     Así la cuadrícula permanece
+     completamente quieta sobre
+     el abdomen.
   */
 
   controls.enableRotate = false;
 
-  controls.enablePan = false;
-
 
   /*
-     Distancia de zoom.
-
-     Más cerca = abdomen más grande.
+     Distancia del zoom.
   */
 
   const distance =
     Math.max(
-      modelSize.x * 1.45,
+
+      modelSize.x * 1.40,
+
       modelSize.y * .27
+
     );
 
 
-  const targetPosition =
+  const destination =
     new THREE.Vector3(
 
       abdomenTarget.x,
@@ -2544,7 +3170,7 @@ function zoomToAbdomen(){
 
   animateCamera(
 
-    targetPosition,
+    destination,
 
     abdomenTarget,
 
@@ -2553,17 +3179,14 @@ function zoomToAbdomen(){
   );
 
 
+  /*
+     Esperamos a que la cámara llegue
+     antes de mostrar la cuadrícula.
+  */
+
   setTimeout(
 
     () => {
-
-      /*
-        AQUÍ APARECE LA CUADRÍCULA.
-
-        Está fijada al CENTRO del visor.
-        Ya no depende de una proyección
-        que la mande hacia abajo.
-      */
 
       regionGrid.classList.add(
         "visible"
@@ -2581,7 +3204,7 @@ function zoomToAbdomen(){
 
 
 /* =====================================================
-   ⭐ POSICIÓN FIJA DE CUADRÍCULA
+   POSICIÓN CUADRÍCULA
 ===================================================== */
 
 function positionGrid(){
@@ -2591,70 +3214,55 @@ function positionGrid(){
 
 
   /*
-     EXACTAMENTE EN EL CENTRO
-     DEL ABDOMEN QUE AHORA ESTÁ
-     EN EL CENTRO DE LA CÁMARA.
+     FIJA.
+
+     No usamos proyección del modelo.
+
+     Esto evita que la cuadrícula
+     termine en las piernas o pecho.
   */
 
   regionGrid.style.left =
     "50%";
 
 
-  /*
-     47% la deja ligeramente
-     por encima del centro matemático,
-     que corresponde mejor al centro
-     del abdomen visual.
-  */
-
   regionGrid.style.top =
-    "47%";
+    "44%";
 
-
-  /*
-     Tamaño según pantalla.
-  */
-
-  if(window.innerWidth <= 500){
-
-    regionGrid.style.width =
-      "76vw";
-
-    regionGrid.style.height =
-      "66vw";
-
-  }
 
 }
 
 
 /* =====================================================
-   ANIMAR CÁMARA
+   ANIMACIÓN DE CÁMARA
 ===================================================== */
 
 function animateCamera(
   destination,
-  destinationTarget,
+  target,
   duration
 ){
 
-  const start =
+  const startPosition =
     camera.position.clone();
 
   const startTarget =
     controls.target.clone();
 
-  const beginning =
+  const startTime =
     performance.now();
 
 
-  function animate(now){
+  function animate(time){
 
     const progress =
       Math.min(
-        (now - beginning) /
+
+        (time - startTime) /
         duration,
+
         1
+
       );
 
 
@@ -2667,16 +3275,24 @@ function animateCamera(
 
 
     camera.position.lerpVectors(
-      start,
+
+      startPosition,
+
       destination,
+
       eased
+
     );
 
 
     controls.target.lerpVectors(
+
       startTarget,
-      destinationTarget,
+
+      target,
+
       eased
+
     );
 
 
@@ -2702,42 +3318,80 @@ function animateCamera(
 
 
 /* =====================================================
-   BOTÓN DE PORTADA
+   BOTÓN INGRESAR
 ===================================================== */
 
-startButton.addEventListener(
+enterButton.addEventListener(
+
   "click",
+
   () => {
 
-    if(!model)
-      return;
-
-
-    viewerCard.scrollIntoView({
-      behavior:"smooth",
-      block:"center"
-    });
+    enterButton.classList.add(
+      "flash"
+    );
 
 
     setTimeout(
       () => {
 
-        zoomToAbdomen();
+        /*
+          QUITAMOS LA PORTADA
+        */
+
+        cover.classList.add(
+          "hidden"
+        );
+
+
+        /*
+          MOSTRAMOS LA PÁGINA
+        */
+
+        mainPage.classList.add(
+          "show"
+        );
+
+
+        /*
+          LLEVAMOS AL USUARIO
+          AL CUERPO 3D
+        */
+
+        setTimeout(
+
+          () => {
+
+            viewerCard.scrollIntoView({
+              behavior:"smooth",
+              block:"center"
+            });
+
+          },
+
+          300
+
+        );
 
       },
-      500
+
+      450
+
     );
 
   }
+
 );
 
 
 /* =====================================================
-   BOTÓN EXPLORAR REGIONES
+   EXPLORAR REGIONES
 ===================================================== */
 
 exploreRegions.addEventListener(
+
   "click",
+
   () => {
 
     if(!model)
@@ -2747,11 +3401,12 @@ exploreRegions.addEventListener(
     zoomToAbdomen();
 
   }
+
 );
 
 
 /* =====================================================
-   REDIMENSIONAR
+   RESIZE
 ===================================================== */
 
 function resize(){
@@ -2769,6 +3424,7 @@ function resize(){
 
   camera.aspect =
     width / height;
+
 
   camera.updateProjectionMatrix();
 
@@ -2816,18 +3472,20 @@ function render(){
 
 }
 
+
 render();
 
 
 /* =====================================================
-   INFORMACIÓN
+   INFORMACIÓN DE LAS 9 REGIONES
 ===================================================== */
 
 const regions = [
 
 {
 
-name:"Hipocondrio derecho",
+name:
+"Hipocondrio derecho",
 
 location:
 "Parte superior derecha del abdomen, debajo de las costillas.",
@@ -2836,10 +3494,10 @@ structures:
 "Principalmente se encuentran el hígado, especialmente gran parte del lóbulo derecho, la vesícula biliar, parte del duodeno, el polo superior del riñón derecho y la flexura hepática del colon.",
 
 function:
-"Participa en procesos digestivos y metabólicos. El hígado produce bilis y la vesícula biliar la almacena y concentra.",
+"Participa principalmente en procesos digestivos y metabólicos. El hígado produce bilis y la vesícula biliar la almacena y concentra.",
 
 importance:
-"Es una región importante porque contiene estructuras esenciales para la digestión y el metabolismo.",
+"Es una región importante porque contiene estructuras esenciales relacionadas con la digestión y el metabolismo.",
 
 fact:
 "El hígado ocupa gran parte del abdomen superior derecho."
@@ -2848,7 +3506,8 @@ fact:
 
 {
 
-name:"Epigastrio",
+name:
+"Epigastrio",
 
 location:
 "Región central superior del abdomen, entre los dos hipocondrios.",
@@ -2869,7 +3528,8 @@ fact:
 
 {
 
-name:"Hipocondrio izquierdo",
+name:
+"Hipocondrio izquierdo",
 
 location:
 "Parte superior izquierda del abdomen, debajo de las costillas.",
@@ -2890,7 +3550,8 @@ fact:
 
 {
 
-name:"Región lumbar derecha",
+name:
+"Región lumbar derecha",
 
 location:
 "Zona media derecha del abdomen, entre el hipocondrio derecho y la región ilíaca derecha.",
@@ -2911,7 +3572,8 @@ fact:
 
 {
 
-name:"Región umbilical",
+name:
+"Región umbilical",
 
 location:
 "Zona central del abdomen alrededor del ombligo.",
@@ -2932,7 +3594,8 @@ fact:
 
 {
 
-name:"Región lumbar izquierda",
+name:
+"Región lumbar izquierda",
 
 location:
 "Zona media izquierda del abdomen.",
@@ -2953,7 +3616,8 @@ fact:
 
 {
 
-name:"Región ilíaca derecha",
+name:
+"Región ilíaca derecha",
 
 location:
 "Parte inferior derecha del abdomen, cerca de la pelvis.",
@@ -2974,7 +3638,8 @@ fact:
 
 {
 
-name:"Hipogastrio",
+name:
+"Hipogastrio",
 
 location:
 "Región central inferior del abdomen, por encima de la zona púbica.",
@@ -2995,7 +3660,8 @@ fact:
 
 {
 
-name:"Región ilíaca izquierda",
+name:
+"Región ilíaca izquierda",
 
 location:
 "Parte inferior izquierda del abdomen, cerca de la pelvis.",
@@ -3158,7 +3824,7 @@ function openRegion(index){
 
 
 /* =====================================================
-   BOTONES DE REGIÓN
+   BOTONES DE REGIONES
 ===================================================== */
 
 document
@@ -3169,17 +3835,19 @@ document
     button => {
 
       button.addEventListener(
+
         "click",
+
         () => {
 
-          const index =
+          openRegion(
             Number(
               button.dataset.region
-            );
-
-          openRegion(index);
+            )
+          );
 
         }
+
       );
 
     }
@@ -3187,11 +3855,13 @@ document
 
 
 /* =====================================================
-   NAVEGACIÓN
+   ANTERIOR
 ===================================================== */
 
 previousRegion.addEventListener(
+
   "click",
+
   () => {
 
     openRegion(
@@ -3199,11 +3869,18 @@ previousRegion.addEventListener(
     );
 
   }
+
 );
 
 
+/* =====================================================
+   SIGUIENTE
+===================================================== */
+
 nextRegion.addEventListener(
+
   "click",
+
   () => {
 
     openRegion(
@@ -3211,6 +3888,7 @@ nextRegion.addEventListener(
     );
 
   }
+
 );
 
 
@@ -3219,7 +3897,9 @@ nextRegion.addEventListener(
 ===================================================== */
 
 closeModal.addEventListener(
+
   "click",
+
   () => {
 
     modal.classList.remove(
@@ -3227,11 +3907,14 @@ closeModal.addEventListener(
     );
 
   }
+
 );
 
 
 modal.addEventListener(
+
   "click",
+
   event => {
 
     if(
@@ -3245,15 +3928,18 @@ modal.addEventListener(
     }
 
   }
+
 );
 
 
 /* =====================================================
-   DESTELLOS
+   DESTELLO EN TODOS LOS BOTONES
 ===================================================== */
 
 document.addEventListener(
+
   "click",
+
   event => {
 
     const button =
@@ -3280,6 +3966,7 @@ document.addEventListener(
 
 
     setTimeout(
+
       () => {
 
         button.classList.remove(
@@ -3287,10 +3974,13 @@ document.addEventListener(
         );
 
       },
+
       700
+
     );
 
   }
+
 );
 
 </script>
